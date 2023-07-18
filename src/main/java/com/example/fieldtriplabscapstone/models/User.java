@@ -1,5 +1,6 @@
 package com.example.fieldtriplabscapstone.models;
 
+import com.example.fieldtriplabscapstone.repositories.UserRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
