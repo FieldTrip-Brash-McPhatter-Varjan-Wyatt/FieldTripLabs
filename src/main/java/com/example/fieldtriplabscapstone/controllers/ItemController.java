@@ -1,9 +1,10 @@
 package com.example.fieldtriplabscapstone.controllers;
 
 
+import com.example.fieldtriplabscapstone.models.Item;
+import com.example.fieldtriplabscapstone.repositories.ItemRepository;
 
-import com.example.todo.model.Item;
-import com.example.todo.repository.ItemRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
