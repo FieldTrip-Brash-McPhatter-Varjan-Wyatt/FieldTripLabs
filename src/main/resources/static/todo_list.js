@@ -1,5 +1,6 @@
 // Global variables
 var itemList;
+var currentListName = "Default List";
 
 // Function to load the selected packing list
 function loadPackingList(listIndex) {
@@ -234,14 +235,13 @@ function deleteItem(index) {
 
 
 // Function to render the list
-// Function to render the list
-function renderList(listName) {
+function renderList() {
     var itemListElement = document.getElementById("itemList");
     itemListElement.innerHTML = "";
 
-    // Add the list header
+    // Add the list header using the current list name
     var listHeader = document.createElement("h2");
-    listHeader.textContent = listName;
+    listHeader.textContent = currentListName;
     itemListElement.appendChild(listHeader);
 
     // Render the items
@@ -295,6 +295,25 @@ function toggleItem(index) {
     itemList[index].completed = !itemList[index].completed;
     renderList("Selected Packing List"); // Update the list after toggling completion status
 }
+
+// Function to save the list
+function saveList() {
+    var listNameInput = document.getElementById("listNameInput");
+    var newListName = listNameInput.value.trim();
+
+    if (newListName !== "") {
+        // Update the current list name
+        currentListName = newListName;
+
+        // Save the list and the current list name to local storage
+        localStorage.setItem("currentListName", currentListName);
+        localStorage.setItem("itemList", JSON.stringify(itemList));
+
+        // Update the rendered list
+        renderList();
+    }
+}
+
 
 
 // Call renderList() to display the pre-made list when the page loads
