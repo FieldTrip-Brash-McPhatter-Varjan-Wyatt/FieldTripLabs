@@ -32,7 +32,7 @@ public class Itinerary {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itineraries")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
     private List<Checklist> checklists;
 
 }

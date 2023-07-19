@@ -31,6 +31,6 @@ public class Destination {
     @Column
     private String photo_url;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "destinations")
-    private List<Review> reviews;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "destination")
+    private List<Review> review;
 }

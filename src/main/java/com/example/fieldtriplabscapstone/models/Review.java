@@ -33,6 +33,6 @@ public class Review {
     @JoinColumn(name = "destination_id", nullable = false)
     private Destination destination;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "users")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "review")
     private List<Photo> photos;
 }
