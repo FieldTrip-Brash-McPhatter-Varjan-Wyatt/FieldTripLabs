@@ -1,10 +1,13 @@
 // Global variables
 var itemList;
+var currentListName = "Default List";
 
 // Function to load the selected packing list
 function loadPackingList(listIndex) {
+    var listName;
     switch (listIndex) {
         case '1':
+            listName = ("Summer Destination");
             itemList = [
                 {text: "Lightweight and breathable clothing", completed: false},
                 {text: "Swimwear", completed: false},
@@ -22,9 +25,10 @@ function loadPackingList(listIndex) {
                 {text: "Travel documents (passport, ID, tickets)", completed: false},
                 {text: "Cash and/or credit cards", completed: false}
             ];
-
             break;
+
         case '2':
+            listName = ("Beach Destination");
             itemList = [
                 {text: "Swimwear", completed: false},
                 {text: "Beach towel", completed: false},
@@ -42,9 +46,10 @@ function loadPackingList(listIndex) {
                 {text: "Reading material or e-reader", completed: false},
                 {text: "Beach umbrella or sunshade", completed: false}
             ];
-
             break;
+
         case '3':
+            listName = ("Ski Destination");
             itemList = [
                 {text: "Ski jacket and pants", completed: false},
                 {text: "Thermal base layers", completed: false},
@@ -62,10 +67,11 @@ function loadPackingList(listIndex) {
                 {text: "Portable charger for electronics", completed: false},
                 {text: "Backpack for carrying essentials on the slopes", completed: false}
             ];
-
+            break;
 
 
         case '4':
+            listName = ("Romantic Destination");
             itemList = [
                 { text: "Appropriate clothing for the destination", completed: false },
                 { text: "Comfortable walking shoes", completed: false },
@@ -83,9 +89,10 @@ function loadPackingList(listIndex) {
                 { text: "Compact umbrella (in case of rain)", completed: false },
                 { text: "Personalized surprise or gift for your partner", completed: false }
             ];
-
             break;
+
         case '5':
+            listName = ("Winter Destination");
              itemList = [
                 { text: "Warm winter coat or jacket", completed: false },
                 { text: "Sweaters or thermal tops", completed: false },
@@ -103,8 +110,10 @@ function loadPackingList(listIndex) {
                 { text: "Travel documents (passport, ID, tickets)", completed: false },
                 { text: "Cash and/or credit cards", completed: false }
             ];
+            break;
 
         case '6':
+            listName = ("Sightseeing Destination");
              itemList = [
                 { text: "Comfortable walking shoes", completed: false },
                 { text: "Lightweight and breathable clothing", completed: false },
@@ -125,6 +134,7 @@ function loadPackingList(listIndex) {
 
             break;
         case '7':
+            listName = ("Nature Destination");
             itemList = [
                 { text: "Comfortable walking shoes or hiking boots", completed: false },
                 { text: "Lightweight and breathable clothing", completed: false },
@@ -146,6 +156,7 @@ function loadPackingList(listIndex) {
 
             break;
         case '8':
+            listName = ("International Destination");
              itemList = [
                 { text: "Passport and visa (if required)", completed: false },
                 { text: "Travel itinerary and reservation details", completed: false },
@@ -168,9 +179,10 @@ function loadPackingList(listIndex) {
                 { text: "Copy of important documents (passport, ID)", completed: false },
                 { text: "Emergency contact information back home", completed: false }
             ];
-
+            break;
 
         default:
+            listName = ("Default List");
             itemList = [
                 {text: "Toothbrush", completed: false},
                 {text: "Toothpaste", completed: false},
@@ -186,8 +198,9 @@ function loadPackingList(listIndex) {
             ];
             break;
     }
-    renderList();
+    renderList(listName); // Render the list with the correct list name
 }
+
 
 // Function to handle the selection change event
 function handleSelectionChange() {
@@ -212,10 +225,7 @@ function addItem() {
 }
 
 // Function to change the status of an item
-function toggleItem(index) {
-    itemList[index].completed = !itemList[index].completed;
-    renderList();
-}
+
 
 // Function to delete an item from the list
 function deleteItem(index) {
@@ -223,14 +233,20 @@ function deleteItem(index) {
     renderList();
 }
 
+
 // Function to render the list
 function renderList() {
     var itemListElement = document.getElementById("itemList");
     itemListElement.innerHTML = "";
 
+    // Add the list header using the current list name
+    var listHeader = document.createElement("h2");
+    listHeader.textContent = currentListName;
+    itemListElement.appendChild(listHeader);
+
+    // Render the items
     for (var i = 0; i < itemList.length; i++) {
-        var listItem = document.createElement("li");
-        listItem.classList.add("list-group-item");
+        var listItem = document.createElement("li"); // Create a new list item element
 
         var toggleContainer = document.createElement("div");
         toggleContainer.classList.add("form-check", "form-switch");
@@ -274,6 +290,32 @@ function renderList() {
     }
 }
 
+// Function to change the status of an item
+function toggleItem(index) {
+    itemList[index].completed = !itemList[index].completed;
+    renderList("Selected Packing List"); // Update the list after toggling completion status
+}
+
+// Function to save the list
+function saveList() {
+    var listNameInput = document.getElementById("listNameInput");
+    var newListName = listNameInput.value.trim();
+
+    if (newListName !== "") {
+        // Update the current list name
+        currentListName = newListName;
+
+        // Save the list and the current list name to local storage
+        localStorage.setItem("currentListName", currentListName);
+        localStorage.setItem("itemList", JSON.stringify(itemList));
+
+        // Update the rendered list
+        renderList();
+    }
+}
+
+
+
 // Call renderList() to display the pre-made list when the page loads
 window.addEventListener("load", renderList);
 // Call loadPackingList() to load the default packing list when the page loads
@@ -282,5 +324,5 @@ loadPackingList('0');
 //Making the calls to the API on submit
 
 async function fetchAndSend() {
-  
+
 }
