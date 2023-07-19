@@ -5,10 +5,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container mt-5">
     <h1>Packing List</h1>
     <div class="row d-flex">
         <div class="col-6"></div>
+  <div class="mb-3">
+        <label for="listSelection">Select a Packing List:</label>
+        <select id="listSelection" class="form-control">
+            <option value="0">Choose a Packing List</option>
+            <option value="1">Travel to a warm climate</option>
+            <option value="2">Travel to a beach</option>
+            <option value="3">Travel to go skiing</option>
+            <option value="4">Travel with a romantic partner</option>
+            <option value="5">Travel to a cold climate</option>
+            <option value="6">Travel to go sightseeing</option>
+            <option value="7">Travel to national parks</option>
+            <option value="8">Travel to international countries</option>
+        </select>
+    </div>
         <div class="mb-3 col-6">
             <input type="text" class="form-control" id="itemInput" placeholder="Enter an item">
         </div>
@@ -50,7 +64,6 @@
             </form>
         </div>
     </div>
-    <script src="../static/todo_list.js"></script>
-
+  <script src="../static/todo_list.js"></script>
 </body>
 </html>
