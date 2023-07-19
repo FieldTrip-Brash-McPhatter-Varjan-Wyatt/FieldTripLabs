@@ -276,14 +276,11 @@ function renderList() {
 
 // Call renderList() to display the pre-made list when the page loads
 window.addEventListener("load", renderList);
+// Call loadPackingList() to load the default packing list when the page loads
+loadPackingList('0');
 
 //Making the calls to the API on submit
 
 async function fetchAndSend() {
   
- 
-// Call loadPackingList() to load the default packing list when the page loads
-loadPackingList('0');
-
-
 }
