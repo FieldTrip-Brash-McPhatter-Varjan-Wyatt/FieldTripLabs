@@ -64,7 +64,7 @@ function loadPackingList(listIndex) {
             ];
 
 
-        // Add cases for other packing lists here
+
         case '4':
             itemList = [
                 { text: "Appropriate clothing for the destination", completed: false },
