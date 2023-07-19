@@ -7,7 +7,9 @@
 <body>
 <div class="container mt-5">
     <h1>Packing List</h1>
-    <div class="mb-3">
+    <div class="row d-flex">
+        <div class="col-6"></div>
+  <div class="mb-3">
         <label for="listSelection">Select a Packing List:</label>
         <select id="listSelection" class="form-control">
             <option value="0">Choose a Packing List</option>
@@ -21,16 +23,47 @@
             <option value="8">Travel to international countries</option>
         </select>
     </div>
-    <div class="mb-3">
-        <input type="text" class="form-control" id="itemInput" placeholder="Enter an item">
+        <div class="mb-3 col-6">
+            <input type="text" class="form-control" id="itemInput" placeholder="Enter an item">
+        </div>
+        <div class="justify-content-end">
+            <button class="btn btn-primary col-3" onclick="addItem()">Add Item</button>
+        </div>
+        <div id="listContainer" class="row d-flex justify-content-around">
+            <div class="card mt-3 col-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+            <ul id="itemList" class="list-group mt-3 col-6" style="list-style: none" ;></ul>
+        </div>
+        <div class="card m-3">
+            <form class="m-3">
+                <div class=" d-flex form-row justify-content-center">
+                    <div class="col-3">
+                        <input type="text" class="form-control" placeholder="Destination">
+                    </div>
+                    <div class="col-2">
+                        <input type="date" class="form-control" placeholder="Start Date">
+                    </div>
+                    <div class="col-2">
+                        <input type="date" class="form-control" placeholder="End Date">
+                    </div>
+                    <div class="col-2">
+                        <input type="number" class="form-control" placeholder="Number of People">
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <button class="btn btn-primary" onclick="addItem()">Add Item</button>
-    <div id="listContainer">
-        <ul id="itemList" class="list-group mt-3" style="list-style: none;"></ul>
-    </div>
-</div>
-
-<script src="../static/todo_list.js"></script>
-
+  <script src="../static/todo_list.js"></script>
 </body>
 </html>
