@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/header">
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+</head>
+<body>
+<nav th:insert="partials/navbar"></nav>
+
+<!-- Search Bar -->
+<div class="border container mt-5 text-center p-4">
+    <h2 class="text-center">Welcome to our Travel Search</h2>
+    <p class="text-center">Find your perfect destination, select your preferred dates, and enter the number of people traveling.</p>
+    <form>
+        <div class="form-row justify-content-center">
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Destination">
+            </div>
+            <div class="col-2">
+                <input type="date" class="form-control" placeholder="Start Date">
+            </div>
+            <div class="col-2">
+                <input type="date" class="form-control" placeholder="End Date">
+            </div>
+            <div class="col-2">
+                <input type="number" class="form-control" placeholder="Number of People">
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<!-- Popular Destinations -->
+<div class="border  container mt-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="border p-4 pt-4 pb-4 my-4">
+                <img src="https://via.placeholder.com/400x300" alt="Paris, France" class="img-fluid">
+                <div class="text-center">
+                    <h3>Paris, France</h3>
+                    <p>Experience the romance and elegance of the "City of Love" as you stroll along the Seine River,
+                        marvel at
+                        iconic landmarks like the Eiffel Tower and Notre-Dame Cathedral, and indulge in delectable
+                        cuisine and
+                        world-class art at the Louvre Museum.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="border p-4 pt-4 pb-4 my-4">
+                <img src="https://via.placeholder.com/400x300" alt="New York, USA" class="img-fluid">
+                <div class="text-center">
+                    <h3>New York, USA</h3>
+                    <p>Immerse yourself in the vibrant energy of the "Big Apple" as you explore the towering skyscrapers
+                        of
+                        Manhattan, catch a Broadway show in Times Square, and take a leisurely walk through Central
+                        Park, while
+                        savoring diverse culinary delights from around the world.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="border p-4 pt-4 pb-4 my-4">
+                <img src="https://via.placeholder.com/400x300" alt="São Paulo, Brazil" class="img-fluid">
+                <div class="text-center">
+                    <h3>São Paulo, Brazil</h3>
+                    <p>Discover the cultural melting pot of São Paulo, where captivating street art adorns every corner,
+                        tantalizing flavors of Brazilian cuisine can be savored in countless restaurants, and a
+                        pulsating
+                        nightlife scene awaits in the trendy districts of Vila Madalena and Jardins.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Image Carousel -->
+<div class="container mt-5">
+    <div id="imageCarousel" class="carousel slide" data-ride="carousel" style="height: 50vh;">
+        <ol class="carousel-indicators">
+            <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#imageCarousel" data-slide-to="1"></li>
+            <li data-target="#imageCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" style="height: 100%;">
+            <div class="carousel-item active" style="height: 100%;">
+                <img src="https://via.placeholder.com/400x300" alt="Carousel 1" class="d-block w-100 h-100">
+            </div>
+            <div class="carousel-item" style="height: 100%;">
+                <img src="https://via.placeholder.com/400x300" alt="Carousel 2" class="d-block w-100 h-100">
+            </div>
+            <div class="carousel-item" style="height: 100%;">
+                <img src="https://via.placeholder.com/400x300" alt="Carousel 3" class="d-block w-100 h-100">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- Offer Section -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="text-center custom-border">
+                <span class="material-symbols-outlined">list_alt</span>
+                <h4>Customizable Packing Lists</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center custom-border">
+                <span class="material-symbols-outlined">thermostat</span>
+                <h4>Weather Forecasting</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center custom-border">
+                <span class="material-symbols-outlined">flight_takeoff</span>
+                <h4>Trip Planning</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center custom-border">
+                <span class="material-symbols-outlined">pin_drop</span>
+                <h4>Local Attractions</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Testimonials -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="text-center border p-4 d-flex flex-column" style="height: 100%;">
+                <blockquote class="flex-grow-1">
+                    <p>"I stumbled upon this travel website while planning my vacation, and it turned out to be a
+                        game-changer! The user-friendly interface made it incredibly easy to find and compare flights,
+                        hotels, and attractions, saving me both time and money. I highly recommend it to anyone looking
+                        for a hassle-free travel booking experience."</p>
+                    <footer>- John Doe</footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center border p-4 d-flex flex-column" style="height: 100%;">
+                <blockquote class="flex-grow-1">
+                    <p>"As an avid traveler, I've used several travel websites, but none have impressed me as much as
+                        this one. The extensive range of destination options and personalized recommendations helped me
+                        discover hidden gems and plan unforgettable trips. Plus, the customer support team was quick to
+                        respond and went above and beyond to assist me with any inquiries."</p>
+                    <footer>- Jane Smith</footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center border p-4 d-flex flex-column" style="height: 100%;">
+                <blockquote class="flex-grow-1">
+                    <p>"I can't thank this travel website enough for the incredible deals I scored on my recent
+                        vacation. From discounted hotel rates to exclusive tour packages, it provided me with unbeatable
+                        offers that made my dream trip a reality. The website's intuitive search filters and detailed
+                        information about each listing made it a breeze to find exactly what I was looking for. It's now
+                        my go-to platform for all my travel needs."</p>
+                    <footer>- David Johnson</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Newsletter Signup -->
+<div class="border container mt-5 text-center p-4">
+    <p>Subscribe to our newsletter for the latest updates and exclusive offers:</p>
+    <form>
+        <div class="form-row justify-content-center">
+            <div class="col-6">
+                <input type="email" class="form-control" placeholder="Enter your email">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- Footer -->
+<footer class="bg-dark text-white mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
