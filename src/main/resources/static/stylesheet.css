@@ -10,6 +10,8 @@
 
 .round-delete-button {
     border-radius: 70%;
+    margin-left: auto;
+    margin-top: 4px;
 }
 
 #listContainer {
@@ -17,6 +19,8 @@
     top: 0;
     right: 0;
 }
+
+
 
 /*body {*/
 /*    font-family: Arial, sans-serif;*/
