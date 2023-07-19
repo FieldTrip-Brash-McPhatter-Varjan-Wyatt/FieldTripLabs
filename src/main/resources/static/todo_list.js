@@ -274,7 +274,7 @@ function renderList() {
 
         var deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete";
-        deleteButton.className = "btn btn-danger btn-sm ms-3 round-delete-button";
+        deleteButton.className = "btn btn-danger btn-sm ms-auto round-delete-button";
         deleteButton.onclick = (function (index) {
             return function () {
                 deleteItem(index);

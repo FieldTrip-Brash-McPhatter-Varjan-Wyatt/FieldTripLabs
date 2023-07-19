@@ -43,7 +43,7 @@ public class UserController {
     public String showProfile(){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (loggedInUser != null) {
-            return "/userProfile";
+            return "user-profile";
         } else {
             return "redirect:/login";
         }
