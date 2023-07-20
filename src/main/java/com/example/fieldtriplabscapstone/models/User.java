@@ -20,10 +20,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(unique = true, nullable = false, length = 100)
     private String username;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
+    private String firstName;
+
+    @Column(length = 100)
+    private String lastName;
+
+    @Column(unique = true, nullable = false, length = 100)
     private String email;
 
     @Column(nullable = true)
@@ -49,5 +55,20 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", image='" + image + '\'' +
+                ", password='" + password + '\'' +
+                ", itineraries=" + itineraries +
+                ", reviews=" + reviews +
+                '}';
     }
 }
