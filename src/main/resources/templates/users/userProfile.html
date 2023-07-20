@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/header" >
   <title>Field Trip Home</title>
 </head>
@@ -15,10 +15,11 @@
     <div class="col-lg-3">
       <div class="border mt-3 p-2">
         <ul class="list-unstyled">
-          <li><strong>Name:</strong> <p th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></p></li>
-          <li><strong>DOB:</strong> 01/01/1990</li>
+          <li><strong>Name:</strong> <span th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></span></li>
           <li><strong>Username:</strong><span th:text="${user.getUsername()}"></span></li>
+          <li><strong>DOB:</strong> 01/01/1990</li>
           <li><strong>Password:</strong> ********</li>
+          <li><button><a th:href="@{/profile/edit}">Edit Profile</a> </button></li>
         </ul>
       </div>
     </div>
