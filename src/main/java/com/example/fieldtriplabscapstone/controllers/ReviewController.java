@@ -1,6 +1,6 @@
 package com.example.fieldtriplabscapstone.controllers;
 
-import ch.qos.logback.core.model.Model;
+
 import com.example.fieldtriplabscapstone.models.Review;
 import com.example.fieldtriplabscapstone.models.User;
 import com.example.fieldtriplabscapstone.repositories.ReviewRepository;
@@ -8,10 +8,9 @@ import com.example.fieldtriplabscapstone.repositories.UserRepository;
 import com.example.fieldtriplabscapstone.services.Authorization;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +33,8 @@ public class ReviewController {
         List<Review> reviews = reviewDao.findAll();
 
         model.addAttribute("reviews", reviews);
-        return "/reviews/home_page";
+        model.addAttribute("newReview", new Review());
+        return "/reviews/index";
     }
 
     @GetMapping("/{id}")
@@ -48,9 +48,44 @@ public class ReviewController {
         }
 
         model.addAttribute("review", optionalReview.get());
-        return "/reviews";
+        return "/reviews/show";
     }
 
+    @GetMapping("/create")
+    public String showReviews(Model model) {
+        User loggedInUser = Authorization.getLoggedInUser();
+        if(loggedInUser.getId() == 0) {
+            return "redirect:/login";
+        }
+        model.addAttribute("loggedInUser", loggedInUser);
+
+        model.addAttribute("newReview", new Review());
+        return "/Reviews/create";
+    }
+
+    @PostMapping("/create")
+    public String doReviews(@ModelAttribute Review review) {
+        User loggedInUser = Authorization.getLoggedInUser();
+        if(loggedInUser.getId() == 0) {
+            return "redirect:/login";
+        }
+        review.setUser(loggedInUser);
+        System.out.println(review);
+        reviewDao.save(review);
+
+
+        return "redirect:/reviews";
+    }
+
+    @GetMapping("/{id}edit")
+    public String showEdit(@PathVariable Long id, Model model) {
+        User loggedInUser = Authorization.getLoggedInUser();
+        model.addAttribute("loggedInUser", loggedInUser);
+
+        Review reviewToEdit = reviewDao.getReferenceById(id);
+        model.addAttribute("newReview", reviewToEdit);
+        return "/reviews";
+    }
 
 
 }
