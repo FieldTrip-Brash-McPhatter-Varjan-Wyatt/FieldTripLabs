@@ -60,6 +60,7 @@
 						<label for="rate-1-star" class="fas fa-star"></label>
 						<form th:action="@{reviews/create}" th:method="post" th:object="${newReview}">
 							<header></header>
+							<input type="hidden" id="destinationId" name="destinationId" th:value="${destinationId}">
 							<div class="textarea">
 								<textarea cols="30" name="content" placeholder="Describe your experience.."></textarea>
 							</div>
