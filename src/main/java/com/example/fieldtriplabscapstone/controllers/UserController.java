@@ -47,6 +47,7 @@ public class UserController {
         System.out.println(loggedInUser);
         model.addAttribute("user", user);
         return "userProfile";
+
     }
 
 
