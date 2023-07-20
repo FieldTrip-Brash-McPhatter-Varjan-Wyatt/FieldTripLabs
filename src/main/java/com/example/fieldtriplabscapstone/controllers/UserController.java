@@ -7,9 +7,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -40,17 +40,15 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(){
+    public String showProfile(Model model){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (loggedInUser != null) {
-            return "user-profile";
-        } else {
-            return "redirect:/login";
-        }
+        Optional<User> currentUser = userDao.findById(loggedInUser.getId());
+        User user = currentUser.get();
+        System.out.println(loggedInUser);
+        model.addAttribute("user", user);
+        return "userProfile";
+
     }
 
-    @PostMapping("/login")
-    public String showUserProfile(){
-            return "redirect:/profile";
-    }
+
 }
