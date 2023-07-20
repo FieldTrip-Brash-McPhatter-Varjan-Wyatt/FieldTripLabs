@@ -323,6 +323,66 @@ loadPackingList('0');
 
 //Making the calls to the API on submit
 
-async function fetchAndSend() {
 
+async function fetchAndSendData(destination) {
+    const encodedDestination = encodeURIComponent(destination);
+    const url = `https://maptoolkit.p.rapidapi.com/geocode/search?q=${encodedDestination}&language=en`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': MAP_TOOLKIT_API_KEY,
+            'X-RapidAPI-Host': 'maptoolkit.p.rapidapi.com'
+        }
+    };
+
+    let finalUrl;
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const long = result[0].lon;
+        const lat = result[0].lat;
+        const nextUrl = `https://api.opentripmap.com/0.1/en/places/radius?radius=1500&lon=${long}&lat=${lat}&apikey=${OPEN_TRIP_MAP_API}`;
+        try {
+            const newResponse = await fetch(nextUrl)
+            const newResult = await newResponse.json();
+            const xidArr = []
+            for (let i = 0; i < 8; i++) {
+                const xid = newResult.features[i].properties.xid;
+                xidArr.push(xid)
+            }
+
+            // Fetch details for each xid and process the data
+            const detailsArr = await Promise.all(xidArr.map(async (xid) => {
+                const detailUrl = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${OPEN_TRIP_MAP_API}`;
+                try {
+                    const detailResponse = await fetch(detailUrl);
+                    const detailResult = await detailResponse.json();
+                    return detailResult;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
+            }));
+
+            // Process the detailsArr here
+            console.log(detailsArr);
+
+
+        } catch (error) {
+            console.error(error)
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
+
+document.getElementById('searchButton').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    let destinationInput = document.getElementById('destinationInput').value;
+
+    // Call the fetchAndSendData function to fetch and send the data to the backend
+    fetchAndSendData(destinationInput);
+});
+
+

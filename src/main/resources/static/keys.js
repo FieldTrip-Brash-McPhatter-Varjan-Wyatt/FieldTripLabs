@@ -2,6 +2,6 @@ var config = {
     WEATHER_KEY : 'ea96b5eabd6a1af39a4fe0f5cf37024d',
 }
 
-const GOOGLE_API_KEY = "AIzaSyDSMtv3yalEWP1QymlbsJ8MO-U4wCLla9A"
+const MAP_TOOLKIT_API_KEY = "1da495e33dmshfe243653f87dadfp1ea970jsnb871411d3d2d"
 
-const AMADEUS_API_TOKEN = 'Hrceg0sxt9qPp2X5pzT8TbBUDsZ14CM1'
+const OPEN_TRIP_MAP_API = '5ae2e3f221c38a28845f05b6c91761455a095da29f15268be05ed4dc'
