@@ -46,7 +46,7 @@ public class UserController {
         User user = currentUser.get();
         System.out.println(loggedInUser);
         model.addAttribute("user", user);
-        return "userProfile";
+        return "users/userProfile";
 
     }
 
