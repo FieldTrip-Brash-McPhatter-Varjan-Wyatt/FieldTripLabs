@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="../Reviews_Style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+	<script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="star-widget">
+			<input type="radio" name="rate" id="rate-5-star">
+			<label for="rate-5-star" class="fas fa-star"></label>
+			<input type="radio" name="rate" id="rate-4-star">
+			<label for="rate-4-star" class="fas fa-star"></label>
+			<input type="radio" name="rate" id="rate-3-star">
+			<label for="rate-3-star" class="fas fa-star"></label>
+			<input type="radio" name="rate" id="rate-2-star">
+			<label for="rate-2-star" class="fas fa-star"></label>
+			<input type="radio" name="rate" id="rate-1-star">
+			<label for="rate-1-star" class="fas fa-star"></label>
+			<form th:action="@{/reviews/create}" th:method="post" th:object="${newReview}">
+				<header></header>
+				<div class="textarea">
+					<textarea cols="30"  placeholder="Describe your experience.."></textarea>
+				</div>
+				<div class="btn">
+					<button type="submit">Post</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		const btn = document.querySelector("button");
+		const post = document.querySelector(".post");
+		const widget = document.querySelector(".star-widget");
+		const editBtn = document.querySelector(".edit");
+		btn.onclick = ()=>{
+			widget.style.display = "none";
+			post.style.display = "block";
+			editBtn.onclick = ()=>{
+				widget.style.display = "block";
+				post.style.display = "none";
+			}
+			return false;
+		}
+	</script>
+
+</body>
+</html>
