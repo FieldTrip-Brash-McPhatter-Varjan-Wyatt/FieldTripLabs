@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 application.properties
-keys.js
+resources/static/keys.js
 
 ### STS ###
 .apt_generated

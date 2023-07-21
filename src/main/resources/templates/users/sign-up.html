@@ -6,7 +6,6 @@
 </head>
 <body>
 <nav th:insert="partials/navbar"></nav>
-<h1>SIGN UP page</h1>
 <div class="card">
     <h1 class="card-header text-center">Sign Up!</h1>
     <div class="card-body">
@@ -15,6 +14,14 @@
                 <div>
                     <label for="username">Username</label>
                     <input id="username" th:field="*{username}" />
+                </div>
+                <div>
+                    <label for="username">First Name</label>
+                    <input id="firstname" th:field="*{firstName}" />
+                </div>
+                <div>
+                    <label for="lastname">Last Name</label>
+                    <input id="lastname" th:field="*{lastName}" />
                 </div>
                 <div class="mx-3">
                     <label for="email">Email</label>

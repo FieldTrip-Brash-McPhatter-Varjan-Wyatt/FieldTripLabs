@@ -7,9 +7,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+
 
 @Controller
 public class UserController {
@@ -19,6 +21,12 @@ public class UserController {
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    private User getCurrentUser (){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<User> currentUser = userDao.findById(loggedInUser.getId());
+        return currentUser.get();
     }
 
     @GetMapping("/sign-up")
@@ -40,17 +48,49 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(){
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (loggedInUser != null) {
-            return "user-profile";
+    public String showProfile(Model model){
+        User user = getCurrentUser();
+        model.addAttribute("user", user);
+        return "users/userProfile";
+    }
+
+    @GetMapping("/profile/edit")
+    public String editProfile(Model model){
+        User currentUser = getCurrentUser();
+        model.addAttribute("user", currentUser);
+        return "users/edit-profile";
+    }
+
+    @PostMapping("/profile/edit")
+    public String saveEdits(@RequestParam(name = "username") String userName, @RequestParam(name = "firstname") String firstName, @RequestParam(name = "lastname") String lastName, @RequestParam(name = "email") String email){
+            System.out.println(userName + firstName);
+            User currentUser = getCurrentUser();
+            currentUser.setUsername(userName);
+            currentUser.setFirstName(firstName);
+            currentUser.setLastName(lastName);
+            currentUser.setEmail(email);
+            userDao.save(currentUser);
+            return "redirect:/profile";
+    }
+
+    @GetMapping("/profile/password")
+    public String changePassword(){
+        User currentUser = getCurrentUser();
+
+        return "/users/newpassword";
+    }
+
+    @PostMapping("/profile/password")
+    public String saveNewPassword(@RequestParam(name = "oldpassword") String oldPassword, @RequestParam(name = "newpassword")String newPassword){
+        User currentUser = getCurrentUser();
+        if (passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
+            String hashed = passwordEncoder.encode(newPassword);
+            currentUser.setPassword(hashed);
+            userDao.save(currentUser);
+            return "redirect:/profile";
         } else {
-            return "redirect:/login";
+            return "redirect:/profile/password";
         }
     }
 
-    @PostMapping("/login")
-    public String showUserProfile(){
-            return "redirect:/profile";
-    }
 }
