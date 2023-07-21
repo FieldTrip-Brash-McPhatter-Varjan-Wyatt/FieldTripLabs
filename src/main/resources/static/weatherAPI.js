@@ -46,16 +46,16 @@ $(document).ready(function () {
                     // Process the weather data and display it on the page
                     if (response.locations && response.locations[cityName]) {
                         const weatherData = response.locations[cityName].values;
-                        let weatherHtml = `<h3>Weather in ${cityName}</h3>`;
+                        let weatherHtml = `<h3>Prior Year Weather in ${cityName}</h3>`;
 
                         // Loop through the weather data for the selected dates
                         for (const data of weatherData) {
                             weatherHtml += `
-                                        <p>Date: ${data.datetimeStr}</p>
-                                        <p>Temperature: ${data.temp}</p>
-                                        <p>Weather: ${data.conditions}</p>
-                                        <hr>
-                                    `;
+                                <p>Date: ${data.datetimeStr}</p>
+                                <p>Temperature: ${data.temp}</p>
+                                <p>Weather: ${data.conditions}</p>
+                                <hr>
+                            `;
                         }
 
                         $('#weatherData').html(weatherHtml);
@@ -63,10 +63,13 @@ $(document).ready(function () {
                         $('#weatherData').html('<p>No weather data found for the city.</p>');
                     }
                 },
-                error: function () {
+                error: function (error) {
+                    console.error('An error occurred while fetching weather data:', error);
                     $('#weatherData').html('<p>An error occurred while fetching weather data.</p>');
                 }
             });
         }
     });
 });
+
+
