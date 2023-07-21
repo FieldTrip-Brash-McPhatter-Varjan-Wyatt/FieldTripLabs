@@ -355,16 +355,20 @@ function callback(results, status) {
         for (let i = 0; i < results.length; i++) {
             if (results[i].photos) {
                 let photoUrl = results[i].photos[0].getUrl();
-                table.innerHTML += `<div class=" card m-4 col-2 align-items-center"><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + `</div>`;
+                table.innerHTML += `<div class=" card m-4 col-2 align-items-center" id="${i}"><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + `</div>`;
             } else {
                 let photoUrl = "https://via.placeholder.com/150"
 
-                table.innerHTML += `<div class="card m-4 col-2 align-items-center"><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + '</div>';
+                table.innerHTML += `<div class="card m-4 col-2 align-items-center" id="${i}><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + '</div>';
             }
         }
     }
 }
 
+
+function clearField(){
+    document.getElementById('autocomplete').value = "";
+}
 
 
 
