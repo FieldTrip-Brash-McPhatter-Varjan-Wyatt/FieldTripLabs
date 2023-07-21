@@ -60,24 +60,15 @@
 
         <!-- Itinerary List Container (Right Side) -->
         <div class="col-lg-6">
-            <div class="border p-4">
-                <div id="listContainer" class="row d-flex justify-content-end align-items-start">
-                    <div class="card mt-3 col-12" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="container p-4">
+                <div id="listContainer" class="row d-flex flex-wrap justify-content-around"></div>
             </div>
+            <button class="d-none btn btn-primary" id="saveDestinationBtn" onclick="saveDestination()">Save Destination</button>
+            <!-- END Itinerary List Container -->
         </div>
-        <!-- END Itinerary List Container -->
-    </div>
 
-    <!-- Start Search Bar -->
-    <div class="card m-3">
+        <!-- Start Search Bar -->
+        <div class="card m-3">
             <div class="d-flex form-row justify-content-center mt-3 mb-3">
                 <div class="col-2 m-1">
                     <select class="form-select" name="" id="type">
@@ -95,7 +86,8 @@
                     </select>
                 </div>
                 <div class="col-3 m-1">
-                    <input type="text" class="form-control" placeholder="Destination" id="autocomplete" onclick="clearField()">
+                    <input type="text" class="form-control" placeholder="Destination" id="autocomplete"
+                           onclick="clearField()">
                 </div>
                 <div class="col-2 m-1">
                     <input type="date" class="form-control" placeholder="Start Date">
@@ -107,16 +99,15 @@
                     <input type="number" class="form-control" placeholder="Number of People">
                 </div>
             </div>
-        <div class="d-none" id="map"></div>
+            <div class="d-none" id="map"></div>
+        </div>
+        <table class="container d-flex flex-wrap justify-content-center" id="places"></table>
+        <script src="../static/keys.js"></script>
+        <script src="../static/todo_list.js"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnkBw-ty2Q-L-8qaeR00yYBbtdZc1xI1A&libraries=places&callback=initMap">
+        </script>
     </div>
-    <table class= "container d-flex flex-wrap justify-content-center" id="places"></table>
-
-    <script src="../static/keys.js"></script>
-    <script src="../static/todo_list.js"></script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnkBw-ty2Q-L-8qaeR00yYBbtdZc1xI1A&libraries=places&callback=initMap">
-    </script>
-</div>
 </body>
 </html>
 
