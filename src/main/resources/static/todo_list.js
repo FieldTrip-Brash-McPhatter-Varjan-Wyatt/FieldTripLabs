@@ -73,111 +73,111 @@ function loadPackingList(listIndex) {
         case '4':
             listName = ("Romantic Destination");
             itemList = [
-                { text: "Appropriate clothing for the destination", completed: false },
-                { text: "Comfortable walking shoes", completed: false },
-                { text: "Evening wear for romantic dinners", completed: false },
-                { text: "Toiletries and personal care items", completed: false },
-                { text: "Intimate apparel", completed: false },
-                { text: "Camera or smartphone for capturing memories", completed: false },
-                { text: "Travel-size fragrance or cologne", completed: false },
-                { text: "Travel documents (passport, ID, tickets)", completed: false },
-                { text: "Cash and/or credit cards", completed: false },
-                { text: "Travel adapter for electronics", completed: false },
-                { text: "Travel guide or maps for exploring together", completed: false },
-                { text: "Portable Bluetooth speaker for romantic music", completed: false },
-                { text: "Snacks or treats for sharing", completed: false },
-                { text: "Compact umbrella (in case of rain)", completed: false },
-                { text: "Personalized surprise or gift for your partner", completed: false }
+                {text: "Appropriate clothing for the destination", completed: false},
+                {text: "Comfortable walking shoes", completed: false},
+                {text: "Evening wear for romantic dinners", completed: false},
+                {text: "Toiletries and personal care items", completed: false},
+                {text: "Intimate apparel", completed: false},
+                {text: "Camera or smartphone for capturing memories", completed: false},
+                {text: "Travel-size fragrance or cologne", completed: false},
+                {text: "Travel documents (passport, ID, tickets)", completed: false},
+                {text: "Cash and/or credit cards", completed: false},
+                {text: "Travel adapter for electronics", completed: false},
+                {text: "Travel guide or maps for exploring together", completed: false},
+                {text: "Portable Bluetooth speaker for romantic music", completed: false},
+                {text: "Snacks or treats for sharing", completed: false},
+                {text: "Compact umbrella (in case of rain)", completed: false},
+                {text: "Personalized surprise or gift for your partner", completed: false}
             ];
             break;
 
         case '5':
             listName = ("Winter Destination");
-             itemList = [
-                { text: "Warm winter coat or jacket", completed: false },
-                { text: "Sweaters or thermal tops", completed: false },
-                { text: "Thermal base layers", completed: false },
-                { text: "Woolen or fleece hats and gloves", completed: false },
-                { text: "Scarves and neck warmers", completed: false },
-                { text: "Insulated and waterproof boots", completed: false },
-                { text: "Thermal socks", completed: false },
-                { text: "Thermal leggings or long johns", completed: false },
-                { text: "Ear muffs or earmuffs", completed: false },
-                { text: "Hand and toe warmers", completed: false },
-                { text: "Moisturizer and lip balm", completed: false },
-                { text: "Portable charger for electronics (cold weather affects battery life)", completed: false },
-                { text: "Travel-size umbrella", completed: false },
-                { text: "Travel documents (passport, ID, tickets)", completed: false },
-                { text: "Cash and/or credit cards", completed: false }
+            itemList = [
+                {text: "Warm winter coat or jacket", completed: false},
+                {text: "Sweaters or thermal tops", completed: false},
+                {text: "Thermal base layers", completed: false},
+                {text: "Woolen or fleece hats and gloves", completed: false},
+                {text: "Scarves and neck warmers", completed: false},
+                {text: "Insulated and waterproof boots", completed: false},
+                {text: "Thermal socks", completed: false},
+                {text: "Thermal leggings or long johns", completed: false},
+                {text: "Ear muffs or earmuffs", completed: false},
+                {text: "Hand and toe warmers", completed: false},
+                {text: "Moisturizer and lip balm", completed: false},
+                {text: "Portable charger for electronics (cold weather affects battery life)", completed: false},
+                {text: "Travel-size umbrella", completed: false},
+                {text: "Travel documents (passport, ID, tickets)", completed: false},
+                {text: "Cash and/or credit cards", completed: false}
             ];
             break;
 
         case '6':
             listName = ("Sightseeing Destination");
-             itemList = [
-                { text: "Comfortable walking shoes", completed: false },
-                { text: "Lightweight and breathable clothing", completed: false },
-                { text: "Daypack or backpack", completed: false },
-                { text: "Sunscreen and hat", completed: false },
-                { text: "Sunglasses", completed: false },
-                { text: "Water bottle or hydration pack", completed: false },
-                { text: "Travel-size toiletries", completed: false },
-                { text: "Portable charger for electronics", completed: false },
-                { text: "Travel adapter", completed: false },
-                { text: "Travel guide or maps", completed: false },
-                { text: "Camera or smartphone for capturing memories", completed: false },
-                { text: "Snacks or energy bars", completed: false },
-                { text: "Rain jacket or poncho (depending on the weather)", completed: false },
-                { text: "Travel documents (passport, ID, tickets)", completed: false },
-                { text: "Cash and/or credit cards", completed: false }
+            itemList = [
+                {text: "Comfortable walking shoes", completed: false},
+                {text: "Lightweight and breathable clothing", completed: false},
+                {text: "Daypack or backpack", completed: false},
+                {text: "Sunscreen and hat", completed: false},
+                {text: "Sunglasses", completed: false},
+                {text: "Water bottle or hydration pack", completed: false},
+                {text: "Travel-size toiletries", completed: false},
+                {text: "Portable charger for electronics", completed: false},
+                {text: "Travel adapter", completed: false},
+                {text: "Travel guide or maps", completed: false},
+                {text: "Camera or smartphone for capturing memories", completed: false},
+                {text: "Snacks or energy bars", completed: false},
+                {text: "Rain jacket or poncho (depending on the weather)", completed: false},
+                {text: "Travel documents (passport, ID, tickets)", completed: false},
+                {text: "Cash and/or credit cards", completed: false}
             ];
 
             break;
         case '7':
             listName = ("Nature Destination");
             itemList = [
-                { text: "Comfortable walking shoes or hiking boots", completed: false },
-                { text: "Lightweight and breathable clothing", completed: false },
-                { text: "Daypack or backpack", completed: false },
-                { text: "Sunscreen and hat", completed: false },
-                { text: "Sunglasses", completed: false },
-                { text: "Insect repellent", completed: false },
-                { text: "Water bottle or hydration pack", completed: false },
-                { text: "Travel-size toiletries", completed: false },
-                { text: "Portable charger for electronics", completed: false },
-                { text: "Travel adapter", completed: false },
-                { text: "Travel guide or maps of the national park", completed: false },
-                { text: "Binoculars (for wildlife spotting)", completed: false },
-                { text: "Snacks or energy bars", completed: false },
-                { text: "Rain jacket or poncho (depending on the weather)", completed: false },
-                { text: "Travel documents (passport, ID, tickets)", completed: false },
-                { text: "Cash and/or credit cards", completed: false }
+                {text: "Comfortable walking shoes or hiking boots", completed: false},
+                {text: "Lightweight and breathable clothing", completed: false},
+                {text: "Daypack or backpack", completed: false},
+                {text: "Sunscreen and hat", completed: false},
+                {text: "Sunglasses", completed: false},
+                {text: "Insect repellent", completed: false},
+                {text: "Water bottle or hydration pack", completed: false},
+                {text: "Travel-size toiletries", completed: false},
+                {text: "Portable charger for electronics", completed: false},
+                {text: "Travel adapter", completed: false},
+                {text: "Travel guide or maps of the national park", completed: false},
+                {text: "Binoculars (for wildlife spotting)", completed: false},
+                {text: "Snacks or energy bars", completed: false},
+                {text: "Rain jacket or poncho (depending on the weather)", completed: false},
+                {text: "Travel documents (passport, ID, tickets)", completed: false},
+                {text: "Cash and/or credit cards", completed: false}
             ];
 
             break;
         case '8':
             listName = ("International Destination");
-             itemList = [
-                { text: "Passport and visa (if required)", completed: false },
-                { text: "Travel itinerary and reservation details", completed: false },
-                { text: "Local currency and/or credit cards", completed: false },
-                { text: "Travel adapter and chargers", completed: false },
-                { text: "Appropriate clothing for the destination", completed: false },
-                { text: "Comfortable walking shoes", completed: false },
-                { text: "Travel-size toiletries", completed: false },
-                { text: "Medications and prescriptions", completed: false },
-                { text: "First aid kit", completed: false },
-                { text: "Travel insurance documents", completed: false },
-                { text: "Phone and emergency contacts list", completed: false },
-                { text: "Portable power bank", completed: false },
-                { text: "Camera or smartphone for capturing memories", completed: false },
-                { text: "Maps or GPS device", completed: false },
-                { text: "Guidebooks or language phrasebook", completed: false },
-                { text: "Snacks for the journey", completed: false },
-                { text: "Reusable water bottle", completed: false },
-                { text: "Comfort items (e.g., travel pillow)", completed: false },
-                { text: "Copy of important documents (passport, ID)", completed: false },
-                { text: "Emergency contact information back home", completed: false }
+            itemList = [
+                {text: "Passport and visa (if required)", completed: false},
+                {text: "Travel itinerary and reservation details", completed: false},
+                {text: "Local currency and/or credit cards", completed: false},
+                {text: "Travel adapter and chargers", completed: false},
+                {text: "Appropriate clothing for the destination", completed: false},
+                {text: "Comfortable walking shoes", completed: false},
+                {text: "Travel-size toiletries", completed: false},
+                {text: "Medications and prescriptions", completed: false},
+                {text: "First aid kit", completed: false},
+                {text: "Travel insurance documents", completed: false},
+                {text: "Phone and emergency contacts list", completed: false},
+                {text: "Portable power bank", completed: false},
+                {text: "Camera or smartphone for capturing memories", completed: false},
+                {text: "Maps or GPS device", completed: false},
+                {text: "Guidebooks or language phrasebook", completed: false},
+                {text: "Snacks for the journey", completed: false},
+                {text: "Reusable water bottle", completed: false},
+                {text: "Comfort items (e.g., travel pillow)", completed: false},
+                {text: "Copy of important documents (passport, ID)", completed: false},
+                {text: "Emergency contact information back home", completed: false}
             ];
             break;
 
@@ -315,7 +315,6 @@ function saveList() {
 }
 
 
-
 // Call renderList() to display the pre-made list when the page loads
 window.addEventListener("load", renderList);
 // Call loadPackingList() to load the default packing list when the page loads
@@ -323,66 +322,50 @@ loadPackingList('0');
 
 //Making the calls to the API on submit
 
+function initMap() {
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
+        {
+            types: ['geocode']
+        })
 
-async function fetchAndSendData(destination) {
-    const encodedDestination = encodeURIComponent(destination);
-    const url = `https://maptoolkit.p.rapidapi.com/geocode/search?q=${encodedDestination}&language=en`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': MAP_TOOLKIT_API_KEY,
-            'X-RapidAPI-Host': 'maptoolkit.p.rapidapi.com'
-        }
-    };
+    autocomplete.addListener('place_changed', searchNearbyPlaces)
+}
 
-    let finalUrl;
-    try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        const long = result[0].lon;
-        const lat = result[0].lat;
-        const nextUrl = `https://api.opentripmap.com/0.1/en/places/radius?radius=1500&lon=${long}&lat=${lat}&apikey=${OPEN_TRIP_MAP_API}`;
-        try {
-            const newResponse = await fetch(nextUrl)
-            const newResult = await newResponse.json();
-            const xidArr = []
-            for (let i = 0; i < 8; i++) {
-                const xid = newResult.features[i].properties.xid;
-                xidArr.push(xid)
+function searchNearbyPlaces() {
+    document.getElementById('places').innerHTML = ''
+
+    var place = autocomplete.getPlace()
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: place.geometry.location,
+        zoom: 15
+    });
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: place.geometry.location,
+        radius: '5000',
+        type: [document.getElementById('type').value]
+    }, callback);
+}
+
+function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results)
+        var table = document.getElementById('places');
+        for (let i = 0; i < results.length; i++) {
+            if (results[i].photos) {
+                let photoUrl = results[i].photos[0].getUrl();
+                table.innerHTML += `<div class=" card m-4 col-2 align-items-center"><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + `</div>`;
+            } else {
+                let photoUrl = "https://via.placeholder.com/150"
+
+                table.innerHTML += `<div class="card m-4 col-2 align-items-center"><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + '</div>';
             }
-
-            // Fetch details for each xid and process the data
-            const detailsArr = await Promise.all(xidArr.map(async (xid) => {
-                const detailUrl = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${OPEN_TRIP_MAP_API}`;
-                try {
-                    const detailResponse = await fetch(detailUrl);
-                    const detailResult = await detailResponse.json();
-                    return detailResult;
-                } catch (error) {
-                    console.error(error);
-                    return null;
-                }
-            }));
-
-            // Process the detailsArr here
-            console.log(detailsArr);
-
-
-        } catch (error) {
-            console.error(error)
         }
-    } catch (error) {
-        console.error(error);
     }
 }
 
-document.getElementById('searchButton').addEventListener('click', function (event) {
-    event.preventDefault();
 
-    let destinationInput = document.getElementById('destinationInput').value;
 
-    // Call the fetchAndSendData function to fetch and send the data to the backend
-    fetchAndSendData(destinationInput);
-});
 
 
