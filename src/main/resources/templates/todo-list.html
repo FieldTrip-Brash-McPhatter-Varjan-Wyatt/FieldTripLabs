@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Todo List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <title>Weather Search and Todo List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../static/css/stylesheet.css">
 </head>
 <body>
 
@@ -78,41 +81,59 @@
 
     <!-- Start Search Bar -->
     <div class="card m-3">
-            <div class="d-flex form-row justify-content-center mt-3 mb-3">
-                <div class="col-2 m-1">
-                    <select class="form-select" name="" id="type">
-                        <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
-                        <option id="aquarium" value="aquarium">Aquarium</option>
-                        <option id="art_gallery" value="art_gallery">Art Gallery</option>
-                        <option id="amusement_park" value="amusement_park">Amusement Parks</option>
-                        <option id="bar" value="bar">Bars</option>
-                        <option id="casino" value="casino">Casino</option>
-                        <option id="night_club" value="night_club">Clubs</option>
-                        <option id="museum" value="museum">Museums</option>
-                        <option id="restaurant" value="restaurant">Restaurants</option>
-                        <option id="stadium" value="stadium">Stadiums</option>
-                        <option id="zoo" value="zoo">Zoo</option>
-                    </select>
-                </div>
-                <div class="col-3 m-1">
-                    <input type="text" class="form-control" placeholder="Destination" id="autocomplete" onclick="clearField()">
-                </div>
-                <div class="col-2 m-1">
-                    <input type="date" class="form-control" placeholder="Start Date">
-                </div>
-                <div class="col-2 m-1">
-                    <input type="date" class="form-control" placeholder="End Date">
-                </div>
-                <div class="col-2 m-1">
-                    <input type="number" class="form-control" placeholder="Number of People">
-                </div>
+        <div class="d-flex form-row justify-content-center mt-3 mb-3">
+            <div class="col-2 m-1">
+                <select class="form-select" name="" id="type">
+                    <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
+                    <option id="aquarium" value="aquarium">Aquarium</option>
+                    <option id="art_gallery" value="art_gallery">Art Gallery</option>
+                    <option id="amusement_park" value="amusement_park">Amusement Parks</option>
+                    <option id="bar" value="bar">Bars</option>
+                    <option id="casino" value="casino">Casino</option>
+                    <option id="night_club" value="night_club">Clubs</option>
+                    <option id="museum" value="museum">Museums</option>
+                    <option id="restaurant" value="restaurant">Restaurants</option>
+                    <option id="stadium" value="stadium">Stadiums</option>
+                    <option id="zoo" value="zoo">Zoo</option>
+                </select>
             </div>
+            <div class="col-3 m-1">
+                <input type="text" class="form-control" placeholder="Destination" id="autocomplete" onclick="clearField()">
+            </div>
+            <div class="col-2 m-1">
+                <input type="date" class="form-control" placeholder="Start Date">
+            </div>
+            <div class="col-2 m-1">
+                <input type="date" class="form-control" placeholder="End Date">
+            </div>
+            <div class="col-2 m-1">
+                <input type="number" class="form-control" placeholder="Number of People">
+            </div>
+        </div>
         <div class="d-none" id="map"></div>
     </div>
     <table class= "container d-flex flex-wrap justify-content-center" id="places"></table>
 
+    <div class="container">
+        <h1>Weather Search</h1>
+        <form>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="searchInput" placeholder="Enter city name">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="searchButton">Search</button>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label for="dateInput" class="form-label">Date and Time (ISO Format):</label>
+                <input type="datetime-local" class="form-control" id="dateInput">
+            </div>
+        </form>
+        <div id="weatherData" class="row justify-content-start"></div>
+    </div>
+
     <script src="../static/keys.js"></script>
     <script src="../static/todo_list.js"></script>
+    <script src="../static/weatherAPI.js"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnkBw-ty2Q-L-8qaeR00yYBbtdZc1xI1A&libraries=places&callback=initMap">
     </script>
