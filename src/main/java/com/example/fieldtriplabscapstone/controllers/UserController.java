@@ -93,4 +93,26 @@ public class UserController {
         }
     }
 
+
+    @GetMapping("/image")
+    public String fileStack(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        model.addAttribute("user", loggedInUser);
+        System.out.println(loggedInUser.getImage());
+
+        return "profile";
+    }
+
+    @PostMapping("/image")
+    public String uploadImage(){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+        String imageSrc = "";
+        return imageSrc;
+    }
+
 }
+
+
