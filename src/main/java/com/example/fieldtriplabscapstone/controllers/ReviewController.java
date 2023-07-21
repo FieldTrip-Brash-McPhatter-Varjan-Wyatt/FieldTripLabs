@@ -34,7 +34,7 @@ public class ReviewController {
         Optional<Destination>optionalDestination = destDao.findById(destinationId);
         if(optionalDestination.isEmpty()) {
             System.out.println("Your destination id " + destinationId + " not found");
-            return "home_page";
+            return "index";
         }
 //        Destination destination = optionalDestination.get();
         User loggedInUser = Authorization.getLoggedInUser();
@@ -55,7 +55,7 @@ public class ReviewController {
 
         Optional<Review>optionalReview = reviewDao.findById(id);
         if(optionalReview.isEmpty()) {
-            return "home_page";
+            return "index";
         }
 
         model.addAttribute("review", optionalReview.get());
@@ -71,7 +71,7 @@ public class ReviewController {
         model.addAttribute("loggedInUser", loggedInUser);
 
         model.addAttribute("newReview", new Review());
-        return "/Reviews/create";
+        return "/reviews/create";
     }
 
     @PostMapping("/create")
@@ -84,7 +84,7 @@ public class ReviewController {
         Optional<Destination>optionalDestination = destDao.findById(destinationId);
         if(optionalDestination.isEmpty()) {
             System.out.println("Your destination id " + destinationId + " not found");
-            return "home_page";
+            return "index";
         }
         Destination destination = optionalDestination.get();
         review.setDestination(destination);

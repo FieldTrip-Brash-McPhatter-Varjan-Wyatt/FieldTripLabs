@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
-	<link rel="stylesheet" href="../Reviews_Style.css">
+	<link th:href="@{templates/reviews/reviews.css}" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet"
 	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
@@ -23,6 +23,7 @@
 			<input type="radio" name="rate" id="rate-1-star">
 			<label for="rate-1-star" class="fas fa-star"></label>
 			<form th:action="@{/reviews/create}" th:method="post" th:object="${newReview}">
+				<input type="hidden" id="destinationId" name="destinationId" th:value="${destinationId}">
 				<header></header>
 				<div class="textarea">
 					<textarea cols="30"  placeholder="Describe your experience.."></textarea>

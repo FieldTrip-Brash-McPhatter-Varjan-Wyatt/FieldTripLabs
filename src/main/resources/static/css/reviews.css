@@ -25,7 +25,7 @@ nav{
 
 .container{
     position: relative;
-    width: 100px;
+    width: 400px;
     background: #111;
     padding: 20px 30px;
     border: 1px solid #444;
@@ -68,6 +68,10 @@ nav{
     padding: 10px;
     float: right;
     transition: all 0.2s ease;
+}
+
+.star-widget{
+    position: relative;
 }
 
 input:not(:checked) ~ label:hover,
@@ -136,7 +140,7 @@ form .textarea textarea{
 }
 form .btn{
     height: 45px;
-    width: 100%;
+    width: 30%;
     margin: 15px 0;
 }
 form .btn button{
