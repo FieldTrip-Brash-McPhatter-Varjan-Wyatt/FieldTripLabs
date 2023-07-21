@@ -20,6 +20,13 @@
     right: 0;
 }
 
+.weather-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    width: 200px;
+}
+
 
 
 /*body {*/
