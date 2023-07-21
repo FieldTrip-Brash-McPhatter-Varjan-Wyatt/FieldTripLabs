@@ -321,6 +321,7 @@ window.addEventListener("load", renderList);
 loadPackingList('0');
 
 //Making the calls to the API on submit
+var searchResults = [];
 
 function initMap() {
     autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
@@ -349,27 +350,54 @@ function searchNearbyPlaces() {
 }
 
 function callback(results, status) {
+    searchResults = results;
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results)
         var table = document.getElementById('places');
         for (let i = 0; i < results.length; i++) {
             if (results[i].photos) {
                 let photoUrl = results[i].photos[0].getUrl();
-                table.innerHTML += `<div class=" card m-4 col-2 align-items-center" id="${i}"><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + `</div>`;
+                table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
+<img class="border-success rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/>
+<br><div class="card-title">` + results[i].name + `</div><button id="${i}"  type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
             } else {
                 let photoUrl = "https://via.placeholder.com/150"
 
-                table.innerHTML += `<div class="card m-4 col-2 align-items-center" id="${i}><img class="mt-2" width = "100" height="100" src="${photoUrl}"/><br>` + results[i].name + '</div>';
+                table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
+<img class="border border-4 rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/>
+<br><div class="card-title">` + results[i].name + '</div><button id="${i}" type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>';
             }
         }
+    } else {
+        var table = document.getElementById('places');
+        table.innerHTML = "<div class='card m-4 col text-center align-items-center'><h2 class='m-3'>No Places in the area.</h2></div>"
     }
 }
 
-
+function saveDestination(){
+    console.log("hello")
+}
 function clearField(){
     document.getElementById('autocomplete').value = "";
 }
+function addToItinerary(index) {
+    var selectedResult = searchResults[index];
+    var listContainer = document.getElementById('listContainer');
+    const saveDestinationBtn = document.getElementById('saveDestinationBtn');
+    saveDestinationBtn.classList.remove('d-none')
 
+    var card = document.createElement('div');
+    card.className = 'card col-4 mt-3';
+    card.style = 'width: 18rem;';
+    card.innerHTML = `
+    <div class="card-body">
+      <h5 class="card-title">${selectedResult.name}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">${selectedResult.vicinity}</h6>
+      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link" target="_blank">View on Map</a>
+    </div>`;
+
+    listContainer.appendChild(card);
+}
 
 
 

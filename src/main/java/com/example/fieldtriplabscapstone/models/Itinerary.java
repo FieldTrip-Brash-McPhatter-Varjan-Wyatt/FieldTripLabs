@@ -35,4 +35,9 @@ public class Itinerary {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
     private List<Checklist> checklists;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
+    private List<Destination> destinations;
+
+
+
 }

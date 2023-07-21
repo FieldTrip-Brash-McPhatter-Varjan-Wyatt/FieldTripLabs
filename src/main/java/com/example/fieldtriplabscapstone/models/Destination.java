@@ -20,16 +20,20 @@ public class Destination {
     private long id;
 
     @Column(nullable = false, length = 100)
-    private String cityName;
+    private String name;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    private String address;
 
     @Column
     private String description;
 
     @Column
     private String photo_url;
+
+    @ManyToOne
+    @JoinColumn(name = "itinerary_id", nullable = false)
+    private Itinerary itinerary;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "destination")
     private List<Review> review;
