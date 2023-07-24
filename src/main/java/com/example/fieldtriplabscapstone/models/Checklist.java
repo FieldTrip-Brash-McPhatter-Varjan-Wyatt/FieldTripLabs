@@ -1,11 +1,9 @@
 package com.example.fieldtriplabscapstone.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.mapping.List;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,4 +26,8 @@ public class Checklist {
     @ManyToOne
     @JoinColumn(name = "itinerary_id", nullable = false)
     private Itinerary itinerary;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "checklist")
+    @ToString.Exclude
+    private List<ChecklistItems> checklistItems;
 }

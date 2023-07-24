@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:insert="partials/header">
+<head th:insert="@{partials/header}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../../static/css/stylesheet.css">
+    <link rel="stylesheet" th:href="@{../../static/css/stylesheet.css}">
 </head>
 <body>
-<nav th:insert="partials/navbar"></nav>
+<nav th:insert="@{partials/navbar}"></nav>
 <div class="container mt-5">
     <div class="row">
         <!-- Packing List Container (Left Side) -->
-        <div class="col-lg-6">
+        <div class="col-6">
             <div class="border p-4">
                 <h1>Packing List</h1>
                 <div class="row d-flex">
-                    <div class="mb-3">
+                    <div class=" col-12 mb-3">
                         <label for="listSelection">Click Here to Select a Packing List:</label>
                         <select id="listSelection" class="form-control">
                             <option value="0">Choose a Packing List</option>
@@ -32,27 +32,37 @@
                     <div class="mb-3 col-6">
                         <input type="text" class="form-control" id="itemInput" placeholder="Type in a New Item">
                     </div>
-                    <div class="justify-content-end">
+                    <div class="justify-content-end col-12">
                         <button class="btn btn-primary col-3" onclick="addItem()">Add Item</button>
                     </div>
 
                     <!-- Button to save packing list -->
-                    <div class="mb-3">
+                    <div class="mb-3 col-12">
                         <label for="listNameInput" class="form-label">List Name:</label>
                         <input type="text" class="form-control" id="listNameInput" placeholder="Name Your Custom List">
                     </div>
                     <button class="btn btn-primary" onclick="saveList()">Save List</button>
                     <!-- Button to save packing list END -->
-                    <ul id="itemList" class="list-group mt-3 col-6" style="list-style: none">
+                    <ul id="itemList" class="list-group mt-3 col-12" style="list-style: none">
                         <!-- List items with delete buttons aligned to the right -->
                         <li class="list-group-item d-flex justify-content-flex-end align-items-right text-end">
-                            Item 1
-                            <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>
+                            <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckboxStretched">
+                            <label class="form-check-label stretched-link" for="firstCheckboxStretched">Item 1
+                                <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button></label>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-flex-end text-end">
-                            Item 2
-                            <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>
+                            <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckboxStretched">
+                            <label class="form-check-label stretched-link" for="secondCheckboxStretched">Item 2
+                                <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button></label>
                         </li>
+<!--                        <li class="list-group-item d-flex justify-content-flex-end align-items-right text-end">-->
+<!--                            Item 1-->
+<!--                            <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>-->
+<!--                        </li>-->
+<!--                        <li class="list-group-item d-flex justify-content-between align-items-flex-end text-end">-->
+<!--                            Item 2-->
+<!--                            <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>-->
+<!--                        </li>-->
                         <!-- Add more list items here -->
                     </ul>
                 </div>

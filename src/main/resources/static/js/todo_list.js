@@ -1,6 +1,6 @@
 // Global variables
 var itemList;
-var currentListName = "Default List";
+var currentListName = "";
 
 // Function to load the selected packing list
 function loadPackingList(listIndex) {
@@ -318,7 +318,7 @@ function saveList() {
 // Call renderList() to display the pre-made list when the page loads
 window.addEventListener("load", renderList);
 // Call loadPackingList() to load the default packing list when the page loads
-loadPackingList('0');
+// loadPackingList('0');
 
 //Making the calls to the API on submit
 var searchResults = [];
@@ -365,11 +365,10 @@ function callback(results, status) {
 
                 table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
 <img class="border border-4 rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/>
-<br><div class="card-title">` + results[i].name + '</div><button id="${i}" type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>';
+<br><div class="card-title">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
             }
         }
     } else {
-        var table = document.getElementById('places');
         table.innerHTML = "<div class='card m-4 col text-center align-items-center'><h2 class='m-3'>No Places in the area.</h2></div>"
     }
 }
@@ -383,11 +382,14 @@ function clearField(){
 function addToItinerary(index) {
     var selectedResult = searchResults[index];
     var listContainer = document.getElementById('listContainer');
+    let placeId = document.getElementById(index)
     const saveDestinationBtn = document.getElementById('saveDestinationBtn');
-    saveDestinationBtn.classList.remove('d-none')
+    saveDestinationBtn.classList.remove('d-none');
+    placeId.classList.add('d-none');
+
 
     var card = document.createElement('div');
-    card.className = 'card col-4 mt-3';
+    card.className = 'card col-5 m-1';
     card.style = 'width: 18rem;';
     card.innerHTML = `
     <div class="card-body">
