@@ -27,9 +27,9 @@
     <div class="col-lg-12">
       <h2 class="mb-4">My Itineraries</h2>
       <ul class="list-group">
-        <li class="list-group-item">Itinerary 1</li>
-        <li class="list-group-item">Itinerary 2</li>
-        <li class="list-group-item">Itinerary 3</li>
+        <li class="list-group-item" th:each="itinerary : ${user.itineraries}">
+          <a th:href="@{'/itineraries/' + ${itinerary.id}}"><span th:text="${itinerary.name}"></span></a>
+        </li>
       </ul>
     </div>
   </div>

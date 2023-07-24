@@ -46,7 +46,7 @@ public class SecurityConfiguration {
                          * anyone can visit the home page, register, login, and view ads */
                         .requestMatchers("/", "/sign-up", "/login").permitAll()
                         // allow loading of static resources
-                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/itinerary").permitAll()
                 )
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/profile"))
