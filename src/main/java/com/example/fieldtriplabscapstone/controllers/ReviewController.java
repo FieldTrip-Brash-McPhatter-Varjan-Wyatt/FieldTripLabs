@@ -77,7 +77,7 @@ public class ReviewController {
     }
 
     @PostMapping("/create")
-    public String doReviews(@ModelAttribute Review  review, @RequestParam(name="destinationId") Long destinationId, @RequestParam(name="content")String content) {
+    public String doReviews(@ModelAttribute Review  review, @RequestParam(name="destinationId") Long destinationId, @RequestParam(name="content")String content, @RequestParam(name="rating")int rating) {
         User loggedInUser = Authorization.getLoggedInUser();
         if(loggedInUser.getId() == 0) {
             return "redirect:/login";
@@ -89,6 +89,7 @@ public class ReviewController {
             return "index";
         }
         Destination destination = optionalDestination.get();
+        review.setRating(rating);
         review.setContent(content);
         review.setDestination(destination);
         System.out.println(review);
