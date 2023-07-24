@@ -29,6 +29,7 @@ public class ReviewController {
     private DestinationRepository destDao;
 
 
+
     @GetMapping("")
     public String reviews(@RequestParam(name="destinationId") Long destinationId, Model model){
         Optional<Destination>optionalDestination = destDao.findById(destinationId);
@@ -41,11 +42,12 @@ public class ReviewController {
         model.addAttribute("loggedInUser", loggedInUser);
         model.addAttribute("destinationId", destinationId);
 
+
         List<Review> reviews = reviewDao.findAll();
 
         model.addAttribute("reviews", reviews);
         model.addAttribute("newReview", new Review());
-        return "/reviews/index";
+        return "reviews/index";
     }
 
     @GetMapping("/{id}")
@@ -71,11 +73,11 @@ public class ReviewController {
         model.addAttribute("loggedInUser", loggedInUser);
 
         model.addAttribute("newReview", new Review());
-        return "/reviews/create";
+        return "/reviews/index";
     }
 
     @PostMapping("/create")
-    public String doReviews(@ModelAttribute Review  review, @RequestParam(name="destinationId") Long destinationId) {
+    public String doReviews(@ModelAttribute Review  review, @RequestParam(name="destinationId") Long destinationId, @RequestParam(name="content")String content) {
         User loggedInUser = Authorization.getLoggedInUser();
         if(loggedInUser.getId() == 0) {
             return "redirect:/login";
@@ -87,9 +89,12 @@ public class ReviewController {
             return "index";
         }
         Destination destination = optionalDestination.get();
+        review.setContent(content);
         review.setDestination(destination);
         System.out.println(review);
         reviewDao.save(review);
+
+
 
 
         return "redirect:/reviews?destinationId=" + destinationId;

@@ -39,7 +39,7 @@
 	</nav>
 
 		<div class="search-result-picture">
-			<img src="css/bubbaJ.jeg"/>
+			<img src="bubbaJ.jpeg"/>
 		</div>
 			<section id="reviews">
 				<div class="review-heading">
@@ -47,19 +47,19 @@
 					<h1>Here's what they're saying...</h1>
 				</div>
 
-				<div class="container">
+				<div class="container" >
 					<div class="star-widget">
-						<input type="radio" name="rate" id="rate-5-star">
+						<input type="radio" name="rating"  id="rate-5-star">
 						<label for="rate-5-star" class="fas fa-star"></label>
-						<input type="radio" name="rate" id="rate-4-star">
+						<input type="radio" name="rating" id="rate-4-star">
 						<label for="rate-4-star" class="fas fa-star"></label>
-						<input type="radio" name="rate" id="rate-3-star">
+						<input type="radio" name="rating" id="rate-3-star">
 						<label for="rate-3-star" class="fas fa-star"></label>
-						<input type="radio" name="rate" id="rate-2-star">
+						<input type="radio" name="rating" id="rate-2-star">
 						<label for="rate-2-star" class="fas fa-star"></label>
-						<input type="radio" name="rate" id="rate-1-star">
+						<input type="radio" name="rating" id="rate-1-star">
 						<label for="rate-1-star" class="fas fa-star"></label>
-						<form th:action="@{reviews/create}" th:method="post" th:object="${newReview}">
+						<form th:action="@{/reviews/create}" th:method="post" th:object="${newReview}">
 							<header></header>
 							<input type="hidden" id="destinationId" name="destinationId" th:value="${destinationId}">
 							<div class="textarea">
@@ -89,35 +89,31 @@
 
 				<div class="review-box-heading">
 
-					<div class="review-box">
+					<div class="review-box" th:each="review : ${reviews}">
 
 						<div class="review-box-top">
 							<div class="user-profile">
 
 								<div class="profile-image">
-									<img th:src="@{templates/bubbaJ.jpeg}"/>
+									<img th:src="${review.user.getImage()}"/>
 								</div>
 
 								<div class="user-name">
-									<strong th:value="${first_name} + ${last_name}"></strong>
-									<span th:value="${username}"></span>
+									<strong th:text="${review.user.getFirstName()}"></strong>
+									<span th:text="'@' + ${review.user.getUsername()} + ' ' + ${review.user.getLastName()}"></span>
 								</div>
-
 							</div>
-
 							<div class="user-reviews">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="far fa-star"></i> <!--for empty star-->
+								<i class="fas fa-star" th:each="i : ${#numbers.sequence( 1, review.getRating())}"></i>
+								<i class="far fa-star" th:each="i : ${#numbers.sequence( 1, 5 - review.getRating())}"></i>
 							</div>
 
 						</div>
 
 						<div class="user-comments">
-							<p th:value="${content}"></p>
+							<p th:text="${review.content}"></p>
 						</div>
+
 					</div>
 
 					<div class="review-box">
@@ -126,7 +122,7 @@
 							<div class="user-profile">
 
 								<div class="profile-image">
-									<img th:src="@{templates/bubbaJ.jpeg}"/>
+									<img th:src="@{templates/css/bubbaJ.jpeg}"/>
 								</div>
 
 								<div class="user-name">
