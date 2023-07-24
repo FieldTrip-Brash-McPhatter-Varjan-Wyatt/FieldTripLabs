@@ -58,6 +58,7 @@
     button.addEventListener('click', () => {
         const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'
         const client = filestack.init(apiKey);
+        client.picker().open();
         const options = {
             onUploadDone: (uploadResponse) => {
                 console.log('onUploadDone', uploadResponse)
