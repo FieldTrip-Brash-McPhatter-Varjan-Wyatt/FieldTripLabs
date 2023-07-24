@@ -70,6 +70,7 @@ public class UserController {
             currentUser.setLastName(lastName);
             currentUser.setEmail(email);
             userDao.save(currentUser);
+        System.out.println("posted from profile edit");
             return "redirect:/profile";
     }
 
