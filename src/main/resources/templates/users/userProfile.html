@@ -10,7 +10,7 @@
     <div class="col-lg-3">
       <div class="text-center">
         <img th:src="${user.getImage()}" class="img-fluid rounded-circle" alt="Profile Picture">
-<!--        <input type="hidden" id="imageUrl" name="imageUrl" th:value="${user.getImage()}"/>-->
+
       </div>
     </div>
 
@@ -19,6 +19,7 @@
         <ul class="list-unstyled">
           <li><strong>Name:</strong> <span th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></span></li>
           <li><strong>Username:</strong><span th:text="${user.getUsername()}"></span></li>
+          <li><strong>Email:</strong><span th:text="${user.getEmail()}"></span></li>
           <li><strong>Password:</strong> ********</li>
           <li><button><a th:href="@{/profile/edit}">Edit Profile</a> </button></li>
         </ul>
