@@ -25,7 +25,7 @@ nav{
 
 .container{
     position: relative;
-    width: 400px;
+    width: 650px;
     background: #111;
     padding: 20px 30px;
     border: 1px solid #444;
@@ -63,9 +63,9 @@ nav{
 }
 
 .star-widget label{
-    font-size: 40px;
+    font-size: 25px;
     color: #444;
-    /*padding: 10px;*/
+    padding: 3px;
     float: right;
     transition: all 0.2s ease;
 }
@@ -273,25 +273,25 @@ form .btn button:hover{
     transition: all ease 0.3s;
 }
 
-@media(max-width: 1060px) {
-    .review-box{
-        width: 45%;
-        padding: 10px;
-        
-    }
-}
+/*@media(max-width: 1060px) {*/
+/*    .review-box{*/
+/*        width: 45%;*/
+/*        padding: 10px;*/
+/*        */
+/*    }*/
+/*}*/
 
-@media (max-width: 790px ) {
-    .review-box{
-        width: 100%;
-    }
+/*@media (max-width: 790px ) {*/
+/*    .review-box{*/
+/*        width: 100%;*/
+/*    }*/
 
-    .review-heading h1{
-        font-size: 1.4rem;
+/*    .review-heading h1{*/
+/*        font-size: 1.4rem;*/
 
-    }
-    
-}
+/*    }*/
+/*    */
+/*}*/
 
 /*@media (max-width: 340px) {*/
 /*    .review-box-top{*/

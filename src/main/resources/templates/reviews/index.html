@@ -109,8 +109,8 @@
 								</div>
 
 								<div class="user-name">
-									<strong th:text="${review.user.getFirstName()}"></strong>
-									<span th:text="'@' + ${review.user.getUsername()} + ' ' + ${review.user.getLastName()}"></span>
+									<strong th:text="${review.user.getFirstName()} + ' ' + ${review.user.getLastName()}"></strong>
+									<span th:text="'@' + ${review.user.getUsername()}"></span>
 								</div>
 							</div>
 							<div class="user-reviews">
