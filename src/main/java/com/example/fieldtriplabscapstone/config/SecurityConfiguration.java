@@ -40,13 +40,13 @@ public class SecurityConfiguration {
                         /* Pages that require authentication
                          * only authenticated users can create and edit ads */
 
-                        .requestMatchers("/profile", "/profile/edit", "/profile/password", "/reviews", "/reviews/create", "/reviews/index").authenticated()
+                        .requestMatchers("/profile", "/profile/edit", "/profile/password", "/reviews", "/reviews/create", "/reviews/index", "/saveImage", "/itinerary").authenticated()
 
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
                         .requestMatchers("/", "/sign-up", "/login").permitAll()
                         // allow loading of static resources
-                        .requestMatchers("/css/**", "/js/**", "/img/**", "/itinerary").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/itinerary", "/about-us").permitAll()
                 )
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/profile"))

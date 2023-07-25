@@ -3,14 +3,17 @@ package com.example.fieldtriplabscapstone.controllers;
 import com.example.fieldtriplabscapstone.models.User;
 import com.example.fieldtriplabscapstone.repositories.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 import java.util.Optional;
-
 
 
 @Controller
@@ -23,21 +26,21 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    private User getCurrentUser (){
+    private User getCurrentUser() {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> currentUser = userDao.findById(loggedInUser.getId());
         return currentUser.get();
     }
 
     @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
         return "/users/sign-up";
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
-        if (userDao.findByUsername(user.getUsername()) == null){
+    public String saveUser(@ModelAttribute User user) {
+        if (userDao.findByUsername(user.getUsername()) == null) {
             String hash = passwordEncoder.encode(user.getPassword());
             user.setPassword(hash);
             userDao.save(user);
@@ -48,40 +51,45 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(Model model){
+    public String showProfile(Model model) {
         User user = getCurrentUser();
         model.addAttribute("user", user);
         return "users/userProfile";
     }
 
     @GetMapping("/profile/edit")
-    public String editProfile(Model model){
+    public String editProfile(Model model) {
         User currentUser = getCurrentUser();
         model.addAttribute("user", currentUser);
         return "users/edit-profile";
     }
 
     @PostMapping("/profile/edit")
-    public String saveEdits(@RequestParam(name = "username") String userName, @RequestParam(name = "firstname") String firstName, @RequestParam(name = "lastname") String lastName, @RequestParam(name = "email") String email){
-            System.out.println(userName + firstName);
-            User currentUser = getCurrentUser();
-            currentUser.setUsername(userName);
-            currentUser.setFirstName(firstName);
-            currentUser.setLastName(lastName);
-            currentUser.setEmail(email);
-            userDao.save(currentUser);
-            return "redirect:/profile";
+    public String saveEdits(@RequestParam(name = "username") String userName,
+                            @RequestParam(name = "firstname") String firstName,
+                            @RequestParam(name = "lastname") String lastName,
+                            @RequestParam(name = "email") String email,
+                            @RequestParam(name = "imageUrl") String imageUrl) {
+        System.out.println(userName + firstName);
+        User currentUser = getCurrentUser();
+        currentUser.setUsername(userName);
+        currentUser.setFirstName(firstName);
+        currentUser.setLastName(lastName);
+        currentUser.setEmail(email);
+        currentUser.setImage(imageUrl);
+        userDao.save(currentUser);
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile/password")
-    public String changePassword(){
+    public String changePassword() {
         User currentUser = getCurrentUser();
 
         return "/users/newpassword";
     }
 
     @PostMapping("/profile/password")
-    public String saveNewPassword(@RequestParam(name = "oldpassword") String oldPassword, @RequestParam(name = "newpassword")String newPassword){
+    public String saveNewPassword(@RequestParam(name = "oldpassword") String oldPassword, @RequestParam(name = "newpassword") String newPassword) {
         User currentUser = getCurrentUser();
         if (passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
             String hashed = passwordEncoder.encode(newPassword);
@@ -94,25 +102,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/image")
-    public String fileStack(Model model){
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        model.addAttribute("user", loggedInUser);
-        System.out.println(loggedInUser.getImage());
-
-        return "profile";
-    }
-
-    @PostMapping("/image")
-    public String uploadImage(){
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
-        String imageSrc = "";
-        return imageSrc;
-    }
 
 }
-
 
