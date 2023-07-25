@@ -29,58 +29,58 @@
 
 
 
-/*body {*/
-/*    font-family: Arial, sans-serif;*/
-/*}*/
+body {
+    font-family: Arial, sans-serif;
+}
 
-/*button {*/
-/*    margin-top: 10px;*/
-/*}*/
+button {
+    margin-top: 10px;
+}
 
-/*.completed {*/
-/*    text-decoration: line-through;*/
-/*    color: gray;*/
-/*}*/
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
 
-/*.checkbox-item {*/
-/*    list-style: none;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
+.checkbox-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
 
-/*.checkbox-item input[type="checkbox"] {*/
-/*    display: none;*/
-/*}*/
+.checkbox-item input[type="checkbox"] {
+    display: none;
+}
 
-/*.checkbox-slider {*/
-/*    width: 50px;*/
-/*    height: 26px;*/
-/*    background-color: #ccc;*/
-/*    border-radius: 13px;*/
-/*    position: relative;*/
-/*    margin-right: 10px;*/
-/*}*/
+.checkbox-slider {
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 13px;
+    position: relative;
+    margin-right: 10px;
+}
 
-/*.checkbox-slider:before {*/
-/*    content: "";*/
-/*    position: absolute;*/
-/*    top: 2px;*/
-/*    left: 2px;*/
-/*    width: 22px;*/
-/*    height: 22px;*/
-/*    background-color: #fff;*/
-/*    border-radius: 50%;*/
-/*    transition: transform 0.2s ease-in-out;*/
-/*}*/
+.checkbox-slider:before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
 
-/*.checkbox-item input[type="checkbox"]:checked + .checkbox-slider:before {*/
-/*    transform: translateX(24px);*/
-/*}*/
+.checkbox-item input[type="checkbox"]:checked + .checkbox-slider:before {
+    transform: translateX(24px);
+}
 
-/*.checkbox-item span {*/
-/*    flex-grow: 1;*/
-/*}*/
+.checkbox-item span {
+    flex-grow: 1;
+}
 
-/*.checkbox-item button {*/
-/*    margin-left: 10px;*/
-/*}*/
+.checkbox-item button {
+    margin-left: 10px;
+}

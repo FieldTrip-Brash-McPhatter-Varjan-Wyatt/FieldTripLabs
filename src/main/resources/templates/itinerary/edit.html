@@ -2,16 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:insert="@{partials/header}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" th:href="@{../../static/css/stylesheet.css}">
+    <link rel="stylesheet" href="../../static/css/stylesheet.css">
 </head>
 <body>
 <nav th:insert="@{partials/navbar}"></nav>
 <div class="container mt-5">
     <div class="row">
-        <!-- Packing List Container (Left Side) -->
-        <form th:action="@{itinerary/create}">
+        <form th:action="@{'/itinerary/' + ${itinerary.id} + '/edit'}" th:object="${itinerary}">
+            <!-- Packing List Container (Left Side) -->
             <div class="col-6">
                 <div class="border p-4">
                     <h1>Packing List</h1>
@@ -74,46 +72,50 @@
             </div>
 
             <!-- Start Search Bar -->
-            <div class="card m-3">
+            <div class="card m-3 col-12">
                 <div class="d-flex form-row justify-content-center mt-3 mb-3">
-                    <div class="col-12 d-flex justify-content-center mb-2"><input type="text" placeholder="Itinerary Name" class="form-control col-8"></div>
-                    <div class="col-2 m-1">
-                        <select class="form-select" name="" id="type">
-                            <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
-                            <option id="aquarium" value="aquarium">Aquarium</option>
-                            <option id="art_gallery" value="art_gallery">Art Gallery</option>
-                            <option id="amusement_park" value="amusement_park">Amusement Parks</option>
-                            <option id="bar" value="bar">Bars</option>
-                            <option id="casino" value="casino">Casino</option>
-                            <option id="night_club" value="night_club">Clubs</option>
-                            <option id="museum" value="museum">Museums</option>
-                            <option id="restaurant" value="restaurant">Restaurants</option>
-                            <option id="stadium" value="stadium">Stadiums</option>
-                            <option id="zoo" value="zoo">Zoo</option>
-                        </select>
-                    </div>
-                    <div class="col-3 m-1">
-                        <input type="text" class="form-control" placeholder="Destination" id="autocomplete"
+                    <div class="col-4 m-1">
+                        <input type="text" class="form-control" th:field="${itinerary.name}" th:text="${itinerary.name}"
+                               id="autocomplete"
                                onclick="clearField()">
                     </div>
+                    <select class="form-select col-3" id="type">
+                        <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
+                        <option id="aquarium" value="aquarium">Aquarium</option>
+                        <option id="art_gallery" value="art_gallery">Art Gallery</option>
+                        <option id="amusement_park" value="amusement_park">Amusement Parks</option>
+                        <option id="bar" value="bar">Bars</option>
+                        <option id="casino" value="casino">Casino</option>
+                        <option id="night_club" value="night_club">Clubs</option>
+                        <option id="museum" value="museum">Museums</option>
+                        <option id="restaurant" value="restaurant">Restaurants</option>
+                        <option id="stadium" value="stadium">Stadiums</option>
+                        <option id="zoo" value="zoo">Zoo</option>
+                    </select>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" placeholder="Start Date">
+                        <input type="date" class="form-control" th:field="${itinerary.startDate}"
+                               th:text="${itinerary.startDate}">
                     </div>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" placeholder="End Date">
+                        <input type="date" class="form-control" th:field="${itinerary.endDate}"
+                               th:text="${itinerary.endDate}">
                     </div>
                 </div>
                 <div class="d-none" id="map"></div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Edit Form</button>
             </div>
         </form>
-        <table class="container d-flex flex-wrap justify-content-center" id="places"></table>
-        <script th:src="@{../js/keys.js}"></script>
-        <script th:src="@{../js/todo_list.js}"></script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnkBw-ty2Q-L-8qaeR00yYBbtdZc1xI1A&libraries=places&callback=initMap">
-        </script>
+
     </div>
+    <table class="container d-flex flex-wrap justify-content-center" id="places"></table>
+    <script th:src="@{/js/keys.js}" type="text/javascript"></script>
+    <script th:src="@{/js/todo_list.js}" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnkBw-ty2Q-L-8qaeR00yYBbtdZc1xI1A&libraries=places&callback=initMap">
+    </script>
+</div>
 </body>
 </html>
 
