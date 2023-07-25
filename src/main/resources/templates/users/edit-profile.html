@@ -75,13 +75,16 @@
             client.picker(options).open();
         });
 
+
         // event listener for the "Save Changes" button
         const saveChangesButton = document.querySelector('.save-changes');
         saveChangesButton.addEventListener('click', () => {
-            if (!uploadedImageUrl) {
-                console.log('Please upload an image before saving changes.');
-                event.preventDefault(); // Prevent form submission if image is not uploaded
+            if (uploadedImageUrl) {
+                console.log('Image Uploaded:', uploadedImageUrl);
+            } else {
+                console.log('No image uploaded.');
             }
+            // Form will be submitted whether an image is uploaded or not
         });
     });
 
