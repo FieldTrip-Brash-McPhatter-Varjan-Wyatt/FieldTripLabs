@@ -19,7 +19,6 @@
         <ul class="list-unstyled">
           <li><strong>Name:</strong> <span th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></span></li>
           <li><strong>Username:</strong><span th:text="${user.getUsername()}"></span></li>
-          <li><strong>DOB:</strong> 01/01/1990</li>
           <li><strong>Password:</strong> ********</li>
           <li><button><a th:href="@{/profile/edit}">Edit Profile</a> </button></li>
         </ul>
