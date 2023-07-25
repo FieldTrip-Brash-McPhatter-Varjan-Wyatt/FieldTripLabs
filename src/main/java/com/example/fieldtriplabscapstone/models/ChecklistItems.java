@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @Table(name="checklist_items")
 public class ChecklistItems {
@@ -20,5 +21,9 @@ public class ChecklistItems {
 
     @Column(nullable = false, length = 100)
     private String itemName;
+
+    @ManyToOne
+    @JoinColumn(name = "checklist_id", nullable = false)
+    private Checklist checklist;
 
 }

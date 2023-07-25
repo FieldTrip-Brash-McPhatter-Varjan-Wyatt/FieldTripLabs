@@ -65,10 +65,12 @@ nav{
 .star-widget label{
     font-size: 40px;
     color: #444;
-    padding: 10px;
+    /*padding: 10px;*/
     float: right;
     transition: all 0.2s ease;
 }
+
+
 
 .star-widget{
     position: relative;
@@ -249,7 +251,9 @@ form .btn button:hover{
 }
 
 .user-reviews{
-    color: #f9d71c
+    color: #f9d71c;
+    display: flex;
+
 }
 
 .review-box-top{
@@ -289,15 +293,15 @@ form .btn button:hover{
     
 }
 
-@media (max-width: 340px) {
-    .review-box-top{
-        flex-wrap: wrap;
-        margin-bottom: 10px;
-    }
-    .user-reviews{
-        margin-top: 10px ;
-    }
-}
+/*@media (max-width: 340px) {*/
+/*    .review-box-top{*/
+/*        flex-wrap: wrap;*/
+/*        margin-bottom: 10px;*/
+/*    }*/
+/*    .user-reviews{*/
+/*        margin-top: 10px ;*/
+/*    }*/
+/*}*/
 
 ::selection{
     color: #ffffff;

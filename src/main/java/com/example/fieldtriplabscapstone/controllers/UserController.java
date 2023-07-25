@@ -65,6 +65,7 @@ public class UserController {
     }
 
     @PostMapping("/profile/edit")
+
     public String saveEdits(@RequestParam(name = "username") String userName,
                             @RequestParam(name = "firstname") String firstName,
                             @RequestParam(name = "lastname") String lastName,
@@ -79,6 +80,7 @@ public class UserController {
         currentUser.setImage(imageUrl);
         userDao.save(currentUser);
         return "redirect:/profile";
+
     }
 
     @GetMapping("/profile/password")
