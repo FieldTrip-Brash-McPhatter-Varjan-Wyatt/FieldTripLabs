@@ -1,6 +1,5 @@
 package com.example.fieldtriplabscapstone.models;
 
-import com.example.fieldtriplabscapstone.repositories.UserRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,7 +32,7 @@ public class User {
     private String email;
 
     @Column(nullable = true)
-    private String image;
+    private String image; // This is where we will store the image URL.
 
     @Column(nullable = false, length = 100)
     private String password;
@@ -55,6 +54,11 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User(String image) {
+        this.image = image;
+
     }
 
     @Override

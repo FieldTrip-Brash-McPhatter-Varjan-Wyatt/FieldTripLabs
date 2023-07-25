@@ -21,52 +21,73 @@
                 </div>
                 <div>
                     <label for="lastname">Last Name</label>
-                    <input id="lastname" name="lastname" th:value="${user.getLastName()}" />
+                    <input id="lastname" name="lastname" th:value="${user.getLastName()}"/>
                 </div>
                 <div class="mx-3">
                     <label for="email">Email</label>
-                    <input id="email" name="email" th:value="${user.getEmail()}" />
+                    <input id="email" name="email" th:value="${user.getEmail()}"/>
                 </div>
+                <div class="mx-3">
+                    <input type="hidden" id="imageUrl" name="imageUrl" th:value="${user.getImage()}"/>
+                </div>
+
                 <div>
                     <p>Password: <span><a th:href="@{/profile/password}"> Change Password</a></span></p>
                 </div>
 
 
+                <img id="uploadedImage" th:src="${user.getImage()}" class="img-fluid rounded-circle" alt="Profile Picture" style="width:100px;">
+
+
                 <div>
-                    <p>Image: <span><a th:href="@{/image}"> Change Image</a></span></p>
-                </div>
-                <div>
-                    <button class="upload">Upload file</button>
-                </div>
-                <div>
-                    <img th:src="${user.getImage()}" width="200" height="200" class="logo" />
+                    <button type="button" class="upload">Change Profile Image</button>
                 </div>
 
 
             </div>
-            <input class="mt-3" value="Save Changes" type="submit" />
+            <button class="save-changes">Save Changes</button>
         </form>
     </div>
 </div>
-
-</body>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="/js/filestack.js"></script>
 <script>
 
-    const button = document.querySelector('.upload')
-    const image = document.querySelector('.logo')
-    button.addEventListener('click', () => {
-        const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'
-        const client = filestack.init(apiKey);
-        client.picker().open();
-        const options = {
-            onUploadDone: (uploadResponse) => {
-                console.log('onUploadDone', uploadResponse)
-                image.setAttribute('src', uploadResponse.filesUploaded[0].url)
+    window.addEventListener('DOMContentLoaded', function () {
+        const button = document.querySelector('.upload')
+        const image = document.getElementById('uploadedImage'); // Use the ID to select the image element
+        let uploadedImageUrl; // Variable to store the uploaded image URL
+
+        button.addEventListener('click', () => {
+            const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'
+            const client = filestack.init(apiKey);
+            client.picker().open();
+            const options = {
+                onUploadDone: (uploadResponse) => {
+                    console.log('onUploadDone', uploadResponse)
+                    uploadedImageUrl = uploadResponse.filesUploaded[0].url; // Store the uploaded image URL
+                    image.setAttribute('src', uploadedImageUrl);
+                    document.getElementById('imageUrl').value = uploadedImageUrl; // Set the input field's value
+                    console.log(uploadedImageUrl);
+                }
+
+            };
+
+            client.picker(options).open();
+        });
+
+        // event listener for the "Save Changes" button
+        const saveChangesButton = document.querySelector('.save-changes');
+        saveChangesButton.addEventListener('click', () => {
+            if (!uploadedImageUrl) {
+                console.log('Please upload an image before saving changes.');
+                event.preventDefault(); // Prevent form submission if image is not uploaded
             }
-        };
-        client.picker(options).open()
-    })
+        });
+    });
 
 </script>
+
+</body>
+
+
 </html>

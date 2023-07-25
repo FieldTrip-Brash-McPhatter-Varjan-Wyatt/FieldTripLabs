@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/header">
-  <meta charset="UTF-8">
-  <title>Change Image</title>
-</head>
-<body>
-<nav th:insert="partials/navbar"></nav>
-<div class="d-flex flex-column align-items-center" th:action="@{/image}" method="POST">
-<h1> Hello <span th:text="${user.getUsername()}"></span></h1>
-<div>
-  <button class="upload">Upload file</button>
-</div>
-<div>
-  <img th:src="${user.getImage()}" width="200" height="200" class="logo" />
-</div>
-</div>
-</body>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:insert="partials/header">-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Change Image</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav th:insert="partials/navbar"></nav>-->
+<!--<div class="d-flex flex-column align-items-center" th:action="@{/image}" method="POST">-->
+<!--<h1> Hello <span th:text="${user.getUsername()}"></span></h1>-->
+<!--<div>-->
+<!--  <button class="upload">Upload file</button>-->
+<!--</div>-->
+<!--<div>-->
+<!--  <img th:src="${user.getImage()}" width="200" height="200" class="logo" />-->
+<!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
+<!--<script>-->
 
-  const button = document.querySelector('.upload')
-  const image = document.querySelector('.logo')
-  button.addEventListener('click', () => {
-    const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'
-    const client = filestack.init(apiKey);
-    const options = {
-      onUploadDone: (uploadResponse) => {
-        console.log('onUploadDone', uploadResponse)
-        image.setAttribute('src', uploadResponse.filesUploaded[0].url)
-      }
-    };
-    client.picker(options).open()
-  })
+<!--  const button = document.querySelector('.upload')-->
+<!--  const image = document.querySelector('.logo')-->
+<!--  button.addEventListener('click', () => {-->
+<!--    const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'-->
+<!--    const client = filestack.init(apiKey);-->
+<!--    const options = {-->
+<!--      onUploadDone: (uploadResponse) => {-->
+<!--        console.log('onUploadDone', uploadResponse)-->
+<!--        image.setAttribute('src', uploadResponse.filesUploaded[0].url)-->
+<!--      }-->
+<!--    };-->
+<!--    client.picker(options).open()-->
+<!--  })-->
 
-</script>
-</html>
+<!--</script>-->
+<!--</html>-->
