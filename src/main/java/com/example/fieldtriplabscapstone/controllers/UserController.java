@@ -3,15 +3,19 @@ package com.example.fieldtriplabscapstone.controllers;
 import com.example.fieldtriplabscapstone.models.User;
 import com.example.fieldtriplabscapstone.repositories.UserRepository;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -39,15 +43,22 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user) {
-        if (userDao.findByUsername(user.getUsername()) == null) {
-            String hash = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hash);
-            userDao.save(user);
-            return "redirect:/login";
-        } else {
-            return "redirect:/sign-up";
+    public String saveUser(@Valid User user, BindingResult result) {
+        if (result.hasErrors()){
+            return "/users/sign-up";
         }
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        userDao.save(user);
+        return "redirect:/login";
+//        if (userDao.findByUsername(user.getUsername()) == null) {
+//            String hash = passwordEncoder.encode(user.getPassword());
+//            user.setPassword(hash);
+//            userDao.save(user);
+//            return "redirect:/login";
+//        } else {
+//            return "redirect:/sign-up";
+//        }
     }
 
     @GetMapping("/profile")
