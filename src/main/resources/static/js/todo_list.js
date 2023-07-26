@@ -2,6 +2,8 @@
 var itemList;
 var currentListName = "";
 var weatherKey = config.WEATHER_KEY
+
+// Start Weather
 $(document).ready(function () {
     const apiKey = weatherKey;
     const apiUrl = 'https://visual-crossing-weather.p.rapidapi.com/history';
