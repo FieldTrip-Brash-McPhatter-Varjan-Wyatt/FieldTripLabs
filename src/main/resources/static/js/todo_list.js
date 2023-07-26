@@ -2,6 +2,90 @@
 var itemList;
 var currentListName = "";
 
+$(document).ready(function () {
+    const apiKey = 'b4427c033bmshb38ab485978438ep198683jsn71d3fc98b8b1';
+    const apiUrl = 'https://visual-crossing-weather.p.rapidapi.com/history';
+
+    // Fetch weather when the destination or date changes
+    $('#autocomplete, #startDateInput').change(function () {
+        const cityName = $('#autocomplete').val().trim();
+        const date = new Date($('#startDateInput').val());
+
+        if (cityName !== '' && !isNaN(date.getTime())) {
+            fetchWeatherData(cityName, date);
+        }
+        console.log(cityName, date);
+    });
+    console.log('Fetching weather data...');
+
+
+    function fetchWeatherData(cityName, date) {
+        $('#weatherData').html('');
+
+        const startDateTime = new Date(date);
+        startDateTime.setFullYear(startDateTime.getFullYear() - 1);
+
+        const endDateTime = new Date(startDateTime);
+        endDateTime.setDate(endDateTime.getDate() + 6);
+
+        const startISO = startDateTime.toISOString();
+        const endISO = endDateTime.toISOString();
+
+        $.ajax({
+            url: apiUrl,
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': apiKey,
+                'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
+            },
+            data: {
+                startDateTime: startISO,
+                endDateTime: endISO,
+                aggregateHours: '24',
+                location: cityName,
+                contentType: 'json',
+                unitGroup: 'us',
+                shortColumnNames: 'false'
+            },
+            success: function (response) {
+                if (response.locations && response.locations[cityName]) {
+                    const weatherData = response.locations[cityName].values;
+                    let weatherHtml = `<h3>Weather in ${cityName}</h3><div class="weather-container d-flex flex-row justify-content-around flex-wrap">`;
+
+                    for (const data of weatherData) {
+                        const dateTime = new Date(data.datetimeStr);
+
+                        const weekdayOptions = { weekday: 'long' };
+                        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+                        const formattedWeekday = dateTime.toLocaleString('en-US', weekdayOptions);
+                        const formattedDate = dateTime.toLocaleString('en-US', dateOptions);
+
+                        weatherHtml += `
+                <div class="card text-center" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">${formattedWeekday}<br>${formattedDate}</h5>
+                    <p class="card-text">Temperature: ${data.temp}</p>
+                    <p class="card-text">Weather Conditions: 
+                    <br>
+                        ${data.conditions}</p>
+                  </div>
+                </div>`;
+                    }
+
+                    $('#weatherData').html(weatherHtml);
+                } else {
+                    $('#weatherData').html('<p>No weather data found for the city.</p>');
+                }
+            },
+
+            error: function () {
+                $('#weatherData').html('<p>An error occurred while fetching weather data.</p>');
+            }
+        });
+    }
+});
+
 // Function to load the selected packing list
 function loadPackingList(listIndex) {
     var listName;
@@ -373,12 +457,14 @@ function callback(results, status) {
     }
 }
 
-function saveDestination(){
+function saveDestination() {
     console.log("hello")
 }
-function clearField(){
+
+function clearField() {
     document.getElementById('autocomplete').value = "";
 }
+
 function addToItinerary(index) {
     var selectedResult = searchResults[index];
     var listContainer = document.getElementById('listContainer');
@@ -400,6 +486,7 @@ function addToItinerary(index) {
 
     listContainer.appendChild(card);
 }
+
 
 
 
