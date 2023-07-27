@@ -290,52 +290,111 @@ $(document).ready(function () {
                 break;
         }
 
-    }
-
 
 // Function to handle the selection change event
-    function handleSelectionChange() {
-        var listSelection = document.getElementById('listSelection');
-        var selectedValue = listSelection.value;
-        loadPackingList(selectedValue);
-    }
+        function handleSelectionChange() {
+            var listSelection = document.getElementById('listSelection');
+            var selectedValue = listSelection.value;
+            loadPackingList(selectedValue);
+        }
 
 // Add an event listener to handle the selection change
-//     document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
+        document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
 
-// Function to render the list
-    let itemCount = document.querySelector("#listItems").children.length;
-    document.querySelector("#add-button").addEventListener("click", function (event) {
+    }
+// Function to create a new item
+function createNewItem(event) {
+    // If there's already an input box, convert it to text only if it's not empty
+    let existingInput = document.querySelector(".edit-input");
+    if (existingInput) {
+        if (existingInput.value.trim() !== '') {
+            let parentDiv = existingInput.parentElement;
+            let span = parentDiv.querySelector(".item-name");
+            span.textContent = existingInput.value;
+            span.style.display = "inline";
+            parentDiv.removeChild(existingInput);
+        } else {
+            // If the existing input is empty, don't add a new input
+            return;
+        }
+    }
 
-            const li = document.createElement("li");
-            const div = document.createElement("div");
-            let child = document.createElement("input");
-            child.setAttribute("type", "hidden");
-            child.setAttribute("id", `checklist.checklistItems${itemCount}.id`);
-            child.setAttribute("name", `checklist.checklistItems[${itemCount}].id`);
-            child.setAttribute("value", `0`);
-            div.appendChild(child);
+    // Create a new list item with an input box
+    const li = document.createElement("li");
+    const div = document.createElement("div");
 
-            child = document.createElement("input");
-            child.setAttribute("type", "text");
-            child.setAttribute("id", `checklist.checklistItems${itemCount}.itemName`);
-            child.setAttribute("name", `checklist.checklistItems[${itemCount}].itemName`);
-            child.setAttribute("value", ``);
-            div.appendChild(child);
+    let child = document.createElement("input");
+    child.setAttribute("type", "text");
+    child.setAttribute("class", "edit-input");
+    child.focus();
+    div.appendChild(child);
 
-        child = document.createElement("button");
-        child.setAttribute("type", "button");
-        child.setAttribute("class", `btn btn-warning delete-todo`);
-        child.innerText = "Delete";
-        child.addEventListener("click", function(event) {
-            event.target.parentElement.parentElement.remove();
+    let span = document.createElement("span");
+    span.classList.add("item-name");
+    span.style.display = "none";
+    div.appendChild(span);
+
+    // Convert the input box to text when it loses focus or enter key is pressed
+    child.addEventListener("blur", convertInputToText);
+    child.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission
+            convertInputToText();
+            createNewItem();
+        }
+    });
+
+    function convertInputToText() {
+        if (child.value.trim() !== '') {
+            span.textContent = child.value;
+            span.style.display = "inline";
+            div.removeChild(child);
+        }
+    }
+
+    // When text is clicked, convert it back to input box for editing
+    span.addEventListener("click", function() {
+        span.style.display = "none";
+        let input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("class", "edit-input");
+        input.value = span.textContent;
+        div.insertBefore(input, span);
+        input.focus();
+        input.addEventListener("blur", convertInputToText);
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission
+                convertInputToText();
+                createNewItem();
+            }
         });
-        div.appendChild(child);
+    });
 
-            li.appendChild(div);
-            document.querySelector("#listItems").appendChild(li);
-            itemCount++;
-        })
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("type", "button");
+    deleteBtn.setAttribute("class", `btn btn-danger delete-todo`); // Change class to 'btn-danger' for red color
+    deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
+    deleteBtn.style.color = "white"; // Change text color to white
+    deleteBtn.addEventListener("click", function(event) {
+        event.target.parentElement.parentElement.remove();
+    });
+    div.appendChild(deleteBtn);
+
+    li.appendChild(div);
+    document.querySelector("#listItems").appendChild(li);
+    // Automatically place the cursor inside the new input box
+    child.focus();
+}
+
+// Add event listener to the add button
+document.querySelector("#add-button").addEventListener("click", createNewItem);
+
+
+
+
+
+
 
 
 //Making the calls to the API on submit
