@@ -3,14 +3,13 @@
 var itemList;
 var currentListName = "";
 var weatherKey = config.WEATHER_KEY
-
-// Start Weather
 $(document).ready(function () {
     const apiKey = weatherKey;
     const apiUrl = 'https://visual-crossing-weather.p.rapidapi.com/history';
 
+
     // Fetch weather when the destination or date changes
-    $('#autocomplete, #startDateInput').change(function () {
+    $('#weatherModal').on('show.bs.modal', function (e) {
         const cityName = $('#autocomplete').val().trim();
         const date = new Date($('#startDateInput').val());
 
@@ -50,6 +49,7 @@ $(document).ready(function () {
                 unitGroup: 'us',
                 shortColumnNames: 'false'
             },
+
             success: function (response) {
                 if (response.locations && response.locations[cityName]) {
                     const weatherData = response.locations[cityName].values;
@@ -77,12 +77,13 @@ $(document).ready(function () {
                     }
 
                     $('#weatherData').html(weatherHtml);
+
                 } else {
                     $('#weatherData').html('<p>No weather data found for the city.</p>');
                 }
             },
-
             error: function () {
+
                 $('#weatherData').html('<p>An error occurred while fetching weather data.</p>');
             }
         });
