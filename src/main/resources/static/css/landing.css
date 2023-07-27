@@ -1,0 +1,73 @@
+
+.banner-container {
+    max-width: 100%;
+    height: auto;
+    padding: 0;
+}
+.banner-container img {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#travel-search {
+    background-color: #003b46;
+    margin-bottom: 48px;
+}
+
+#travel-search h2 {
+    color: #dbd1b3;
+}
+
+#travel-search p {
+    color: #dbd1b3;
+}
+
+#search-boxes input{
+    background-color: #c4dfe6;
+}
+
+#search-boxes button {
+    background-color: #003b46;
+    color: #dbd1b3;
+    border: 1px solid #dbd1b3 ;
+}
+
+.col-lg-4 {
+    display: flex;
+}
+
+#pop-dest {
+    margin-top: 24px;
+}
+
+#pop-dest .btn {
+    background-color: #003b46;
+    color: #dbd1b3;
+    border: 1px solid #dbd1b3;
+}
+
+#france, #new-york, #brazil {
+    display: flex;
+    flex-direction: column;
+    background-color: #003b46;
+    color: #dbd1b3;
+}
+
+#test-one {
+    background-color: #003b46;
+    color: #dbd1b3;
+}
+
+#test-two {
+    background-color: #003b46;
+    color: #dbd1b3;
+}
+#test-three {
+    background-color: #003b46;
+    color: #dbd1b3;
+}
+
+
+
+
