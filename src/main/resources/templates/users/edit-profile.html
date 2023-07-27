@@ -3,6 +3,7 @@
 <head th:insert="partials/header">
     <meta charset="UTF-8">
     <title>Edit Profile</title>
+
 </head>
 <body>
 <nav th:insert="partials/navbar"></nav>
@@ -49,8 +50,11 @@
         </form>
     </div>
 </div>
+
 <script src="/js/filestack.js"></script>
+<script src= "/js/keys.js"></script>
 <script>
+var fileKey = config.FILESTACK_KEY;
 
     window.addEventListener('DOMContentLoaded', function () {
         const button = document.querySelector('.upload')
@@ -58,7 +62,7 @@
         let uploadedImageUrl; // Variable to store the uploaded image URL
 
         button.addEventListener('click', () => {
-            const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'
+            const apiKey = fileKey;
             const client = filestack.init(apiKey);
             client.picker().open();
             const options = {
@@ -75,13 +79,16 @@
             client.picker(options).open();
         });
 
+
         // event listener for the "Save Changes" button
         const saveChangesButton = document.querySelector('.save-changes');
         saveChangesButton.addEventListener('click', () => {
-            if (!uploadedImageUrl) {
-                console.log('Please upload an image before saving changes.');
-                event.preventDefault(); // Prevent form submission if image is not uploaded
+            if (uploadedImageUrl) {
+                console.log('Image Uploaded:', uploadedImageUrl);
+            } else {
+                console.log('No image uploaded.');
             }
+            // Form will be submitted whether an image is uploaded or not
         });
     });
 
