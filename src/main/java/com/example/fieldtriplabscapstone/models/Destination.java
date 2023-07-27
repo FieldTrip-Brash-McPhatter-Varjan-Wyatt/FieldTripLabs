@@ -28,7 +28,7 @@ public class Destination {
     @Column
     private String description;
 
-    @Column
+    @Column (length = 1000)
     private String photo_url;
 
     @ManyToOne

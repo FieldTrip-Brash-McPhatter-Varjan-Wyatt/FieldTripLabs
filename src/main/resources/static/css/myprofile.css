@@ -1,0 +1,35 @@
+.card {
+    background-color: #07575B;
+    box-shadow: 10px 10px 10px gray;
+    color: #c4dfe6;
+}
+
+.card-header {
+    background-color: #66a5ad;
+}
+
+body {
+    background-color: #dbd1b3;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #dbd1b3;
+}
+
+button {
+    border: #dbd1b3 1px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #dbd1b3;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: #dbd1b3;
+}
