@@ -1,17 +1,12 @@
 package com.example.fieldtriplabscapstone.models;
 
 import jakarta.persistence.*;
-<<<<<<< HEAD
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-=======
 import lombok.*;
->>>>>>> 71da0e740d4acbae8ec74a6fc8741cc440e5fc8f
+
 
 import java.util.List;
 

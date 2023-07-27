@@ -2,14 +2,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">Field Trip</a>
+    <div class="container-fluid px-0">
+        <a class="navbar-brand" th:href="@{/}"><img th:src="@{../img/ftlblue.png}" class="img-fluid" alt="Field Trip Lab" width="200px"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbartg"
                 aria-controls="navbartg" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbartg">
-            <ul class="navbar-nav ms-auto">
+        <div class="collapse navbar-collapse " id="navbartg">
+            <ul class="navbar-nav" style="margin-left: auto">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/itinerary}">Itineraries</a>
                 </li>
