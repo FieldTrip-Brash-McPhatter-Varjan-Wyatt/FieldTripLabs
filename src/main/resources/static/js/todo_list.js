@@ -11,7 +11,7 @@ $(document).ready(function () {
     // Fetch weather when the destination or date changes
     $('#weatherModal').on('show.bs.modal', function (e) {
         const cityName = $('#autocomplete').val().trim();
-        const date = new Date($('#startDateInput').val());
+        const date = new Date($('#startDate').val());
 
         if (cityName !== '' && !isNaN(date.getTime())) {
             fetchWeatherData(cityName, date);
@@ -25,9 +25,11 @@ $(document).ready(function () {
         $('#weatherData').html('');
 
         const startDateTime = new Date(date);
+        startDateTime.setHours(12);
         startDateTime.setFullYear(startDateTime.getFullYear() - 1);
 
         const endDateTime = new Date(startDateTime);
+
         endDateTime.setDate(endDateTime.getDate() + 6);
 
         const startISO = startDateTime.toISOString();
@@ -321,45 +323,19 @@ $(document).ready(function () {
             child.setAttribute("value", ``);
             div.appendChild(child);
 
-            child = document.createElement("button");
-            child.setAttribute("type", "button");
-            child.setAttribute("class", `btn btn-warning delete-todo`);
-            child.innerText = "Delete";
-            div.appendChild(child);
+        child = document.createElement("button");
+        child.setAttribute("type", "button");
+        child.setAttribute("class", `btn btn-warning delete-todo`);
+        child.innerText = "Delete";
+        child.addEventListener("click", function(event) {
+            event.target.parentElement.parentElement.remove();
+        });
+        div.appendChild(child);
 
             li.appendChild(div);
             document.querySelector("#listItems").appendChild(li);
-            // addDeleteListeners();
             itemCount++;
-        }
-
-        // function addDeleteListeners() {
-        //     document.querySelectorAll(".delete-todo").forEach(function (button) {
-        //         button.addEventListener("click", deleteTodo);
-        //     });
-        // }
-        //
-        // function deleteTodo(event) {
-        //     this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
-        //
-        //     let todoIds = document.querySelectorAll(".todo-id");
-        //     for (let i = 0; i < todoIds.length; i++) {
-        //         todoIds[i].setAttribute("id", `todos${i}.id`);
-        //         todoIds[i].setAttribute("name", `todos[${i}].id`);
-        //     }
-        //     let todoDescriptions = document.querySelectorAll(".todo-description");
-        //     for (let i = 0; i < todoDescriptions.length; i++) {
-        //         todoDescriptions[i].setAttribute("id", `todos${i}.description`);
-        //         todoDescriptions[i].setAttribute("name", `todos[${i}].description`);
-        //     }
-        //
-        //     todoCount = todoIds.length;
-        // }
-        //
-        // addDeleteListeners();
-// }
-    )
-
+        })
 
 
 //Making the calls to the API on submit
@@ -391,6 +367,7 @@ $(document).ready(function () {
     }
 
     function callback(results, status) {
+        $("#weatherButton").removeClass("d-none")
         searchResults = results;
         var table = document.getElementById('places');
         if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -412,6 +389,7 @@ $(document).ready(function () {
         } else {
             table.innerHTML = "<div class='card m-4 col text-center align-items-center'><h2 class='m-3'>No Places in the area.</h2></div>"
         }
+
     }
 
     document.querySelector("#autocomplete", ).addEventListener('click', clearField)
