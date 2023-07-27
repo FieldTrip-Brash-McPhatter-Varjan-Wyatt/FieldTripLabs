@@ -1,17 +1,13 @@
 package com.example.fieldtriplabscapstone.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
-
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name="itineraries")
 public class Itinerary {
@@ -32,12 +28,13 @@ public class Itinerary {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
-    private List<Checklist> checklists;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
+    private Checklist checklist;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
     private List<Destination> destinations;
 
-
-
+    public Itinerary() {
+        checklist = new Checklist();
+    }
 }

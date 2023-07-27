@@ -4,7 +4,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 
+
     <link rel="stylesheet" th:href="@{../../static/css/stylesheet.css}">
+
 </head>
 <body>
 <nav th:insert="@{partials/navbar}"></nav>
@@ -34,8 +36,8 @@
 </div>
 <div class="container mt-5">
     <div class="row">
-        <!-- Packing List Container (Left Side) -->
-        <form th:action="@{itinerary/create}">
+        <form th:action="@{'itinerary/create'}" th:method="POST" th:object="${itinerary}" id="submit-form">
+            <!-- Packing List Container (Left Side) -->
             <div class="col-6">
                 <div class="border p-4">
                     <h1>Packing List</h1>
@@ -54,33 +56,29 @@
                                 <option value="8">International Destination</option>
                             </select>
                         </div>
-                        <div class="mb-3 col-6">
-                            <input type="text" class="form-control" id="itemInput" placeholder="Type in a New Item">
+                        <div>
+                            <ul id="listItems">
+                                <li th:each="checklistItem, itemStat : *{checklist.checklistItems} ">
+                                    <input type="hidden" class="item-id"
+                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
+                                    <input id="itemInput" type="text" class="item-name"
+                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
+                                </li>
+                            </ul>
                         </div>
                         <div class="justify-content-end col-12">
-                            <button class="btn btn-primary col-3" onclick="addItem()">Add Item</button>
+                            <button type="button" id="add-button" class="btn btn-primary col-3">Add Item</button>
                         </div>
-
-                        <!-- Button to save packing list -->
                         <div class="mb-3 col-12">
+
                             <label for="listNameInput" class="form-label">List Name:</label>
+                            <input type="hidden" th:field="*{checklist.id}"/>
                             <input type="text" class="form-control" id="listNameInput"
-                                   placeholder="Name Your Custom List">
+                                   placeholder="Name Your Custom List" name="checklistName"
+                                   th:field="*{checklist.name}">
                         </div>
-                        <button class="btn btn-primary" onclick="saveList()">Save List</button>
-                        <!-- Button to save packing list END -->
-                        <ul id="itemList" class="list-group mt-3 col-12" style="list-style: none">
-                            <!-- List items with delete buttons aligned to the right -->
-                            <li class="list-group-item d-flex justify-content-flex-end align-items-right text-end">
-                                Item 1
-                                <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-flex-end text-end">
-                                Item 2
-                                <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>
-                            </li>
-                            <!-- Add more list items here -->
-                        </ul>
+                        <!-- Add more list items here -->
+
                     </div>
                 </div>
             </div>
@@ -91,60 +89,65 @@
                 <div class="container p-4">
                     <div id="listContainer" class="row d-flex flex-wrap justify-content-around"></div>
                 </div>
-                <button class="d-none btn btn-primary" id="saveDestinationBtn" onclick="saveDestination()">Save
-                    Destination
-                </button>
                 <!-- END Itinerary List Container -->
             </div>
-
+            <!-- Hidden input field for destination address -->
+            <div class="d-none" id="destinationContainer"></div>
             <!-- Start Search Bar -->
-            <div class="card m-3">
+            <div class="col-12 d-flex justify-content-center mb-2">
+                <input type="text" placeholder="Itinerary Name" class="form-control col-8"name="itineraryName" th:field="*{name}">
+            </div>
+            <div class="card m-3 col-12">
                 <div class="d-flex form-row justify-content-center mt-3 mb-3">
-                    <div class="col-12 d-flex justify-content-center mb-2"><input type="text" placeholder="Itinerary Name" class="form-control col-8"></div>
-                    <div class="col-2 m-1">
-                        <select class="form-select" name="" id="type">
-                            <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
-                            <option id="aquarium" value="aquarium">Aquarium</option>
-                            <option id="art_gallery" value="art_gallery">Art Gallery</option>
-                            <option id="amusement_park" value="amusement_park">Amusement Parks</option>
-                            <option id="bar" value="bar">Bars</option>
-                            <option id="casino" value="casino">Casino</option>
-                            <option id="night_club" value="night_club">Clubs</option>
-                            <option id="museum" value="museum">Museums</option>
-                            <option id="restaurant" value="restaurant">Restaurants</option>
-                            <option id="stadium" value="stadium">Stadiums</option>
-                            <option id="zoo" value="zoo">Zoo</option>
-                        </select>
+                    <div class="col-4 m-1">
+                        <input type="text" class="form-control"
+                               id="autocomplete">
                     </div>
-                    <div class="col-3 m-1">
-                        <input type="text" class="form-control" placeholder="Destination" id="autocomplete"
-                               onclick="clearField()">
-                    </div>
+                    <select class="form-select col-3" id="type">
+                        <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
+                        <option id="aquarium" value="aquarium">Aquarium</option>
+                        <option id="art_gallery" value="art_gallery">Art Gallery</option>
+                        <option id="amusement_park" value="amusement_park">Amusement Parks</option>
+                        <option id="bar" value="bar">Bars</option>
+                        <option id="casino" value="casino">Casino</option>
+                        <option id="night_club" value="night_club">Clubs</option>
+                        <option id="museum" value="museum">Museums</option>
+                        <option id="restaurant" value="restaurant">Restaurants</option>
+                        <option id="stadium" value="stadium">Stadiums</option>
+                        <option id="zoo" value="zoo">Zoo</option>
+                    </select>
                     <div class="col-2 m-1">
-                        <input id="startDateInput" type="date" class="form-control" placeholder="Start Date">
+
+                        <input type="date" class="form-control" name="startDate" th:field="*{startDate}">
                     </div>
                     <div class="col-2 m-1">
-                        <input id="endDateInput" type="date" class="form-control" placeholder="End Date">
+                        <input type="date" class="form-control" name="endDate" th:field="*{endDate}">
+
                     </div>
                 </div>
                 <div class="d-none" id="map"></div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="createItinerary" class="btn btn-primary">Create Itinerary</button>
             </div>
         </form>
-        <table class="container d-flex flex-wrap justify-content-center" id="places"></table>
+
+      
 
 
 
 
-<!--        <div id="weatherData"></div>-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+     
+
+    </div>
+    <table class="container d-flex flex-wrap justify-content-center" id="places"></table>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <script th:src="@{../js/keys.js}"></script>
         <script th:src="@{../js/todo_list.js}"></script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnkBw-ty2Q-L-8qaeR00yYBbtdZc1xI1A&libraries=places&callback=initMap">
         </script>
-    </div>
+
 </div>
 </body>
 </html>
