@@ -1,11 +1,9 @@
 package com.example.fieldtriplabscapstone.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,6 +21,7 @@ public class ChecklistItems {
     private String itemName;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "checklist_id", nullable = false)
     private Checklist checklist;
 

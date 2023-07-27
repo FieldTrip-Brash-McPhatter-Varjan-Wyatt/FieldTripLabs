@@ -1,40 +1,60 @@
 package com.example.fieldtriplabscapstone.controllers;
 
-import com.example.fieldtriplabscapstone.models.Itinerary;
-import com.example.fieldtriplabscapstone.models.User;
-import com.example.fieldtriplabscapstone.repositories.ItineraryRepository;
-import com.example.fieldtriplabscapstone.repositories.UserRepository;
+import com.example.fieldtriplabscapstone.models.*;
+
+import com.example.fieldtriplabscapstone.repositories.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 @AllArgsConstructor
 @Controller
 public class ItineraryController {
     ItineraryRepository itineraryDao;
     UserRepository userDao;
+    ChecklistRepository checklistDao;
+
+    DestinationRepository destinationDao;
+    ChecklistItemsRepository checklistItemsDao;
 
     @GetMapping("/itinerary")
-    public String showItinerary(){
+    public String showItinerary(Model model){
+        Itinerary itinerary = new Itinerary();
+        model.addAttribute("itinerary", itinerary);
         return "itinerary/index";
     }
 
-    @GetMapping("/itinerary/{id}/edit")
-    public String showItineraryEdit(@ModelAttribute Itinerary itinerary, @PathVariable Long id){
-        Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (optionalItinerary.isEmpty()){
-            return "error";
+
+    @PostMapping("itinerary/create")
+    public String createItinerary(@ModelAttribute Itinerary itinerary){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(loggedInUser == null){
+            return "redirect:/login";
         }
-        if (loggedIn.getId() != optionalItinerary.get().getUser().getId()){
-            return "error";
+        itinerary.setUser(loggedInUser);
+//        resets checklist item to checklist that is in itinerary
+        for (ChecklistItems checklistItem : itinerary.getChecklist().getChecklistItems()) {
+            checklistItem.setChecklist(itinerary.getChecklist());
         }
-        return "itinerary/edit";
+//        resets checklist to itinerary
+        itinerary.getChecklist().setItinerary(itinerary);
+//        loop through destinations and set to itinerary
+        for (Destination destination : itinerary.getDestinations()){
+            destination.setItinerary(itinerary);
+        }
+        System.out.println(itinerary);
+        itineraryDao.save(itinerary);
+        return "itinerary/index";
+
     }
+
+
 
 
 }

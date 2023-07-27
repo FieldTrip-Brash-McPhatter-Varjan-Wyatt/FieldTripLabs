@@ -8,7 +8,7 @@
 <nav th:insert="@{partials/navbar}"></nav>
 <div class="container mt-5">
     <div class="row">
-        <form th:action="@{'/itinerary/' + ${itinerary.id} + '/edit'}" th:object="${itinerary}">
+        <form th:action="@{'/itinerary/' + ${itineraryComponents.itinerary.id} + '/edit'}" th:object="${itineraryComponents}">
             <!-- Packing List Container (Left Side) -->
             <div class="col-6">
                 <div class="border p-4">
@@ -39,20 +39,9 @@
                         <div class="mb-3 col-12">
                             <label for="listNameInput" class="form-label">List Name:</label>
                             <input type="text" class="form-control" id="listNameInput"
-                                   placeholder="Name Your Custom List">
+                                   placeholder="Name Your Custom List" th:field="*{checklist.name}" th:text="${itineraryComponent.checklist.name}">
                         </div>
-                        <button class="btn btn-primary" onclick="saveList()">Save List</button>
-                        <!-- Button to save packing list END -->
                         <ul id="itemList" class="list-group mt-3 col-12" style="list-style: none">
-                            <!-- List items with delete buttons aligned to the right -->
-                            <li class="list-group-item d-flex justify-content-flex-end align-items-right text-end">
-                                Item 1
-                                <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-flex-end text-end">
-                                Item 2
-                                <button class="btn btn-danger" onclick="deleteItem(this)">Delete</button>
-                            </li>
                             <!-- Add more list items here -->
                         </ul>
                     </div>
@@ -72,10 +61,11 @@
             </div>
 
             <!-- Start Search Bar -->
+            <div class="col-12 d-flex justify-content-center mb-2"><input type="text" placeholder="Itinerary Name" class="form-control col-8" th:field="*{itinerary.name}" th:text="${itineraryComponents.itinerary.name}"></div>
             <div class="card m-3 col-12">
                 <div class="d-flex form-row justify-content-center mt-3 mb-3">
                     <div class="col-4 m-1">
-                        <input type="text" class="form-control" th:field="${itinerary.name}" th:text="${itinerary.name}"
+                        <input type="text" class="form-control"
                                id="autocomplete"
                                onclick="clearField()">
                     </div>
@@ -93,12 +83,12 @@
                         <option id="zoo" value="zoo">Zoo</option>
                     </select>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" th:field="${itinerary.startDate}"
-                               th:text="${itinerary.startDate}">
+                        <input type="date" class="form-control" th:field="*{itinerary.startDate}"
+                               th:text="${itineraryComponent.itinerary.startDate}">
                     </div>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" th:field="${itinerary.endDate}"
-                               th:text="${itinerary.endDate}">
+                        <input type="date" class="form-control" th:field="*{itinerary.endDate}"
+                               th:text="${itineraryComponent.itinerary.endDate}">
                     </div>
                 </div>
                 <div class="d-none" id="map"></div>
