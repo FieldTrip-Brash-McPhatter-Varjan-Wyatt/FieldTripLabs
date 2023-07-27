@@ -1,12 +1,9 @@
 package com.example.fieldtriplabscapstone.models;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
-
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -28,9 +25,15 @@ public class Destination {
     @Column
     private String description;
 
+<<<<<<< HEAD
     @Column (length = 1000)
     private String photo_url;
+=======
+    @Column(length = 10000)
+    private String photoUrl;
+>>>>>>> 71da0e740d4acbae8ec74a6fc8741cc440e5fc8f
 
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "itinerary_id", nullable = false)
     private Itinerary itinerary;

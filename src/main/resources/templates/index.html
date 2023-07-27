@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:insert="partials/header">
+<head >
+
+	<link rel="stylesheet" th:href="@{../css/landing.css}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Landing Page</title>
+
 </head>
-<body>
+<body style="background-color: #C4DFE6">
+
+
+<div class="banner-container">
+	<img th:src="@{../css/banner.jpeg}">
+</div>
+
 <nav th:insert="partials/navbar"></nav>
 
 <!-- Search Bar -->
-<div class="border container mt-5 text-center p-4">
+<div class="container mt-5 text-center p-4" id="travel-search">
     <h2 class="text-center">Welcome to our Travel Search</h2>
     <p class="text-center">Find your perfect destination, select your preferred dates, and enter the number of people traveling.</p>
     <form>
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center" id="search-boxes">
             <div class="col-3">
                 <input type="text" class="form-control" placeholder="Destination">
             </div>
@@ -35,11 +45,11 @@
 
 
 <!-- Popular Destinations -->
-<div class="border  container mt-5">
+<div class="container" id="pop-dest">
     <div class="row">
         <div class="col-lg-4">
-            <div class="border p-4 pt-4 pb-4 my-4">
-                <img src="https://via.placeholder.com/400x300" alt="Paris, France" class="img-fluid">
+            <div class="border p-4 pt-4 pb-4 my-4" id="france">
+                <img th:src="@{../css/tower.jpeg}" alt="Paris, France" class="img-fluid">
                 <div class="text-center">
                     <h3>Paris, France</h3>
                     <p>Experience the romance and elegance of the "City of Love" as you stroll along the Seine River,
@@ -51,9 +61,22 @@
                 </div>
             </div>
         </div>
+	    <div class="col-lg-4">
+		    <div class="border p-4 pt-4 pb-4 my-4" id="brazil">
+			    <img th:src="@{../css/brazil.jpeg}" alt="São Paulo, Brazil" class="img-fluid">
+			    <div class="text-center">
+				    <h3>São Paulo, Brazil</h3>
+				    <p>Discover the cultural melting pot of São Paulo, where captivating street art adorns every corner,
+					    tantalizing flavors of Brazilian cuisine can be savored in countless restaurants, and a
+					    pulsating
+					    nightlife scene awaits in the trendy districts of Vila Madalena and Jardins.</p>
+				    <a href="#" class="btn btn-primary">Learn More</a>
+			    </div>
+		    </div>
+	    </div>
         <div class="col-lg-4">
-            <div class="border p-4 pt-4 pb-4 my-4">
-                <img src="https://via.placeholder.com/400x300" alt="New York, USA" class="img-fluid">
+            <div class="border p-4 pt-4 pb-4 my-4" id="new-york">
+                <img th:src="@{../css/nyc.jpeg}" alt="New York, USA" class="img-fluid">
                 <div class="text-center">
                     <h3>New York, USA</h3>
                     <p>Immerse yourself in the vibrant energy of the "Big Apple" as you explore the towering skyscrapers
@@ -61,19 +84,6 @@
                         Manhattan, catch a Broadway show in Times Square, and take a leisurely walk through Central
                         Park, while
                         savoring diverse culinary delights from around the world.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="border p-4 pt-4 pb-4 my-4">
-                <img src="https://via.placeholder.com/400x300" alt="São Paulo, Brazil" class="img-fluid">
-                <div class="text-center">
-                    <h3>São Paulo, Brazil</h3>
-                    <p>Discover the cultural melting pot of São Paulo, where captivating street art adorns every corner,
-                        tantalizing flavors of Brazilian cuisine can be savored in countless restaurants, and a
-                        pulsating
-                        nightlife scene awaits in the trendy districts of Vila Madalena and Jardins.</p>
                     <a href="#" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
@@ -114,7 +124,7 @@
 
 
 <!-- Offer Section -->
-<div class="container mt-5">
+<div class="container mt-5" id="our-offers">
     <div class="row">
         <div class="col-md-3">
             <div class="text-center custom-border">
@@ -149,10 +159,10 @@
 
 
 <!-- Testimonials -->
-<div class="container mt-5">
+<div class="container mt-5" id="test">
     <div class="row">
         <div class="col-md-4">
-            <div class="text-center border p-4 d-flex flex-column" style="height: 100%;">
+            <div class="text-center border p-4 d-flex flex-column" id="test-one" style="height: 100%;">
                 <blockquote class="flex-grow-1">
                     <p>"I stumbled upon this travel website while planning my vacation, and it turned out to be a
                         game-changer! The user-friendly interface made it incredibly easy to find and compare flights,
@@ -163,7 +173,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="text-center border p-4 d-flex flex-column" style="height: 100%;">
+            <div class="text-center border p-4 d-flex flex-column" id="test-two" style="height: 100%;">
                 <blockquote class="flex-grow-1">
                     <p>"As an avid traveler, I've used several travel websites, but none have impressed me as much as
                         this one. The extensive range of destination options and personalized recommendations helped me
@@ -174,7 +184,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="text-center border p-4 d-flex flex-column" style="height: 100%;">
+            <div class="text-center border p-4 d-flex flex-column" id="test-three" style="height: 100%;">
                 <blockquote class="flex-grow-1">
                     <p>"I can't thank this travel website enough for the incredible deals I scored on my recent
                         vacation. From discounted hotel rates to exclusive tour packages, it provided me with unbeatable
@@ -191,7 +201,7 @@
 
 
 <!-- Newsletter Signup -->
-<div class="border container mt-5 text-center p-4">
+<div class="border container mt-5 text-center p-4" id="sign-up">
     <p>Subscribe to our newsletter for the latest updates and exclusive offers:</p>
     <form>
         <div class="form-row justify-content-center">
@@ -207,7 +217,7 @@
 
 
 <!-- Footer -->
-<footer class="bg-dark text-white mt-5">
+<footer class="bg-dark text-white mt-5" id="footer">
     <div class="container">
         <div class="row">
             <div class="col-md-6">

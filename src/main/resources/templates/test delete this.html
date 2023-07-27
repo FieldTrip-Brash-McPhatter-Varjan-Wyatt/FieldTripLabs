@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Change the text of the text field, and then click the button below.</p>
+
+<div id="inputArea">
+  Name: <input type="text" id="myText" value="">
+</div>
+
+
+<button type="button" onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+  function myFunction() {
+
+
+    // Adding new input field
+    var newInput = document.createElement("input");
+    newInput.type = "text";
+    newInput.value = "";
+    document.getElementById("inputArea").appendChild(document.createTextNode("Name: "));
+    document.getElementById("inputArea").appendChild(newInput);
+  }
+</script>
+
+</body>
+</html>

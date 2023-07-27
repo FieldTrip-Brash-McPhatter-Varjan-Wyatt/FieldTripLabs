@@ -3,12 +3,12 @@ package com.example.fieldtriplabscapstone.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
-
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name="checklists")
 public class Checklist {
@@ -23,11 +23,15 @@ public class Checklist {
     @Column
     private boolean confirm;
 
-    @ManyToOne
+    @ToString.Exclude
+    @OneToOne
     @JoinColumn(name = "itinerary_id", nullable = false)
     private Itinerary itinerary;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "checklist")
-    @ToString.Exclude
     private List<ChecklistItems> checklistItems;
+
+    public Checklist() {
+        checklistItems = new ArrayList<>();
+    }
 }

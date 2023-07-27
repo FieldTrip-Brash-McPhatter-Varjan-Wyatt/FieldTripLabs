@@ -1,6 +1,7 @@
 package com.example.fieldtriplabscapstone.models;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+=======
+import lombok.*;
+>>>>>>> 71da0e740d4acbae8ec74a6fc8741cc440e5fc8f
 
 import java.util.List;
 
@@ -16,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +48,7 @@ public class User {
     @Size(min = 8, message = "{Size.User.Password}")
     private String password;
 
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Itinerary> itineraries;
 
