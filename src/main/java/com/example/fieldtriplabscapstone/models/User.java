@@ -1,7 +1,17 @@
 package com.example.fieldtriplabscapstone.models;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+=======
 import lombok.*;
+>>>>>>> 71da0e740d4acbae8ec74a6fc8741cc440e5fc8f
 
 import java.util.List;
 
@@ -17,6 +27,7 @@ public class User {
     private long id;
 
     @Column(unique = true, nullable = false, length = 100)
+    @Size(min = 3, message = "{Size.User.Username}")
     private String username;
 
     @Column(length = 100)
@@ -26,12 +37,15 @@ public class User {
     private String lastName;
 
     @Column(unique = true, nullable = false, length = 100)
+    @Email
+    @NotEmpty(message = "{Email.User.Email}")
     private String email;
 
     @Column(nullable = true)
     private String image; // This is where we will store the image URL.
 
     @Column(nullable = false, length = 100)
+    @Size(min = 8, message = "{Size.User.Password}")
     private String password;
 
     @ToString.Exclude
