@@ -373,6 +373,7 @@ function createNewItem(event) {
 
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
+    deleteBtn.setAttribute("id", "delete-item-button");
     deleteBtn.setAttribute("class", `btn btn-danger delete-todo`); // Change class to 'btn-danger' for red color
     deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
     deleteBtn.style.color = "white"; // Change text color to white
@@ -390,7 +391,11 @@ function createNewItem(event) {
 // Add event listener to the add button
 document.querySelector("#add-button").addEventListener("click", createNewItem);
 
-
+document.querySelector("#listItems").addEventListener('click', function(event) {
+    if (event.target.classList.contains("delete-todo")) {
+        event.target.parentElement.remove();
+    }
+});
 
 
 
@@ -452,6 +457,7 @@ document.querySelector("#add-button").addEventListener("click", createNewItem);
     }
 
     document.querySelector("#autocomplete", ).addEventListener('click', clearField)
+
     function clearField() {
         document.getElementById('autocomplete').value = "";
     }
@@ -491,7 +497,7 @@ ${selectedResult.vicinity}
         listContainer.appendChild(card);
     }
 
-    document.querySelector("#createItinerary").addEventListener("click",  function callToSubmit(){
+    document.querySelector("#edit-form").addEventListener("click",  function callToSubmit(){
         let nameFields = document.querySelectorAll(".destination-name");
         for (let i = 0; i < nameFields.length; i++) {
             nameFields[i].setAttribute("name", `destinations[${i}].name`)

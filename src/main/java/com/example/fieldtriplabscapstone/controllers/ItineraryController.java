@@ -5,6 +5,7 @@ import com.example.fieldtriplabscapstone.models.*;
 import com.example.fieldtriplabscapstone.repositories.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -50,11 +51,27 @@ public class ItineraryController {
         }
         System.out.println(itinerary);
         itineraryDao.save(itinerary);
-        return "itinerary/index";
+        return "redirect:/itinerary";
 
     }
 
+@GetMapping("itinerary/{id}/edit")
+    public String showEdit(@PathVariable Long id, Model model){
+    User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if(loggedInUser == null){
+        return "redirect:/login";
+    }
+    model.addAttribute("loggedInUser", loggedInUser);
+    Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
+    if (optionalItinerary.isEmpty()){
+        return "redirect:itinerary/index";
+    }
 
+    Itinerary itinerary = optionalItinerary.get();
+    model.addAttribute("itinerary", itinerary);
+    return "itinerary/edit";
+
+}
 
 
 }

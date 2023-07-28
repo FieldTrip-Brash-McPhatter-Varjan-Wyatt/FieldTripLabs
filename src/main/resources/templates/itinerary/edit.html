@@ -8,7 +8,7 @@
 <nav th:insert="@{partials/navbar}"></nav>
 <div class="container mt-5">
     <div class="row">
-        <form th:action="@{'/itinerary/' + ${itineraryComponents.itinerary.id} + '/edit'}" th:object="${itineraryComponents}">
+        <form th:action="@{'/itinerary/' + ${itinerary.id} + '/edit'}" th:object="${itinerary}">
             <!-- Packing List Container (Left Side) -->
             <div class="col-6">
                 <div class="border p-4">
@@ -29,17 +29,25 @@
                             </select>
                         </div>
                         <div class="mb-3 col-6">
-                            <input type="text" class="form-control" id="itemInput" placeholder="Type in a New Item">
+                            <ul id="listItems">
+                                <li th:each="checklistItem : ${itinerary.checklist.checklistItems}">
+                                    <span id="item" type="text" class="item-name"
+                                          th:text="${checklistItem.itemName}"/>
+                                    <button type="button" class="btn btn-danger delete-todo" style="color: white;" id="delete-existing">×</button>
+                                    <input id="itemInput" type="hidden" class="item-name"/>
+                                </li>
+                            </ul>
+
                         </div>
                         <div class="justify-content-end col-12">
-                            <button class="btn btn-primary col-3" onclick="addItem()">Add Item</button>
+                            <button type="button" id="add-button"  class="btn btn-primary col-3">Add Item</button>
                         </div>
 
                         <!-- Button to save packing list -->
                         <div class="mb-3 col-12">
                             <label for="listNameInput" class="form-label">List Name:</label>
                             <input type="text" class="form-control" id="listNameInput"
-                                   placeholder="Name Your Custom List" th:field="*{checklist.name}" th:text="${itineraryComponent.checklist.name}">
+                                   placeholder="Name Your Custom List" th:field="*{checklist.name}">
                         </div>
                         <ul id="itemList" class="list-group mt-3 col-12" style="list-style: none">
                             <!-- Add more list items here -->
@@ -52,22 +60,39 @@
             <!-- Itinerary List Container (Right Side) -->
             <div class="col-lg-6">
                 <div class="container p-4">
-                    <div id="listContainer" class="row d-flex flex-wrap justify-content-around"></div>
+                    <div th:each="destination : ${itinerary.destinations}" id="listContainer"
+                         class="row d-flex flex-wrap justify-content-around">
+                        <div class="destinationCard card-body">
+                            <div class="d-none" name="photoUrl">
+                                <img th:src="${destination.photoUrl}">
+                            </div>
+                            <h5 class="card-title" name="destinationName" th:text="${destination.name}"></h5>
+                            <input type="hidden" th:value="${destination.id}" class="destination-id">
+                            <input type="hidden" th:value="${destination.name}" class="destination-name">
+                            <input type="hidden" th:value="${destination.address}" class="destination-address">
+                            <input type="hidden" th:value="${destination.placeId}" class="destination-place-id">
+                            <input type="hidden" th:value="${destination.photoUrl}" class="destination-photo">
+
+                            <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress"
+                                th:text="${destination.address}"></h6>
+                            <a th:href="@{https://www.google.com/maps/search/?api=1&query=${destination.name}&query_place_id=${destination.placeId}}"
+                               class="card-link" target="_blank">
+                                View on Map
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <button class="d-none btn btn-primary" id="saveDestinationBtn" onclick="saveDestination()">Save
-                    Destination
-                </button>
                 <!-- END Itinerary List Container -->
             </div>
 
             <!-- Start Search Bar -->
-            <div class="col-12 d-flex justify-content-center mb-2"><input type="text" placeholder="Itinerary Name" class="form-control col-8" th:field="*{itinerary.name}" th:text="${itineraryComponents.itinerary.name}"></div>
+            <div class="col-12 d-flex justify-content-center mb-2">
+                <input type="text" placeholder="Itinerary Name" class="form-control col-8" th:field="*{name}" th:text="${name}">
+            </div>
             <div class="card m-3 col-12">
                 <div class="d-flex form-row justify-content-center mt-3 mb-3">
                     <div class="col-4 m-1">
-                        <input type="text" class="form-control"
-                               id="autocomplete"
-                               onclick="clearField()">
+                        <input type="text" class="form-control" id="autocomplete" onclick="clearField()">
                     </div>
                     <select class="form-select col-3" id="type">
                         <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
@@ -83,16 +108,14 @@
                         <option id="zoo" value="zoo">Zoo</option>
                     </select>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" th:field="*{itinerary.startDate}"
-                               th:text="${itineraryComponent.itinerary.startDate}">
+                        <input type="date" class="form-control" th:field="*{startDate}">
                     </div>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" th:field="*{itinerary.endDate}"
-                               th:text="${itineraryComponent.itinerary.endDate}">
+                        <input type="date" class="form-control" th:field="*{endDate}">
                     </div>
                 </div>
                 <div class="d-none" id="map"></div>
-                <button type="submit" class="btn btn-primary">Edit Form</button>
+                <button type="submit" class="btn btn-primary" id="edit-form">Edit Form</button>
             </div>
         </form>
 
