@@ -29,7 +29,7 @@ public class Review {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "destination_id", nullable = false)
+    @JoinColumn(name = "destination_id", nullable = true)
     @ToString.Exclude
     private Destination destination;
 

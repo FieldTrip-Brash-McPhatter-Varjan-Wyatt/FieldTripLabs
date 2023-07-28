@@ -16,21 +16,24 @@ public class Destination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     private String name;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     private String address;
 
     @Column
     private String description;
+
+    @Column
+    private String placeId;
 
     @Column(length = 10000)
     private String photoUrl;
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "itinerary_id", nullable = false)
+    @JoinColumn(name = "itinerary_id")
     private Itinerary itinerary;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "destination")
