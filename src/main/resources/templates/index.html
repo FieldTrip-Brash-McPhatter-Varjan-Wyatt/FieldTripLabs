@@ -4,7 +4,12 @@
 
 	<link rel="stylesheet" th:href="@{../css/landing.css}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Playball&display=swap" rel="stylesheet">
+
+	<meta charset="UTF-8">
     <title>Landing Page</title>
 
 </head>
@@ -12,7 +17,15 @@
 
 
 <div class="banner-container">
-	<img th:src="@{../css/banner.jpeg}">
+	<div class="unimaginable">
+		<p>The Unimaginable...</p>
+	</div>
+	<div class="ft">
+		<p>Field Trip</p>
+	</div>
+	<div class="imagine">
+		<p>Becomes Imaginable!</p>
+	</div>
 </div>
 
 <nav th:insert="partials/navbar"></nav>
@@ -102,10 +115,10 @@
         </ol>
         <div class="carousel-inner" style="height: 100%;">
             <div class="carousel-item active" style="height: 100%;">
-                <img src="https://via.placeholder.com/400x300" alt="Carousel 1" class="d-block w-100 h-100">
+                <img th:src="@{../css/winter.jpeg}" alt="Carousel 1" class="d-block w-100 h-100">
             </div>
             <div class="carousel-item" style="height: 100%;">
-                <img src="https://via.placeholder.com/400x300" alt="Carousel 2" class="d-block w-100 h-100">
+                <img th:src="@{../css/beach.jpeg}" alt="Carousel 2" class="d-block w-100 h-100">
             </div>
             <div class="carousel-item" style="height: 100%;">
                 <img src="https://via.placeholder.com/400x300" alt="Carousel 3" class="d-block w-100 h-100">
@@ -164,7 +177,7 @@
         <div class="col-md-4">
             <div class="text-center border p-4 d-flex flex-column" id="test-one" style="height: 100%;">
                 <blockquote class="flex-grow-1">
-                    <p>"I stumbled upon this travel website while planning my vacation, and it turned out to be a
+                    <p>"I stumbled upon Field Trip while planning my vacation, and it turned out to be a
                         game-changer! The user-friendly interface made it incredibly easy to find and compare flights,
                         hotels, and attractions, saving me both time and money. I highly recommend it to anyone looking
                         for a hassle-free travel booking experience."</p>
