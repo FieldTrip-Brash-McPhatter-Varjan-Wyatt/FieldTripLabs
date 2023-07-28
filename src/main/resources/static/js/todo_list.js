@@ -435,13 +435,13 @@ document.querySelector("#add-button").addEventListener("click", createNewItem);
                 if (results[i].photos) {
                     let photoUrl = results[i].photos[0].getUrl();
                     table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
-<img class="border-success rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/>
+<a href="reviews/${results[i].place_id}"><img class="border-success rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
 <br><div class="card-title">` + results[i].name + `</div><button id="${i}"  type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
                 } else {
                     let photoUrl = "https://via.placeholder.com/150"
 
                     table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
-<img class="border border-4 rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/>
+<a th:href="reviews/${results[1].place_id}"><img class="border border-4 rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
 <br><div class="card-title">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
                 }
             }
@@ -510,6 +510,11 @@ ${selectedResult.vicinity}
         let namePhoto = document.querySelectorAll(".destination-photo");
         for (let i = 0; i < namePhoto.length; i++) {
             namePhoto[i].setAttribute("name", `destinations[${i}].photoUrl`)
+        }
+
+        let namePlaceId = document.querySelectorAll(".destination-place-id");
+        for (let i = 0; i < namePlaceId.length; i++) {
+            namePlaceId[i].setAttribute("name", `destinations[${i}].placeId`)
         }
 
 

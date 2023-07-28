@@ -38,8 +38,8 @@
 		</div>
 	</nav>
 
-		<div class="search-result-picture">
-			<img th:src="@{../css/bubbaJ.jpeg}"/>
+		<div th:object="${destinations}" class="search-result-picture">
+			<img th:src="${destinations[0].photoUrl}" width="450" height="300"/>
 		</div>
 			<section id="reviews">
 				<div class="review-heading">
@@ -61,7 +61,7 @@
 						<label for="rate-1-star" class="fas fa-star"></label>
 						<form th:action="@{/reviews/create}" th:method="post" th:object="${newReview}">
 							<header></header>
-							<input type="hidden" id="destinationId" name="destinationId" th:value="${destinationId}">
+							<input type="hidden" id="placeId" name="placeId" th:value="${destinations[0].placeId}">
 							<input id="rating" type="hidden" name="rating" value=1>
 							<div class="textarea">
 								<textarea cols="30" name="content" placeholder="Describe your experience.."></textarea>
@@ -105,7 +105,7 @@
 							<div class="user-profile">
 
 								<div class="profile-image">
-									<img th:src="${review.user.getImage()}"/>
+									<img th:src="${review.getUser().getImage()}"/>
 								</div>
 
 								<div class="user-name">
@@ -123,102 +123,6 @@
 
 						<div class="user-comments">
 							<p th:text="${review.content}"></p>
-						</div>
-
-					</div>
-
-					<div class="review-box">
-
-						<div class="review-box-top">
-							<div class="user-profile">
-
-								<div class="profile-image">
-									<img th:src="@{templates/css/bubbaJ.jpeg}"/>
-								</div>
-
-								<div class="user-name">
-									<strong>J-Dub</strong>
-									<span>@BubbaJOfficial</span>
-								</div>
-							</div>
-							<div class="user-reviews">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="far fa-star"></i> <!--for empty star-->
-							</div>
-
-						</div>
-
-						<div class="user-comments">
-							<p>Here's a bunch of mumbo jumbo to fill in the blanks until we figure this stuff out. Hopefully we can get it done sooner rather than later.</p>
-						</div>
-
-					</div>
-
-					<div class="review-box">
-
-						<div class="review-box-top">
-
-							<div class="user-profile">
-
-								<div class="profile-image">
-									<img th:src="@{templates/bubbaJ.jpeg}"/>
-								</div>
-
-								<div class="user-name">
-									<strong>J-Dub</strong>
-									<span>@BubbaJOfficial</span>
-								</div>
-
-							</div>
-
-							<div class="user-reviews">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="far fa-star"></i> <!--for empty star-->
-							</div>
-
-						</div>
-
-						<div class="user-comments">
-							<p>Here's a bunch of mumbo jumbo to fill in the blanks until we figure this stuff out. Hopefully we can get it done sooner rather than later.</p>
-						</div>
-
-					</div>
-
-					<div class="review-box">
-
-						<div class="review-box-top">
-
-							<div class="user-profile">
-
-								<div class="profile-image">
-									<img th:src="@{templates/bubbaJ.jpeg}"/>
-								</div>
-
-								<div class="user-name">
-									<strong>J-Dub</strong>
-									<span>@BubbaJOfficial</span>
-								</div>
-
-							</div>
-
-							<div class="user-reviews">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="far fa-star"></i> <!--for empty star-->
-							</div>
-
-						</div>
-
-						<div class="user-comments">
-							<p>Here's a bunch of mumbo jumbo to fill in the blanks until we figure this stuff out. Hopefully we can get it done sooner rather than later.</p>
 						</div>
 
 					</div>

@@ -8,18 +8,18 @@ import com.example.fieldtriplabscapstone.repositories.DestinationRepository;
 import com.example.fieldtriplabscapstone.repositories.ReviewRepository;
 import com.example.fieldtriplabscapstone.repositories.UserRepository;
 import com.example.fieldtriplabscapstone.services.Authorization;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @AllArgsConstructor
 
 @Controller
-@RequestMapping("/reviews")
+
 
 public class ReviewController {
     private ReviewRepository reviewDao;
@@ -30,7 +30,7 @@ public class ReviewController {
 
 
 
-    @GetMapping("")
+    @GetMapping("reviews")
     public String reviews(@RequestParam(name="destinationId") Long destinationId, Model model){
         Optional<Destination>optionalDestination = destDao.findById(destinationId);
         if(optionalDestination.isEmpty()) {
@@ -50,56 +50,54 @@ public class ReviewController {
         return "reviews/index";
     }
 
-    @GetMapping("/{id}")
-    public String showSinglePost(@PathVariable Long id, Model model) {
+    @GetMapping("reviews/{id}")
+    public String showSinglePost(@PathVariable String id, Model model) {
         User loggedInUser = Authorization.getLoggedInUser();
         model.addAttribute("loggedInUser", loggedInUser);
-
-        Optional<Review>optionalReview = reviewDao.findById(id);
-        if(optionalReview.isEmpty()) {
-            return "index";
+        List<Destination> destinations = destDao.findByPlaceId(id);
+        List<Review> reviews = new ArrayList<>();
+        for (Destination destination : destinations) {
+            reviews.addAll(destination.getReview());
         }
 
-        model.addAttribute("review", optionalReview.get());
-        return "/reviews/show";
-    }
+        Collections.reverse(reviews);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("destinations", destinations);
+            return "/reviews/index";
+        }
 
-    @GetMapping("/create")
-    public String showReviews(Model model) {
+
+    @PostMapping("reviews/create")
+    public String doReviews(@ModelAttribute Review review,
+                            @RequestParam(name="placeId") String placeId,
+                            @RequestParam(name="content") String content,
+                            @RequestParam(name="rating") int rating) {
+
         User loggedInUser = Authorization.getLoggedInUser();
-        if(loggedInUser.getId() == 0) {
+        if (loggedInUser.getId() == 0) {
             return "redirect:/login";
         }
-        model.addAttribute("loggedInUser", loggedInUser);
 
-        model.addAttribute("newReview", new Review());
-        return "/reviews/index";
-    }
-
-    @PostMapping("/create")
-    public String doReviews(@ModelAttribute Review  review, @RequestParam(name="destinationId") Long destinationId, @RequestParam(name="content")String content, @RequestParam(name="rating")int rating) {
-        User loggedInUser = Authorization.getLoggedInUser();
-        if(loggedInUser.getId() == 0) {
-            return "redirect:/login";
-        }
         review.setUser(loggedInUser);
-        Optional<Destination>optionalDestination = destDao.findById(destinationId);
-        if(optionalDestination.isEmpty()) {
-            System.out.println("Your destination id " + destinationId + " not found");
-            return "index";
-        }
-        Destination destination = optionalDestination.get();
         review.setRating(rating);
         review.setContent(content);
+
+        // Set the destination's placeId directly in the review object
+        Destination destination = new Destination();
+        destination.setPlaceId(placeId);
         review.setDestination(destination);
-        System.out.println(review);
+        destDao.save(destination);
+
         reviewDao.save(review);
 
-
-
-
-        return "redirect:/reviews?destinationId=" + destinationId;
+        return "redirect:/reviews/" + placeId;
     }
+
+
+
+
+
+
 
     @GetMapping("/{id}edit")
     public String showEdit(@PathVariable Long id, Model model) {
