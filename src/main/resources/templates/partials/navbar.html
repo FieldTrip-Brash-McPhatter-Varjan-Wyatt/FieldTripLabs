@@ -1,44 +1,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" th:href="@{/}">Field Trip</a>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/itinerary}">Itineraries</a>
-            </li>
-            <li class="nav-item">
-
-                <a class="nav-link" th:href="@{/about}">About</a>
-
-            </li>
-            <th:block sec:authorize="!isAuthenticated()">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/sign-up}">Sign Up</a>
-            </li>
-            </th:block>
-
-            <th:block sec:authorize="!isAuthenticated()">
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid px-0">
+        <a class="navbar-brand" th:href="@{/}"><img th:src="@{../img/ftlblue.png}" class="img-fluid" alt="Field Trip Lab" width="200px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbartg"
+                aria-controls="navbartg" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbartg">
+            <ul class="navbar-nav" style="margin-left: auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a>
+                    <a class="nav-link" th:href="@{/itinerary}">Itineraries</a>
                 </li>
-            </th:block>
-
-            <th:block sec:authorize="isAuthenticated()">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/profile}">My Profile</a>
-                </li>
-            </th:block>
 
-            <th:block sec:authorize="isAuthenticated()">
-                <li>
-                    <form th:action="@{/logout}" th:method="post" th:class="d-flex">
-                        <button class="btn-primary btn" style="margin-top: 8px">Logout</button>
-                    </form>
+                    <a class="nav-link" th:href="@{/about}">About</a>
+
                 </li>
-            </th:block>
-        </ul>
+                <th:block sec:authorize="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/sign-up}">Sign Up</a>
+                    </li>
+                </th:block>
+
+                <th:block sec:authorize="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/profile}">My Profile</a>
+                    </li>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" th:method="post" th:class="d-flex">
+                            <button class="btn btn-link link-secondary text-decoration-none">Logout</button>
+                        </form>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
     </div>
 </nav>
 </html>

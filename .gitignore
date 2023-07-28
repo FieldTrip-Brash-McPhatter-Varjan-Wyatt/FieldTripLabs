@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 application.properties
 resources/static/keys.js
+ValidationMessages.properties
 
 ### STS ###
 .apt_generated

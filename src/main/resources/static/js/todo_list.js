@@ -11,7 +11,7 @@ $(document).ready(function () {
     // Fetch weather when the destination or date changes
     $('#weatherModal').on('show.bs.modal', function (e) {
         const cityName = $('#autocomplete').val().trim();
-        const date = new Date($('#startDateInput').val());
+        const date = new Date($('#startDate').val());
 
         if (cityName !== '' && !isNaN(date.getTime())) {
             fetchWeatherData(cityName, date);
@@ -25,9 +25,11 @@ $(document).ready(function () {
         $('#weatherData').html('');
 
         const startDateTime = new Date(date);
+        startDateTime.setHours(12);
         startDateTime.setFullYear(startDateTime.getFullYear() - 1);
 
         const endDateTime = new Date(startDateTime);
+
         endDateTime.setDate(endDateTime.getDate() + 6);
 
         const startISO = startDateTime.toISOString();
@@ -288,77 +290,110 @@ $(document).ready(function () {
                 break;
         }
 
-    }
-
 
 // Function to handle the selection change event
-    function handleSelectionChange() {
-        var listSelection = document.getElementById('listSelection');
-        var selectedValue = listSelection.value;
-        loadPackingList(selectedValue);
-    }
-
-// Add an event listener to handle the selection change
-//     document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
-
-// Function to render the list
-    let itemCount = document.querySelector("#listItems").children.length;
-    document.querySelector("#add-button").addEventListener("click", function (event) {
-
-            const li = document.createElement("li");
-            const div = document.createElement("div");
-            let child = document.createElement("input");
-            child.setAttribute("type", "hidden");
-            child.setAttribute("id", `checklist.checklistItems${itemCount}.id`);
-            child.setAttribute("name", `checklist.checklistItems[${itemCount}].id`);
-            child.setAttribute("value", `0`);
-            div.appendChild(child);
-
-            child = document.createElement("input");
-            child.setAttribute("type", "text");
-            child.setAttribute("id", `checklist.checklistItems${itemCount}.itemName`);
-            child.setAttribute("name", `checklist.checklistItems[${itemCount}].itemName`);
-            child.setAttribute("value", ``);
-            div.appendChild(child);
-
-            child = document.createElement("button");
-            child.setAttribute("type", "button");
-            child.setAttribute("class", `btn btn-warning delete-todo`);
-            child.innerText = "Delete";
-            div.appendChild(child);
-
-            li.appendChild(div);
-            document.querySelector("#listItems").appendChild(li);
-            // addDeleteListeners();
-            itemCount++;
+        function handleSelectionChange() {
+            var listSelection = document.getElementById('listSelection');
+            var selectedValue = listSelection.value;
+            loadPackingList(selectedValue);
         }
 
-        // function addDeleteListeners() {
-        //     document.querySelectorAll(".delete-todo").forEach(function (button) {
-        //         button.addEventListener("click", deleteTodo);
-        //     });
-        // }
-        //
-        // function deleteTodo(event) {
-        //     this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
-        //
-        //     let todoIds = document.querySelectorAll(".todo-id");
-        //     for (let i = 0; i < todoIds.length; i++) {
-        //         todoIds[i].setAttribute("id", `todos${i}.id`);
-        //         todoIds[i].setAttribute("name", `todos[${i}].id`);
-        //     }
-        //     let todoDescriptions = document.querySelectorAll(".todo-description");
-        //     for (let i = 0; i < todoDescriptions.length; i++) {
-        //         todoDescriptions[i].setAttribute("id", `todos${i}.description`);
-        //         todoDescriptions[i].setAttribute("name", `todos[${i}].description`);
-        //     }
-        //
-        //     todoCount = todoIds.length;
-        // }
-        //
-        // addDeleteListeners();
-// }
-    )
+// Add an event listener to handle the selection change
+        document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
+
+    }
+// Function to create a new item
+function createNewItem(event) {
+    // If there's already an input box, convert it to text only if it's not empty
+    let existingInput = document.querySelector(".edit-input");
+    if (existingInput) {
+        if (existingInput.value.trim() !== '') {
+            let parentDiv = existingInput.parentElement;
+            let span = parentDiv.querySelector(".item-name");
+            span.textContent = existingInput.value;
+            span.style.display = "inline";
+            parentDiv.removeChild(existingInput);
+        } else {
+            // If the existing input is empty, don't add a new input
+            return;
+        }
+    }
+
+    // Create a new list item with an input box
+    const li = document.createElement("li");
+    const div = document.createElement("div");
+
+    let child = document.createElement("input");
+    child.setAttribute("type", "text");
+    child.setAttribute("class", "edit-input");
+    child.focus();
+    div.appendChild(child);
+
+    let span = document.createElement("span");
+    span.classList.add("item-name");
+    span.style.display = "none";
+    div.appendChild(span);
+
+    // Convert the input box to text when it loses focus or enter key is pressed
+    child.addEventListener("blur", convertInputToText);
+    child.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission
+            convertInputToText();
+            createNewItem();
+        }
+    });
+
+    function convertInputToText() {
+        if (child.value.trim() !== '') {
+            span.textContent = child.value;
+            span.style.display = "inline";
+            div.removeChild(child);
+        }
+    }
+
+    // When text is clicked, convert it back to input box for editing
+    span.addEventListener("click", function() {
+        span.style.display = "none";
+        let input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("class", "edit-input");
+        input.value = span.textContent;
+        div.insertBefore(input, span);
+        input.focus();
+        input.addEventListener("blur", convertInputToText);
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission
+                convertInputToText();
+                createNewItem();
+            }
+        });
+    });
+
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("type", "button");
+    deleteBtn.setAttribute("class", `btn btn-danger delete-todo`); // Change class to 'btn-danger' for red color
+    deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
+    deleteBtn.style.color = "white"; // Change text color to white
+    deleteBtn.addEventListener("click", function(event) {
+        event.target.parentElement.parentElement.remove();
+    });
+    div.appendChild(deleteBtn);
+
+    li.appendChild(div);
+    document.querySelector("#listItems").appendChild(li);
+    // Automatically place the cursor inside the new input box
+    child.focus();
+}
+
+// Add event listener to the add button
+document.querySelector("#add-button").addEventListener("click", createNewItem);
+
+
+
+
+
 
 
 
@@ -391,6 +426,7 @@ $(document).ready(function () {
     }
 
     function callback(results, status) {
+        $("#weatherButton").removeClass("d-none")
         searchResults = results;
         var table = document.getElementById('places');
         if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -412,6 +448,7 @@ $(document).ready(function () {
         } else {
             table.innerHTML = "<div class='card m-4 col text-center align-items-center'><h2 class='m-3'>No Places in the area.</h2></div>"
         }
+
     }
 
     document.querySelector("#autocomplete", ).addEventListener('click', clearField)

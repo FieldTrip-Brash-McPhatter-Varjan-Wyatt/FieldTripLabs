@@ -1,0 +1,53 @@
+.card {
+    background-color: #dbd1b3;
+    box-shadow: 10px 10px 10px gray;
+    color: #c4dfe6;
+    border-radius: 10px;
+}
+
+.card-header {
+    color: #003b46;
+}
+
+body {
+    background-color: #C4DFE6;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+    color: #003b46;
+}
+
+a {
+    text-decoration: none;
+    color: #003b46;
+}
+
+button {
+    border: #dbd1b3 1px;
+    border-radius: 8px;
+    background-color: #003b46;
+    color: #dbd1b3;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: white;
+}
+
+label {
+    color: #003b46;
+}
+
+#loginButton, #password{
+    text-decoration: none;
+    list-style: none;
+    color: #003b46;
+}

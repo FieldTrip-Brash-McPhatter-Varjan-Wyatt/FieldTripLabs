@@ -1,0 +1,65 @@
+.card {
+    background-color: #dbd1b3;
+    box-shadow: 10px 10px 10px gray;
+    color: #c4dfe6;
+    border-radius: 10px;
+}
+
+.card-header {
+    color: #003b46;
+}
+
+body {
+    background-color: #C4DFE6;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+    color: #003b46;
+}
+
+a {
+    text-decoration: none;
+    color: #003b46;
+}
+
+.upload {
+    border: #003b46 1px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #003b46;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: #003b46;
+}
+
+#uploadedImage {
+    border-radius: 10px;
+}
+
+label {
+    color: #003b46;
+}
+
+.save-changes {
+    background-color: transparent;
+    border: solid 1px #003b46;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+#editprofile {
+    background-color: transparent;
+    border: 1px solid #003b46;
+    border-radius: 8px ;
+    box-shadow: 2px 2px 2px gray;
+}

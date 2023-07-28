@@ -25,11 +25,13 @@ public class Destination {
     @Column
     private String description;
 
+
     @Column
     private String placeId;
 
     @Column(length = 10000)
     private String photoUrl;
+
 
     @ToString.Exclude
     @ManyToOne
