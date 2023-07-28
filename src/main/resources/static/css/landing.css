@@ -1,13 +1,49 @@
 
 .banner-container {
-    max-width: 100%;
-    height: auto;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background: url("banner.jpeg");
+    background-size: cover;
+    height: 300px;
 }
-.banner-container img {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
+
+.unimaginable {
+    display: flex;
+    justify-content: flex-start;
+    color: white;
+    margin-bottom: auto;
+    padding-left: 15px;
+    padding-top: 5px;
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.ft {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #dbd1b3;
+    font-family: playball, cursive;
+    font-size: 79px;
+}
+
+.imagine {
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-right: 15px;
+    padding-bottom: 0;
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.imagine p  {
+    margin-bottom: 0;
 }
 
 #travel-search {
@@ -68,6 +104,19 @@
     color: #dbd1b3;
 }
 
+#sign-up {
+    background-color: #003b46;
+    color: #dbd1b3;
+}
 
+#sign-up input {
+    background-color: #C4DFE6;
+}
+
+#sign-up button {
+    background-color: #003b46;
+    color: #dbd1b3;
+    border: 1px solid #dbd1b3;
+}
 
 
