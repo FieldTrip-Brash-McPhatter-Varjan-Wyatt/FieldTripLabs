@@ -46,8 +46,31 @@ label {
     color: #003b46;
 }
 
-#loginButton, #password{
+#password{
     text-decoration: none;
     list-style: none;
     color: #003b46;
+}
+
+#loginButton{
+    border: #dbd1b3 1px;
+    border-radius: 8px;
+    background-color: #003b46;
+    color: #dbd1b3;
+    box-shadow: 2px 2px 2px gray;
+}
+
+#signUpBtn {
+    border: #dbd1b3 1px;
+    border-radius: 8px;
+    background-color: #003b46;
+    color: #dbd1b3;
+    box-shadow: 2px 2px 2px gray;
+}
+
+#savePw {
+    background-color: transparent;
+    border: 1px solid #003b46;
+    color: #003b46;
+    box-shadow: 2px 2px 2px gray;
 }

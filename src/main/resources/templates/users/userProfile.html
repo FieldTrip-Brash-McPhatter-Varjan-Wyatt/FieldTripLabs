@@ -34,9 +34,9 @@
             <div class="mt-3 p-2">
                 <ul class="list-unstyled">
                   <li><h2 class="text-decoration-underline text-center">Account Details</h2></li>
-                  <li><h3><strong>Username:</strong><span th:text="${user.getUsername()}"></span></h3></li>
-                  <li><h3><strong>Name:</strong><span th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></span></h3></li>
-                    <li><h3><strong>Email:</strong><span th:text="${user.getEmail()}"></span></h3></li>
+                  <li><h3><strong style="color: #07575b">Username:</strong><span th:text="${user.getUsername()}"></span></h3></li>
+                  <li><h3><strong style="color: #07575b">Name:</strong><span th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></span></h3></li>
+                    <li><h3><strong style="color: #07575b">Email:</strong><span th:text="${user.getEmail()}"></span></h3></li>
                     <a th:href="@{/profile/edit}"><button id="editprofile" class="w-100 m-2">Edit Profile</button></a>
                 </ul>
             </div>
@@ -47,12 +47,20 @@
 <!--MY ITINERARIES-->
 <div class="container col-lg-12 card mt-5 w-75 ">
     <h2 class="card-header text-center mb-4 bg-transparent">My Itineraries</h2>
-    <ul class="list-group" th:each="itinerary : ${user.itineraries}">
-        <li class="my-2 bg-transparent" >
-            <a th:href="@{'/itinerary/' + ${itinerary.getId()} + '/edit'}"><span th:text="${itinerary.name}"></span></a>
-        </li>
-        <li><span th:text="${itinerary.startDate} + ' - ' + ${itinerary.endDate}"></span></li>
-    </ul>
+    <div class="card my-3 d-flex justify-content-center" style="width: 25%;" th:each="itinerary : ${user.itineraries}">
+        <img src="/img/SaoPauloPhoto.jpeg" alt="stock photo" class="img-fluid mx-auto my-2" width="80%"/>
+        <div class="card-body" style="color: #003b46">
+            <h5 class="card-title" th:text="${itinerary.name}"></h5>
+            <p class="card-text" th:text="${itinerary.startDate} + ' - ' + ${itinerary.endDate}"></p>
+            <a href="#" class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+<!--    <ul class="list-group" th:each="itinerary : ${user.itineraries}">-->
+<!--        <li class="my-2 bg-transparent" >-->
+<!--            <a th:href="@{'/itinerary/' + ${itinerary.getId()} + '/edit'}"><span th:text="${itinerary.name}"></span></a>-->
+<!--        </li>-->
+<!--        <li><span th:text="${itinerary.startDate} + ' - ' + ${itinerary.endDate}"></span></li>-->
+<!--    </ul>-->
 </div>
 
 <!--FOOTER-->
