@@ -397,8 +397,14 @@ function createNewItem(event) {
     child.focus();
 }
 
+document.querySelector("#listItems").addEventListener("click", function(event) {
+    if (event.target.classList.contains("delete-todo")) {
+        event.target.parentElement.remove();
+    }
+});
+
 // Add event listener to the add button
-document.querySelector("#add-button").addEventListener("click", createNewItem);
+document.querySelector("#add-button, #add-edit-button").addEventListener("click", createNewItem);
 
 
 

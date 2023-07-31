@@ -101,9 +101,9 @@ public class ItineraryController {
         existingChecklistItems.clear();
         // Add new checklist items from the updated checklist
         for (ChecklistItems updatedItem : updatedChecklistItems) {
-            if (updatedItem.getItemName() != null && !existingChecklistItems.contains(updatedItem)) {
-                updatedItem.setChecklist(existingChecklist);
-                existingChecklistItems.add(updatedItem);
+            if (updatedItem.getItemName() != null) {
+                ChecklistItems existingItem = new ChecklistItems(updatedItem.getItemName(), existingChecklist);
+                existingChecklistItems.add(existingItem);
             }
         }
 
