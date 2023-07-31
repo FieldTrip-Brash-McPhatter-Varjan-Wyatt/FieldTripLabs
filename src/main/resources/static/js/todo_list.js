@@ -60,8 +60,8 @@ $(document).ready(function () {
                     for (const data of weatherData) {
                         const dateTime = new Date(data.datetimeStr);
 
-                        const weekdayOptions = {weekday: 'long'};
-                        const dateOptions = {year: 'numeric', month: 'long', day: 'numeric'};
+                        const weekdayOptions = { weekday: 'long' };
+                        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
                         const formattedWeekday = dateTime.toLocaleString('en-US', weekdayOptions);
                         const formattedDate = dateTime.toLocaleString('en-US', dateOptions);
@@ -94,7 +94,6 @@ $(document).ready(function () {
 
 
 // Function to load the selected packing list
-
     function loadPackingList(listIndex) {
         var listName;
         switch (listIndex) {
@@ -250,11 +249,11 @@ $(document).ready(function () {
             case '8':
                 listName = ("International Destination");
                 itemList = [
-                    {text: "Passport and visa (if required)", completed: true},
+                    {text: "Passport and visa (if required)", completed: false},
                     {text: "Travel itinerary and reservation details", completed: false},
                     {text: "Local currency and/or credit cards", completed: false},
                     {text: "Travel adapter and chargers", completed: false},
-                    {text: "Appropriate clothing for the destination", completed: true},
+                    {text: "Appropriate clothing for the destination", completed: false},
                     {text: "Comfortable walking shoes", completed: false},
                     {text: "Travel-size toiletries", completed: false},
                     {text: "Medications and prescriptions", completed: false},
@@ -278,7 +277,7 @@ $(document).ready(function () {
                 itemList = [
                     {text: "Toothbrush", completed: false},
                     {text: "Toothpaste", completed: false},
-                    {text: "Deodorant", completed: true},
+                    {text: "Deodorant", completed: false},
                     {text: "Sunglasses", completed: false},
                     {text: "Swimming Suit", completed: false},
                     {text: "Sunscreen", completed: false},
@@ -286,90 +285,23 @@ $(document).ready(function () {
                     {text: "Shorts", completed: false},
                     {text: "T-Shirts", completed: false},
                     {text: "iPad", completed: false},
-                    {text: "Phone Charger", completed: true}
+                    {text: "Phone Charger", completed: false}
                 ];
                 break;
         }
-        displayPackingList();
-        console.log(displayPackingList)
-    }
 
 
-function displayPackingList() {
-    var listContainer = document.getElementById('listItems');
-    listContainer.style.listStyleType = "none";  //remove bullets
-    listContainer.innerHTML = ""; // clear the list before displaying items
-    itemList.forEach(function(item) {
-        var listItem = document.createElement('li');
-        listItem.style.display = 'flex'; // make this a flex container
-        listItem.style.alignItems = 'center'; // center items vertically
-        listItem.style.borderBottom = '1px solid black'; // add border to list item
-        listItem.style.padding = '10px'; // add some padding
-        listItem.style.marginBottom = '10px'; // add some bottom margin
-
-        // Create a checkbox
-        var checkbox = document.createElement('input');
-        checkbox.type = "checkbox";
-        checkbox.name = "name";
-        checkbox.value = "value";
-        checkbox.id = "uniqueId";
-
-        // Append the checkbox to the list item
-        listItem.appendChild(checkbox);
-
-        var div = document.createElement('div');
-
-        // Create a text span for the item
-        var span = document.createElement("span");
-        span.classList.add("item-name");
-        span.textContent = item.text;
-        div.appendChild(span);
-
-        // When text is clicked, convert it back to input box for editing
-        span.addEventListener("click", function() {
-            span.style.display = "none";
-            let input = document.createElement("input");
-            input.setAttribute("type", "text");
-            input.setAttribute("class", "edit-input");
-            input.value = span.textContent;
-            div.insertBefore(input, span);
-            input.focus();
-            input.addEventListener("blur", convertInputToText);
-            input.addEventListener("keydown", function(event) {
-                if (event.key === "Enter") {
-                    event.preventDefault(); // Prevent form submission
-                    convertInputToText();
-                }
-            });
-        });
-
-        // Create a delete button for the item
-        var deleteBtn = document.createElement("button");
-        deleteBtn.setAttribute("type", "button");
-        deleteBtn.setAttribute("id", "delete-item-button");
-        deleteBtn.setAttribute("class", `btn btn-light delete-todo`); // Change class to 'btn-danger' for red color
-        deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
-        deleteBtn.style.color = "red"; // Change text color to white
-        deleteBtn.addEventListener("click", function(event) {
-            event.target.parentElement.parentElement.remove();
-        });
-        div.appendChild(deleteBtn);
-
-        listItem.appendChild(div);
-        listContainer.appendChild(listItem);
-    });
-}
-
-
-function handleSelectionChange() {
-    var listSelection = document.getElementById('listSelection');
-    var selectedValue = listSelection.value;
-    loadPackingList(selectedValue);
-}
+// Function to handle the selection change event
+        function handleSelectionChange() {
+            var listSelection = document.getElementById('listSelection');
+            var selectedValue = listSelection.value;
+            loadPackingList(selectedValue);
+        }
 
 // Add an event listener to handle the selection change
-document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
+        document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
 
+    }
 // Function to create a new item
 function createNewItem(event) {
     // If there's already an input box, convert it to text only if it's not empty
@@ -389,24 +321,7 @@ function createNewItem(event) {
 
     // Create a new list item with an input box
     const li = document.createElement("li");
-    li.style.display = 'flex'; // make this a flex container
-    li.style.alignItems = 'center'; // center items vertically
-    // li.style.justifyContent = 'space-between'; // Add space between the checkbox, text, and delete button
-
-    li.style.borderBottom = '1px solid black'; // add border to list item
-    li.style.padding = '10px'; // add some padding
-    li.style.marginBottom = '10px'; // add some bottom margin
     const div = document.createElement("div");
-
-    // Create a checkbox
-    let checkbox = document.createElement('input');
-    checkbox.type = "checkbox";
-    checkbox.name = "name";
-    checkbox.value = "value";
-    checkbox.id = "uniqueId";
-
-    // Append the checkbox to the list item
-    li.appendChild(checkbox);
 
     let child = document.createElement("input");
     child.setAttribute("type", "text");
@@ -419,25 +334,9 @@ function createNewItem(event) {
     span.style.display = "none";
     div.appendChild(span);
 
-    let hiddenName = document.createElement("input");
-    hiddenName.setAttribute("type", "hidden")
-    hiddenName.setAttribute("value", "");
-    div.append(hiddenName);
-
-    let hiddenId = document.createElement("input");
-    hiddenId.setAttribute("type", "hidden");
-    hiddenId.classList.add("item-id");
-    hiddenId.setAttribute("value", 0);
-    div.append(hiddenId);
-
     // Convert the input box to text when it loses focus or enter key is pressed
-
-    child.addEventListener("blur", function(event) {
-        convertInputToText();
-        createNewItem();
-    });
+    child.addEventListener("blur", convertInputToText);
     child.addEventListener("keydown", function(event) {
-
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent form submission
             convertInputToText();
@@ -454,7 +353,7 @@ function createNewItem(event) {
     }
 
     // When text is clicked, convert it back to input box for editing
-    span.addEventListener("click", function () {
+    span.addEventListener("click", function() {
         span.style.display = "none";
         let input = document.createElement("input");
         input.setAttribute("type", "text");
@@ -463,7 +362,7 @@ function createNewItem(event) {
         div.insertBefore(input, span);
         input.focus();
         input.addEventListener("blur", convertInputToText);
-        input.addEventListener("keydown", function (event) {
+        input.addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
                 event.preventDefault(); // Prevent form submission
                 convertInputToText();
@@ -474,15 +373,10 @@ function createNewItem(event) {
 
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
-    deleteBtn.setAttribute("id", "delete-item-button");
-    deleteBtn.setAttribute("class", `btn btn-light delete-todo`); // Change class to 'btn-danger' for red color
+    deleteBtn.setAttribute("class", `btn btn-danger delete-todo`); // Change class to 'btn-danger' for red color
     deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
-
-    deleteBtn.style.color = "red"; // Change text color to white
-    deleteBtn.style.justifyContent = 'space-between'; // Add space between the checkbox, text, and delete button
-
+    deleteBtn.style.color = "white"; // Change text color to white
     deleteBtn.addEventListener("click", function(event) {
-
         event.target.parentElement.parentElement.remove();
     });
     div.appendChild(deleteBtn);
@@ -494,149 +388,137 @@ function createNewItem(event) {
 }
 
 // Add event listener to the add button
-document.querySelector("#add-button , #add-edit-button").addEventListener("click", createNewItem);
+document.querySelector("#add-button").addEventListener("click", createNewItem);
 
-document.querySelector("#listItems").addEventListener('click', function (event) {
-    if (event.target.classList.contains("delete-todo")) {
-        event.target.parentElement.remove();
-    }
-});
+
+
+
+
+
 
 
 //Making the calls to the API on submit
-var searchResults = [];
+    var searchResults = [];
 
-function initMap() {
-    autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
-        {
-            types: ['geocode']
-        })
-    autocomplete.addListener('place_changed', searchNearbyPlaces)
-}
-
-function searchNearbyPlaces() {
-    document.getElementById('places').innerHTML = ''
-
-    var place = autocomplete.getPlace()
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: place.geometry.location,
-        zoom: 15
-    });
-
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch({
-        location: place.geometry.location,
-        radius: '5000',
-        type: [document.getElementById('type').value]
-    }, callback);
-}
-
-function callback(results, status) {
-    $("#weatherButton").removeClass("d-none")
-    searchResults = results;
-    var table = document.getElementById('places');
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results)
-        for (let i = 0; i < results.length; i++) {
-            if (results[i].photos) {
-                let photoUrl = results[i].photos[0].getUrl();
-                table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
-<a href="reviews/${results[i].place_id}"><img class="border-success rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
-<br><div class="card-title">` + results[i].name + `</div><button id="${i}"  type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
-
-            } else {
-                let photoUrl = "https://via.placeholder.com/150"
-
-                table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
-<a th:href="reviews/${results[i].place_id}"><img class="border border-4 rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
-<br><div class="card-title">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
-
-            }
-        }
-
-    } else {
-        table.innerHTML = "<div class='card m-4 col text-center align-items-center'><h2 class='m-3'>No Places in the area.</h2></div>"
+    function initMap() {
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
+            {
+                types: ['geocode']
+            })
+        autocomplete.addListener('place_changed', searchNearbyPlaces)
     }
 
-}
+    function searchNearbyPlaces() {
+        document.getElementById('places').innerHTML = ''
 
-document.querySelector("#autocomplete",).addEventListener('click', clearField)
+        var place = autocomplete.getPlace()
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: place.geometry.location,
+            zoom: 15
+        });
 
-function clearField() {
-    document.getElementById('autocomplete').value = "";
-}
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+            location: place.geometry.location,
+            radius: '5000',
+            type: [document.getElementById('type').value]
+        }, callback);
+    }
 
-function addToItinerary(index) {
-    var selectedResult = searchResults[index];
-    var listContainer = document.getElementById('listContainer');
-    console.log(listContainer)
-    let placeId = document.getElementById(index);
-    placeId.classList.add('d-none');
+    function callback(results, status) {
+        $("#weatherButton").removeClass("d-none")
+        searchResults = results;
+        var table = document.getElementById('places');
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            console.log(results)
+            for (let i = 0; i < results.length; i++) {
+                if (results[i].photos) {
+                    let photoUrl = results[i].photos[0].getUrl();
+                    table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
+<a href="reviews/${results[i].place_id}"><img class="border-success rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
+<br><div class="card-title">` + results[i].name + `</div><button id="${i}"  type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
+                } else {
+                    let photoUrl = "https://via.placeholder.com/150"
+
+                    table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
+<a th:href="reviews/${results[1].place_id}"><img class="border border-4 rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
+<br><div class="card-title">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
+                }
+            }
+        } else {
+            table.innerHTML = "<div class='card m-4 col text-center align-items-center'><h2 class='m-3'>No Places in the area.</h2></div>"
+        }
+
+    }
+
+    document.querySelector("#autocomplete", ).addEventListener('click', clearField)
+    function clearField() {
+        document.getElementById('autocomplete').value = "";
+    }
+
+    function addToItinerary(index) {
+        var selectedResult = searchResults[index];
+        var listContainer = document.getElementById('listContainer');
+        let placeId = document.getElementById(index);
+        placeId.classList.add('d-none');
 
 
-    let card = document.createElement('div');
-    card.className = 'card col-5 m-1';
-    card.style = 'width: 18rem;';
-    card.innerHTML = `
-     <div class="destinationCard card-body">
-      <h5 class="card-title"  name="destinations[${listContainer.childElementCount}].name">
-        ${selectedResult.name}
-      </h5>
- <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress">
+        var card = document.createElement('div');
+        card.className = 'card col-5 m-1';
+        card.style = 'width: 18rem;';
+        card.innerHTML = `
+    <div class="destinationCard card-body">
+    <div class="d-none" name="photoUrl">
+    <img src="${selectedResult.photos[0].getUrl()}" >
+    </div>
+      <h5 class="card-title"  name="destinationName">
+${selectedResult.name}
+</h5>
+<input type="hidden" value= 0 class="destination-id" >
+<input type="hidden" value="${selectedResult.name}" class="destination-name">
+<input type="hidden" value="${selectedResult.vicinity}" class="destination-address">
+<input type="hidden" value="${selectedResult.place_id}" class="destination-place-id">
+<input type="hidden" value="${selectedResult.photos[0].getUrl()}" class="destination-photo">
+
+      <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress">
 ${selectedResult.vicinity}
 </h6>
       <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link" target="_blank">
       View on Map
       </a>
-      <input type="hidden" value= 0 class="destination-id" >
-<input type="hidden" value="${selectedResult.name}" class="destination-name">
-<input type="hidden" value="${selectedResult.vicinity}" class="destination-address">
-<input type="hidden" value="${selectedResult.place_id}" class="destination-place-id">
-<input type="hidden" value="${selectedResult.photos[0].getUrl()}" class="destination-photo">
     </div>`;
-    listContainer.appendChild(card);
-}
 
-document.querySelector("#createItinerary , #edit-form").addEventListener("click", function callToSubmit() {
-    const destinationNames = document.querySelectorAll(".destination-name");
-    destinationNames.forEach((nameField, index) => {
-        nameField.setAttribute("name", `destinations[${index}].name`);
-    });
-
-    const destinationIds = document.querySelectorAll(".destination-id");
-    destinationIds.forEach((idField, index) => {
-        idField.setAttribute("name", `destinations[${index}].id`);
-    });
-
-    let nameAddress = document.querySelectorAll(".destination-address");
-    for (let i = 0; i < nameAddress.length; i++) {
-        nameAddress[i].setAttribute("name", `destinations[${i}].address`)
+        listContainer.appendChild(card);
     }
 
-    let namePhoto = document.querySelectorAll(".destination-photo");
-    for (let i = 0; i < namePhoto.length; i++) {
-        namePhoto[i].setAttribute("name", `destinations[${i}].photoUrl`)
-    }
+    document.querySelector("#createItinerary").addEventListener("click",  function callToSubmit(){
+        let nameFields = document.querySelectorAll(".destination-name");
+        for (let i = 0; i < nameFields.length; i++) {
+            nameFields[i].setAttribute("name", `destinations[${i}].name`)
+        }
 
-    let namePlaceId = document.querySelectorAll(".destination-place-id");
-    for (let i = 0; i < namePlaceId.length; i++) {
-        namePlaceId[i].setAttribute("name", `destinations[${i}].placeId`)
-    }
-    // for checklist Items
+        let nameIds = document.querySelectorAll(".destination-id");
+        for (let i = 0; i < nameIds.length; i++) {
+            nameIds[i].setAttribute("name", `destinations[${i}].id`)
+        }
 
-    const itemIds = document.querySelectorAll(".item-id");
-    itemIds.forEach((idField, index) => {
-        idField.setAttribute("name", `checklist.checklistItems[${index}].id`);
-    });
+        let nameAddress = document.querySelectorAll(".destination-address");
+        for (let i = 0; i < nameAddress.length; i++) {
+            nameAddress[i].setAttribute("name", `destinations[${i}].address`)
+        }
 
-    const itemNames = document.querySelectorAll(".item-name");
-    itemNames.forEach((nameField, index) => {
-        const hiddenName = nameField.nextElementSibling;
-        hiddenName.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
-        hiddenName.setAttribute("value", nameField.innerText);
-    });
+        let namePhoto = document.querySelectorAll(".destination-photo");
+        for (let i = 0; i < namePhoto.length; i++) {
+            namePhoto[i].setAttribute("name", `destinations[${i}].photoUrl`)
+        }
 
-    document.querySelector("#submit-form , #input-edit-form").submit();
-})
+        let namePlaceId = document.querySelectorAll(".destination-place-id");
+        for (let i = 0; i < namePlaceId.length; i++) {
+            namePlaceId[i].setAttribute("name", `destinations[${i}].placeId`)
+        }
 
+
+
+        document.querySelector("#submit-form").submit();
+    })
 

@@ -29,11 +29,10 @@ public class ReviewController {
     private DestinationRepository destDao;
 
 
-
     @GetMapping("reviews")
-    public String reviews(@RequestParam(name="destinationId") Long destinationId, Model model){
-        Optional<Destination>optionalDestination = destDao.findById(destinationId);
-        if(optionalDestination.isEmpty()) {
+    public String reviews(@RequestParam(name = "destinationId") Long destinationId, Model model) {
+        Optional<Destination> optionalDestination = destDao.findById(destinationId);
+        if (optionalDestination.isEmpty()) {
             System.out.println("Your destination id " + destinationId + " not found");
             return "index";
         }
@@ -50,10 +49,23 @@ public class ReviewController {
         return "reviews/index";
     }
 
+
+    @PostMapping("reviews/")
+    public String createSinglePost(@ModelAttribute Destination destination,
+                                   @RequestParam(name = "placeId") String placeId,
+                                   @RequestParam(name = "PhotoUrl") String photoUrl,
+                                   @RequestParam(name = "name") String name,
+                                   @RequestParam(name = "address") String address) {
+        destination.setName(name);
+        destination.setPlaceId(placeId);
+        destination.setPhotoUrl(photoUrl);
+        destination.setAddress(address);
+        destDao.save(destination);
+        return "redirect: reviews/{id}";
+    }
+
     @GetMapping("reviews/{id}")
     public String showSinglePost(@PathVariable String id, Model model) {
-        User loggedInUser = Authorization.getLoggedInUser();
-        model.addAttribute("loggedInUser", loggedInUser);
         List<Destination> destinations = destDao.findByPlaceId(id);
         List<Review> reviews = new ArrayList<>();
         for (Destination destination : destinations) {
@@ -63,15 +75,15 @@ public class ReviewController {
         Collections.reverse(reviews);
         model.addAttribute("reviews", reviews);
         model.addAttribute("destinations", destinations);
-            return "/reviews/index";
-        }
+        return "/reviews/index";
+    }
 
 
     @PostMapping("reviews/create")
     public String doReviews(@ModelAttribute Review review,
-                            @RequestParam(name="placeId") String placeId,
-                            @RequestParam(name="content") String content,
-                            @RequestParam(name="rating") int rating) {
+                            @RequestParam(name = "placeId") String placeId,
+                            @RequestParam(name = "content") String content,
+                            @RequestParam(name = "rating") int rating) {
 
         User loggedInUser = Authorization.getLoggedInUser();
         if (loggedInUser.getId() == 0) {
@@ -92,11 +104,6 @@ public class ReviewController {
 
         return "redirect:/reviews/" + placeId;
     }
-
-
-
-
-
 
 
     @GetMapping("/{id}edit")
