@@ -249,11 +249,11 @@ $(document).ready(function () {
             case '8':
                 listName = ("International Destination");
                 itemList = [
-                    {text: "Passport and visa (if required)", completed: false},
+                    {text: "Passport and visa (if required)", completed: true},
                     {text: "Travel itinerary and reservation details", completed: false},
                     {text: "Local currency and/or credit cards", completed: false},
                     {text: "Travel adapter and chargers", completed: false},
-                    {text: "Appropriate clothing for the destination", completed: false},
+                    {text: "Appropriate clothing for the destination", completed: true},
                     {text: "Comfortable walking shoes", completed: false},
                     {text: "Travel-size toiletries", completed: false},
                     {text: "Medications and prescriptions", completed: false},
@@ -277,7 +277,7 @@ $(document).ready(function () {
                 itemList = [
                     {text: "Toothbrush", completed: false},
                     {text: "Toothpaste", completed: false},
-                    {text: "Deodorant", completed: false},
+                    {text: "Deodorant", completed: true},
                     {text: "Sunglasses", completed: false},
                     {text: "Swimming Suit", completed: false},
                     {text: "Sunscreen", completed: false},
@@ -285,23 +285,89 @@ $(document).ready(function () {
                     {text: "Shorts", completed: false},
                     {text: "T-Shirts", completed: false},
                     {text: "iPad", completed: false},
-                    {text: "Phone Charger", completed: false}
+                    {text: "Phone Charger", completed: true}
                 ];
                 break;
         }
+        displayPackingList();
+        console.log(displayPackingList)
+    }
 
 
-// Function to handle the selection change event
-        function handleSelectionChange() {
-            var listSelection = document.getElementById('listSelection');
-            var selectedValue = listSelection.value;
-            loadPackingList(selectedValue);
-        }
+function displayPackingList() {
+    var listContainer = document.getElementById('listItems');
+    listContainer.style.listStyleType = "none";  //remove bullets
+    listContainer.innerHTML = ""; // clear the list before displaying items
+    itemList.forEach(function(item) {
+        var listItem = document.createElement('li');
+        listItem.style.display = 'flex'; // make this a flex container
+        listItem.style.alignItems = 'center'; // center items vertically
+        listItem.style.borderBottom = '1px solid black'; // add border to list item
+        listItem.style.padding = '10px'; // add some padding
+        listItem.style.marginBottom = '10px'; // add some bottom margin
+
+        // Create a checkbox
+        var checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.name = "name";
+        checkbox.value = "value";
+        checkbox.id = "uniqueId";
+
+        // Append the checkbox to the list item
+        listItem.appendChild(checkbox);
+
+        var div = document.createElement('div');
+
+        // Create a text span for the item
+        var span = document.createElement("span");
+        span.classList.add("item-name");
+        span.textContent = item.text;
+        div.appendChild(span);
+
+        // When text is clicked, convert it back to input box for editing
+        span.addEventListener("click", function() {
+            span.style.display = "none";
+            let input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("class", "edit-input");
+            input.value = span.textContent;
+            div.insertBefore(input, span);
+            input.focus();
+            input.addEventListener("blur", convertInputToText);
+            input.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Prevent form submission
+                    convertInputToText();
+                }
+            });
+        });
+
+        // Create a delete button for the item
+        var deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("type", "button");
+        deleteBtn.setAttribute("id", "delete-item-button");
+        deleteBtn.setAttribute("class", `btn btn-light delete-todo`); // Change class to 'btn-danger' for red color
+        deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
+        deleteBtn.style.color = "red"; // Change text color to white
+        deleteBtn.addEventListener("click", function(event) {
+            event.target.parentElement.parentElement.remove();
+        });
+        div.appendChild(deleteBtn);
+
+        listItem.appendChild(div);
+        listContainer.appendChild(listItem);
+    });
+}
+
+
+function handleSelectionChange() {
+    var listSelection = document.getElementById('listSelection');
+    var selectedValue = listSelection.value;
+    loadPackingList(selectedValue);
+}
 
 // Add an event listener to handle the selection change
-        document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
-
-    }
+document.getElementById('listSelection').addEventListener('change', handleSelectionChange);
 // Function to create a new item
 function createNewItem(event) {
     // If there's already an input box, convert it to text only if it's not empty
@@ -321,7 +387,24 @@ function createNewItem(event) {
 
     // Create a new list item with an input box
     const li = document.createElement("li");
+    li.style.display = 'flex'; // make this a flex container
+    li.style.alignItems = 'center'; // center items vertically
+    // li.style.justifyContent = 'space-between'; // Add space between the checkbox, text, and delete button
+
+    li.style.borderBottom = '1px solid black'; // add border to list item
+    li.style.padding = '10px'; // add some padding
+    li.style.marginBottom = '10px'; // add some bottom margin
     const div = document.createElement("div");
+
+    // Create a checkbox
+    let checkbox = document.createElement('input');
+    checkbox.type = "checkbox";
+    checkbox.name = "name";
+    checkbox.value = "value";
+    checkbox.id = "uniqueId";
+
+    // Append the checkbox to the list item
+    li.appendChild(checkbox);
 
     let child = document.createElement("input");
     child.setAttribute("type", "text");
@@ -335,7 +418,10 @@ function createNewItem(event) {
     div.appendChild(span);
 
     // Convert the input box to text when it loses focus or enter key is pressed
-    child.addEventListener("blur", convertInputToText);
+    child.addEventListener("blur", function(event) {
+        convertInputToText();
+        createNewItem();
+    });
     child.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent form submission
@@ -374,9 +460,11 @@ function createNewItem(event) {
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
     deleteBtn.setAttribute("id", "delete-item-button");
-    deleteBtn.setAttribute("class", `btn btn-danger delete-todo`); // Change class to 'btn-danger' for red color
+    deleteBtn.setAttribute("class", `btn btn-light delete-todo`); // Change class to 'btn-danger' for red color
     deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
-    deleteBtn.style.color = "white"; // Change text color to white
+    deleteBtn.style.color = "red"; // Change text color to white
+    deleteBtn.style.justifyContent = 'space-between'; // Add space between the checkbox, text, and delete button
+
     deleteBtn.addEventListener("click", function(event) {
         event.target.parentElement.parentElement.remove();
     });
@@ -396,6 +484,7 @@ document.querySelector("#listItems").addEventListener('click', function(event) {
         event.target.parentElement.remove();
     }
 });
+
 
 
 
