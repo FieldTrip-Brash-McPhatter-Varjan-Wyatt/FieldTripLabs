@@ -631,10 +631,12 @@ document.querySelector("#createItinerary , #edit-form").addEventListener("click"
 
     const itemNames = document.querySelectorAll(".item-name");
     itemNames.forEach((nameField, index) => {
-        const hiddenName = nameField.nextElementSibling;
+        const parent = nameField.parentElement;
+        const hiddenName = parent.querySelector(".hidden-input"); // select based on a new class
         hiddenName.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
         hiddenName.setAttribute("value", nameField.innerText);
     });
+
 
     document.querySelector("#submit-form , #input-edit-form").submit();
 })
