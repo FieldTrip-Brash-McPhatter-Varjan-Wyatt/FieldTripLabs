@@ -99,27 +99,28 @@
 <script>
 
   window.addEventListener('DOMContentLoaded', function () {
-    const button = document.querySelector('.upload')
-    const image = document.getElementById('uploadedImage'); // Use the ID to select the image element
-    let uploadedImageUrl; // Variable to store the uploaded image URL
+      const button = document.querySelector('.upload')
+      const image = document.getElementById('uploadedImage'); // Use the ID to select the image element
+      let uploadedImageUrl; // Variable to store the uploaded image URL
 
-    button.addEventListener('click', () => {
-      const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'
-      const client = filestack.init(apiKey);
-      client.picker().open();
-      const options = {
-        onUploadDone: (uploadResponse) => {
-          console.log('onUploadDone', uploadResponse)
-          uploadedImageUrl = uploadResponse.filesUploaded[0].url; // Store the uploaded image URL
-          image.setAttribute('src', uploadedImageUrl);
-          document.getElementById('imageUrl').value = uploadedImageUrl; // Set the input field's value
-          console.log(uploadedImageUrl);
-        }
+      button.addEventListener('click', () => {
+          const apiKey = 'A87r7oKaT6i0PJ9UGEci7z'
+          const client = filestack.init(apiKey);
+          client.picker().open();
+          const options = {
+              onUploadDone: (uploadResponse) => {
+                  console.log('onUploadDone', uploadResponse)
+                  uploadedImageUrl = uploadResponse.filesUploaded[0].url; // Store the uploaded image URL
+                  image.setAttribute('src', uploadedImageUrl);
+                  document.getElementById('imageUrl').value = uploadedImageUrl; // Set the input field's value
+                  console.log(uploadedImageUrl);
+              }
 
-      };
+          };
 
-      client.picker(options).open();
-    });
+          client.picker(options).open();
+      });
+  })
 </script>
 </body>
 

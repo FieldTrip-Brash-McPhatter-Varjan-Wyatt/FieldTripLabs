@@ -517,8 +517,15 @@ ${selectedResult.vicinity}
             namePlaceId[i].setAttribute("name", `destinations[${i}].placeId`)
         }
 
+    const itemNames = document.querySelectorAll(".item-name");
+    itemNames.forEach((nameField, index) => {
+        const parent = nameField.parentElement;
+        const hiddenName = parent.querySelector(".hidden-input"); // select based on a new class
+        hiddenName.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
+        hiddenName.setAttribute("value", nameField.innerText);
+    });
 
 
-        document.querySelector("#submit-form").submit();
-    })
+    document.querySelector("#submit-form , #input-edit-form").submit();
+})
 
