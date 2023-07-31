@@ -334,6 +334,16 @@ function createNewItem(event) {
     span.style.display = "none";
     div.appendChild(span);
 
+    let hiddenId = document.createElement("input");
+    hiddenId.setAttribute("type", "hidden");
+    hiddenId.classList.add("item-id");
+    hiddenId.setAttribute("value", 0);
+    div.append(hiddenId);
+
+    let hiddenName = document.createElement("input");
+    hiddenName.setAttribute("type", "hidden");
+    hiddenName.setAttribute("class", "hidden-input");
+
     // Convert the input box to text when it loses focus or enter key is pressed
     child.addEventListener("blur", convertInputToText);
     child.addEventListener("keydown", function(event) {
@@ -491,7 +501,7 @@ ${selectedResult.vicinity}
         listContainer.appendChild(card);
     }
 
-    document.querySelector("#createItinerary").addEventListener("click",  function callToSubmit(){
+    document.querySelector("#createItinerary, #edit-form").addEventListener("click",  function callToSubmit(){
         let nameFields = document.querySelectorAll(".destination-name");
         for (let i = 0; i < nameFields.length; i++) {
             nameFields[i].setAttribute("name", `destinations[${i}].name`)
@@ -519,10 +529,9 @@ ${selectedResult.vicinity}
 
     const itemNames = document.querySelectorAll(".item-name");
     itemNames.forEach((nameField, index) => {
-        const parent = nameField.parentElement;
-        const hiddenName = parent.querySelector(".hidden-input"); // select based on a new class
-        hiddenName.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
-        hiddenName.setAttribute("value", nameField.innerText);
+        const next = nameField.nextElementSibling;
+        next.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
+        next.setAttribute("value", nameField.innerText);
     });
 
 
