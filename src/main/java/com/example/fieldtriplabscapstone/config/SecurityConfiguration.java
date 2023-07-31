@@ -43,7 +43,7 @@ public class SecurityConfiguration {
 
 
 
-                        .requestMatchers( "/profile", "/profile/edit", "/profile/password", "/image", "/itineraries/**", "/reviews", "/reviews/create", "/saveImage", "/itinerary/edit", "/itinerary/create", "itinerary/{id}/edit", "itinerary/{id}").authenticated()
+                        .requestMatchers( "/profile", "/profile/edit", "/profile/password", "/image", "/reviews", "/reviews/create", "/saveImage", "/itinerary/edit", "/itinerary/create", "itinerary/{id}/edit", "itinerary/{id}").authenticated()
 
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
