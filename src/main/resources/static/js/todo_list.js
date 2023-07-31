@@ -527,13 +527,11 @@ ${selectedResult.vicinity}
             namePlaceId[i].setAttribute("name", `destinations[${i}].placeId`)
         }
 
-
     const itemNames = document.querySelectorAll(".item-name");
     itemNames.forEach((nameField, index) => {
         const next = nameField.nextElementSibling;
-        const hiddenName = next.querySelector(".hidden-input"); // select based on a new class
-        hiddenName.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
-        hiddenName.setAttribute("value", nameField.innerText);
+        next.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
+        next.setAttribute("value", nameField.innerText);
     });
 
 
