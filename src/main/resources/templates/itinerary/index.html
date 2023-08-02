@@ -8,10 +8,10 @@
 <body style="background-color: #C4DFE6">
 <nav th:insert="@{partials/navbar}"></nav>
 <!-- Button trigger modal -->
-<button type="button" class="d-none btn btn-primary sticky-top" data-bs-toggle="modal" data-bs-target="#weatherModal" id="weatherButton">
+<button type="button" class="d-none btn btn-primary sticky-top" data-bs-toggle="modal" data-bs-target="#weatherModal"
+        id="weatherButton">
     Show Weather
 </button>
-
 
 
 <!-- Modal -->
@@ -32,70 +32,17 @@
         </div>
     </div>
 </div>
+
+
 <div class="container mt-5">
     <div class="row">
         <form th:action="@{'itinerary/create'}" th:method="POST" th:object="${itinerary}" id="submit-form">
-            <!-- Packing List Container (Left Side) -->
-            <div class="col-6">
-                <div class="border p-4">
-                    <h1>Packing List</h1>
-                    <div class="row d-flex">
-                        <div class=" col-12 mb-3">
-                            <label for="listSelection">Click Here to Select a Packing List:</label>
-                            <select id="listSelection" class="form-control">
-                                <option value="0">Choose a Packing List</option>
-                                <option value="1">Summer Destination</option>
-                                <option value="2">Beach Destination</option>
-                                <option value="3">Ski Destination</option>
-                                <option value="4">Romantic Destination</option>
-                                <option value="5">Winter Destination</option>
-                                <option value="6">Sightseeing Destination</option>
-                                <option value="7">Nature Destination</option>
-                                <option value="8">International Destination</option>
-                            </select>
-                        </div>
-                        <div>
-                            <ul id="listItems">
-                                <li th:each="checklistItem, itemStat : *{checklist.checklistItems} ">
-                                    <input type="hidden" class="item-id"
-                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
-                                    <input id="itemInput" type="text" class="item-name"
-                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="justify-content-end col-12">
-                            <button type="button" id="add-button" class="btn btn-primary col-3">Add Item</button>
-                        </div>
-                        <div class="mb-3 col-12">
 
-                            <label for="listNameInput" class="form-label">List Name:</label>
-                            <input type="hidden" th:field="*{checklist.id}"/>
-                            <input type="text" class="form-control" id="listNameInput"
-                                   placeholder="Name Your Custom List" name="checklistName"
-                                   th:field="*{checklist.name}">
-                        </div>
-                        <!-- Add more list items here -->
 
-                    </div>
-                </div>
-            </div>
-            <!-- END Packing List Container -->
-
-            <!-- Itinerary List Container (Right Side) -->
-            <div class="col-lg-6">
-                <div class="container p-4">
-                    <div id="listContainer" class="row d-flex flex-wrap justify-content-around"></div>
-                </div>
-                <!-- END Itinerary List Container -->
-            </div>
             <!-- Hidden input field for destination address -->
             <div class="d-none" id="destinationContainer"></div>
             <!-- Start Search Bar -->
-            <div class="col-12 d-flex justify-content-center mb-2">
-                <input type="text" placeholder="Itinerary Name" class="form-control col-8" name="itineraryName"
-                       th:field="*{name}">
-            </div>
+
             <div class="card m-3">
                 <div class="d-flex mt-3 mb-3">
                     <div class="col-4 m-1">
@@ -124,8 +71,75 @@
                     </div>
                 </div>
                 <div class="d-none" id="map"></div>
+                <div class="col-12 d-flex justify-content-center mb-2">
+                    <input type="text" placeholder="Itinerary Name" class="form-control col-8" name="itineraryName"
+                           th:field="*{name}">
+                </div>
                 <button type="button" id="createItinerary" class="btn btn-primary">Create Itinerary</button>
             </div>
+
+            <!-- Packing List Container (Left Side) -->
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="container p-4">
+                        <div id="listContainer" class="row d-flex flex-wrap justify-content-around"></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="border p-4">
+                        <h1>Packing List</h1>
+                        <div class="row d-flex">
+                            <div class=" col-12 mb-3">
+                                <label for="listSelection">Click Here to Select a Packing List:</label>
+                                <select id="listSelection" class="form-control">
+                                    <option value="0">Choose a Packing List</option>
+                                    <option value="1">Summer Destination</option>
+                                    <option value="2">Beach Destination</option>
+                                    <option value="3">Ski Destination</option>
+                                    <option value="4">Romantic Destination</option>
+                                    <option value="5">Winter Destination</option>
+                                    <option value="6">Sightseeing Destination</option>
+                                    <option value="7">Nature Destination</option>
+                                    <option value="8">International Destination</option>
+                                </select>
+                            </div>
+                            <div>
+                                <ul id="listItems">
+                                    <li th:each="checklistItem, itemStat : *{checklist.checklistItems} ">
+                                        <input type="hidden" class="item-id"
+                                               th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
+                                        <input id="itemInput" type="text" class="item-name"
+                                               th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="justify-content-end col-12">
+                                <button type="button" id="add-button" class="btn btn-primary col-3">Add Item</button>
+                            </div>
+                            <div class="mb-3 col-12">
+
+                                <label for="listNameInput" class="form-label">List Name:</label>
+                                <input type="hidden" th:field="*{checklist.id}"/>
+                                <input type="text" class="form-control" id="listNameInput"
+                                       placeholder="Name Your Custom List" name="checklistName"
+                                       th:field="*{checklist.name}">
+                            </div>
+                            <!-- Add more list items here -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- END Packing List Container -->
+
+
+
+            </div>
+<!--End row-->
+
+
         </form>
 
 
