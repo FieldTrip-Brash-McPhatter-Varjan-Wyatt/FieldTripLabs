@@ -34,8 +34,8 @@
                                         <!-- Hidden input field for the checklist item ID -->
 <!--                                        THIS NEEDS TO CHANGE!!-->
                                         <span th:text="${checklistItem.itemName}"></span>
-                                        <input type="hidden" class="item-name" th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
                                         <input type="hidden" class="item-id" value="0">
+                                        <input type="hidden" class="item-name" th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
                                         <button type="button" id="existing-delete-item-button" class="btn btn-danger delete-todo" style="color: white;">×</button>
                                     </li>
                                 </ul>

@@ -402,20 +402,21 @@ function createNewItem() {
     div.appendChild(child);
 
     let span = document.createElement("span");
+    span.classList.add("item-name")
     span.style.display = "none";
     div.appendChild(span);
-
-    let hiddenName = document.createElement("input");
-    hiddenName.setAttribute("type", "hidden");
-    hiddenName.setAttribute("class", "item-name");
-    hiddenName.setAttribute("value", span.innerText);
-    div.appendChild(hiddenName)
-
     let hiddenId = document.createElement("input");
     hiddenId.setAttribute("type", "hidden");
     hiddenId.classList.add("item-id");
     hiddenId.setAttribute("value", 0);
     div.appendChild(hiddenId);
+
+    let hiddenName = document.createElement("input");
+    hiddenName.setAttribute("type", "hidden");
+    hiddenName.setAttribute("class", "hidden-input");
+    div.appendChild(hiddenName)
+
+
 
 
 
@@ -630,8 +631,8 @@ document.querySelector("#createItinerary, #edit-form").addEventListener("click",
     const itemNames = document.querySelectorAll(".item-name");
     itemNames.forEach((nameField, index) => {
         const next = nameField.nextElementSibling;
-        next.setAttribute("name", `checklist.checklistItems[${index}].id`);
-        next.setAttribute("value", 0);
+        next.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
+        next.setAttribute("value", nameField.innerText);
     });
 
 
