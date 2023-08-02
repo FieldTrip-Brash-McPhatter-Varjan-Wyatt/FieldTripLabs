@@ -43,11 +43,13 @@ public class SecurityConfiguration {
 
 
 
-                        .requestMatchers( "/profile", "/profile/edit", "/profile/password", "/image", "/reviews", "/reviews/create", "/saveImage", "/itinerary/edit", "/itinerary/create", "itinerary/{id}/edit", "itinerary/{id}").authenticated()
+                        .requestMatchers( "/profile", "/profile/edit", "/profile/password", "/profile/delete", "/image", "/reviews", "/reviews/create", "/saveImage", "/itinerary/edit", "/itinerary/create", "itinerary/{id}/edit", "itinerary/{id}", "itinerary/{id}/delete").authenticated()
 
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
+
                         .requestMatchers("/", "/about","/sign-up", "/login", "/reviews/**", "/reviews/index").permitAll()
+
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**", "/itinerary", "/about-us").permitAll()
                 )

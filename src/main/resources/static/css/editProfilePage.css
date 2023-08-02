@@ -1,0 +1,60 @@
+.card {
+    background-color: #dbd1b3;
+    box-shadow: 10px 10px 10px gray;
+    color: #c4dfe6;
+    border-radius: 10px;
+}
+
+.card-header {
+    color: #003b46;
+}
+
+body {
+    background-color: #C4DFE6;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+a {
+    color: #003b46;
+}
+
+#changeProfileImage {
+    border: none;
+    background-color: transparent;
+    color: #003b46;
+    font-style: italic;
+    font-size: small;
+}
+
+#changepw {
+    text-decoration: none;
+}
+
+#saveChanges {
+    border: #003b46 1px solid;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #003b46;
+    box-shadow: 2px 2px 2px gray;
+}
+
+#deleteProfile {
+    border: none;
+    background-color: transparent;
+    color: #003b46;
+    font-size: smaller;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: #C4DFE6;
+}
+
+label {
+    color: #003b46;
+}
