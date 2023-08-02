@@ -418,11 +418,6 @@ function createNewItem() {
     div.appendChild(hiddenId);
 
 
-    let hiddenName = document.createElement("input");
-    hiddenName.setAttribute("type", "hidden");
-    hiddenName.setAttribute("class", "hidden-input");
-    div.appendChild(hiddenName);
-
 
     function convertInputToText() {
         span.textContent = child.value;
