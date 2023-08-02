@@ -64,6 +64,8 @@ public class ItineraryController {
             return "redirect:/login";
         }
         model.addAttribute("loggedInUser", loggedInUser);
+
+
         Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
         if (optionalItinerary.isEmpty()) {
             return "redirect:itinerary/index";
@@ -73,54 +75,55 @@ public class ItineraryController {
         model.addAttribute("itinerary", itinerary);
         return "itinerary/edit";
 
+
+
     }
 
 
     @PostMapping("itinerary/{id}/edit")
     public String editItinerary(@ModelAttribute Itinerary itinerary, @PathVariable Long id) {
-        // Existing code...
-
         // Get the existing itinerary from the database
         Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
         if (optionalItinerary.isEmpty()) {
-            return "redirect:itinerary/index";
+            return "redirect:/itinerary/index";
         }
 
         Itinerary existingItinerary = optionalItinerary.get();
-        Checklist updatedChecklist = itinerary.getChecklist();
+
         Checklist existingChecklist = existingItinerary.getChecklist();
-        existingChecklist.setName(updatedChecklist.getName());
+        System.out.println(existingChecklist);
+        existingItinerary.setChecklist(itinerary.getChecklist());
+        System.out.println(existingChecklist);
 
-        // Copy checklist items to the existing checklist if the list is not empty
-        List<ChecklistItems> updatedChecklistItems = itinerary.getChecklist().getChecklistItems();
-        List<ChecklistItems> existingChecklistItems = existingItinerary.getChecklist().getChecklistItems();
+        existingChecklist.setName(itinerary.getChecklist().getName());
 
 
-        // Remove checklist items that are not present in the updated checklist
-        existingChecklistItems.removeIf(existingItem -> !updatedChecklistItems.contains(existingItem));
-        existingChecklistItems.clear();
-        // Add new checklist items from the updated checklist
-        for (ChecklistItems updatedItem : updatedChecklistItems) {
-            if (updatedItem.getItemName() != null) {
-                ChecklistItems existingItem = new ChecklistItems(updatedItem.getItemName(), existingChecklist);
-                existingChecklistItems.add(existingItem);
-            }
+        // Loop through the checklist items in the updated checklist and set their checklist
+        for (ChecklistItems checklistItem : itinerary.getChecklist().getChecklistItems()) {
+            checklistItem.setChecklist(existingChecklist);
         }
 
-        // Update destinations of the existing itinerary
-        List<Destination> updatedDestinations = itinerary.getDestinations();
-        List<Destination> existingDestinations = existingItinerary.getDestinations();
+        // Delete any checklist items that are no longer present in the updated checklist
 
-        // Remove destinations that are not present in the updated destinations
-        existingDestinations.removeIf(existingDestination -> !updatedDestinations.contains(existingDestination));
-
-        // Add new destinations from the updated itinerary
-        for (Destination updatedDestination : updatedDestinations) {
-            if (updatedDestination != null && !existingDestinations.contains(updatedDestination)) {
-                updatedDestination.setItinerary(existingItinerary);
-                existingDestinations.add(updatedDestination);
+            List<ChecklistItems> existingChecklistItems = checklistItemsDao.findChecklistByChecklist(existingChecklist);
+            for (ChecklistItems existingChecklistItem : existingChecklistItems) {
+                boolean found = false;
+                for (ChecklistItems itemCheck : itinerary.getChecklist().getChecklistItems()) {
+                    if (itemCheck.getId() == existingChecklistItem.getId()) {
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    System.out.println(existingChecklistItem.getId());
+                    // Delete checklist item that is no longer present in the updated checklist
+                    checklistItemsDao.deleteById(existingChecklistItem.getId());
+                }
             }
-        }
+
+        existingItinerary.getChecklist().setItinerary(existingItinerary);
+        // Save the updated checklist
+//        checklistDao.save(existingItinerary.getChecklist());
+existingItinerary.setChecklist(itinerary.getChecklist());
 
         // Update other properties of the existing itinerary
         existingItinerary.setName(itinerary.getName());
@@ -134,5 +137,8 @@ public class ItineraryController {
     }
 
 
-
 }
+
+
+
+

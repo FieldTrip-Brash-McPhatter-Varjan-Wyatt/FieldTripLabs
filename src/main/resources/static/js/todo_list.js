@@ -330,9 +330,14 @@ function createNewItem(event) {
     div.appendChild(child);
 
     let span = document.createElement("span");
-    span.classList.add("item-name");
     span.style.display = "none";
     div.appendChild(span);
+
+    let hiddenName = document.createElement("input");
+    hiddenName.setAttribute("type", "hidden");
+    hiddenName.setAttribute("class", "item-name");
+    hiddenName.setAttribute("value", span.innerText);
+    div.appendChild(hiddenName)
 
     let hiddenId = document.createElement("input");
     hiddenId.setAttribute("type", "hidden");
@@ -340,9 +345,7 @@ function createNewItem(event) {
     hiddenId.setAttribute("value", 0);
     div.append(hiddenId);
 
-    let hiddenName = document.createElement("input");
-    hiddenName.setAttribute("type", "hidden");
-    hiddenName.setAttribute("class", "hidden-input");
+
 
     // Convert the input box to text when it loses focus or enter key is pressed
     child.addEventListener("blur", convertInputToText);
@@ -535,12 +538,17 @@ ${selectedResult.vicinity}
 
     const itemNames = document.querySelectorAll(".item-name");
     itemNames.forEach((nameField, index) => {
+        nameField.setAttribute("name", `checklist.checklistItems[${index}].itemName` )
+        console.log(nameField)
         const next = nameField.nextElementSibling;
-        next.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
-        next.setAttribute("value", nameField.innerText);
+        next.setAttribute("name", `checklist.checklistItems[${index}].id`);
+        next.setAttribute("value", 0);
+        console.log(next)
     });
 
 
-    document.querySelector("#submit-form , #input-edit-form").submit();
+    // document.querySelector("#submit-form , #input-edit-form").submit();
+
+
 })
 

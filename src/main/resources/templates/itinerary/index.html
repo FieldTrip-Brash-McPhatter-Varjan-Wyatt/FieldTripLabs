@@ -57,10 +57,10 @@
                         <div>
                             <ul id="listItems">
                                 <li th:each="checklistItem, itemStat : *{checklist.checklistItems} ">
-                                    <input type="hidden" class="item-id"
-                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
                                     <input id="itemInput" type="text" class="item-name"
                                            th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
+                                    <input type="hidden" class="item-id"
+                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
                                 </li>
                             </ul>
                         </div>
