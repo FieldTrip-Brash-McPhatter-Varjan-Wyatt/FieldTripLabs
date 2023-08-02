@@ -60,8 +60,8 @@ $(document).ready(function () {
                     for (const data of weatherData) {
                         const dateTime = new Date(data.datetimeStr);
 
-                        const weekdayOptions = { weekday: 'long' };
-                        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+                        const weekdayOptions = {weekday: 'long'};
+                        const dateOptions = {year: 'numeric', month: 'long', day: 'numeric'};
 
                         const formattedWeekday = dateTime.toLocaleString('en-US', weekdayOptions);
                         const formattedDate = dateTime.toLocaleString('en-US', dateOptions);
@@ -291,10 +291,10 @@ function loadPackingList(listIndex) {
 
 
     }
-    return { listName: listName, itemList: itemList };
+    return {listName: listName, itemList: itemList};
 }
 
-document.getElementById('listSelection').addEventListener('change', function() {
+document.getElementById('listSelection').addEventListener('change', function () {
     var listIndex = this.value;
     var packingList = loadPackingList(listIndex);
 
@@ -305,13 +305,17 @@ document.getElementById('listSelection').addEventListener('change', function() {
     }
 
     // Add new items to the list
-    packingList.itemList.forEach(function(item) {
+    packingList.itemList.forEach(function (item) {
         var li = document.createElement('li');
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        li.appendChild(checkbox);
         var input = document.createElement('input');
 
 
-var span = document.createElement(span)
-       span.innerText = item.text;
+
+        var span = document.createElement(span)
+        span.innerText = item.text;
         span.className = 'item-name';
         input.type = 'hidden';
         input.className = 'item-id';
@@ -321,25 +325,32 @@ var span = document.createElement(span)
         input.addEventListener('blur', convertToText);
 
         // Event listener for keydown event
-        input.addEventListener('keydown', function(e) {
+        input.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 convertToText.call(this);
             }
         });
+
         li.appendChild(span);
         li.appendChild(input);
 
         // Create delete button
         var deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = 'Delete';
-        deleteBtn.className = 'delete-item-btn';
+        deleteBtn.setAttribute("type", "button");
+        deleteBtn.setAttribute("class", "btn btn-danger delete-todo"); // Change class to 'btn-danger' for red color
+        deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
+        deleteBtn.style.color = "white"; // Change text color to white
 
-        // Append delete button to the list item
+        deleteBtn.addEventListener('click', function () {
+            li.parentNode.removeChild(li);
+        });
+
+// Append delete button to the list item
         li.appendChild(deleteBtn);
 
         // Delete function
-        deleteBtn.addEventListener('click', function() {
+        deleteBtn.addEventListener('click', function () {
             li.parentNode.removeChild(li);
         });
 
@@ -350,7 +361,7 @@ var span = document.createElement(span)
             li.replaceChild(text, this);
 
             // Add click listener to text
-            text.parentNode.addEventListener('click', function() {
+            text.parentNode.addEventListener('click', function () {
                 var input = document.createElement('input');
                 input.type = 'text';
                 input.className = 'item-name';
@@ -358,7 +369,7 @@ var span = document.createElement(span)
 
                 // Add the same listeners to the new input
                 input.addEventListener('blur', convertToText);
-                input.addEventListener('keydown', function(e) {
+                input.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter') {
                         e.preventDefault();
                         convertToText.call(this);
@@ -371,39 +382,23 @@ var span = document.createElement(span)
     });
 
 
-
     // Update the list name
     document.getElementById('listNameInput').value = packingList.listName;
 });
 
 
-
-
-// Function to create a new item
-function createNewItem(event) {
-    // If there's already an input box, convert it to text only if it's not empty
-    let existingInput = document.querySelector(".edit-input");
-    if (existingInput) {
-        if (existingInput.value.trim() !== '') {
-            let parentDiv = existingInput.parentElement;
-            let span = parentDiv.querySelector(".item-name");
-            span.textContent = existingInput.value;
-            span.style.display = "inline";
-            parentDiv.removeChild(existingInput);
-        } else {
-            // If the existing input is empty, don't add a new input
-            return;
-        }
-    }
-
+function createNewItem() {
     // Create a new list item with an input box
     const li = document.createElement("li");
     const div = document.createElement("div");
 
+    let checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    div.appendChild(checkbox);
+
     let child = document.createElement("input");
     child.setAttribute("type", "text");
     child.setAttribute("class", "edit-input");
-    child.focus();
     div.appendChild(child);
 
     let span = document.createElement("span");
@@ -420,30 +415,40 @@ function createNewItem(event) {
     hiddenId.setAttribute("type", "hidden");
     hiddenId.classList.add("item-id");
     hiddenId.setAttribute("value", 0);
-    div.append(hiddenId);
+    div.appendChild(hiddenId);
 
 
+    let hiddenName = document.createElement("input");
+    hiddenName.setAttribute("type", "hidden");
+    hiddenName.setAttribute("class", "hidden-input");
+    div.appendChild(hiddenName);
 
-    // Convert the input box to text when it loses focus or enter key is pressed
-    child.addEventListener("blur", convertInputToText);
-    child.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault(); // Prevent form submission
+
+    function convertInputToText() {
+        span.textContent = child.value;
+        span.style.display = "inline";
+        child.remove();
+    }
+
+    child.addEventListener("blur", function(event) {
+        if (child.value.trim() !== '') {
             convertInputToText();
-            createNewItem();
+        } else {
+            div.parentElement.remove();
         }
     });
 
-    function convertInputToText() {
-        if (child.value.trim() !== '') {
-            span.textContent = child.value;
-            span.style.display = "inline";
-            div.removeChild(child);
+    child.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();  // Prevent form submission
+            if (child.value.trim() !== '') {
+                convertInputToText();
+                createNewItem(); // Create a new item
+            }
         }
-    }
+    });
 
-    // When text is clicked, convert it back to input box for editing
-    span.addEventListener("click", function() {
+    span.addEventListener("click", function () {
         span.style.display = "none";
         let input = document.createElement("input");
         input.setAttribute("type", "text");
@@ -451,40 +456,53 @@ function createNewItem(event) {
         input.value = span.textContent;
         div.insertBefore(input, span);
         input.focus();
-        input.addEventListener("blur", convertInputToText);
+
+        function convertEditedInputToText() {
+            span.textContent = input.value;
+            span.style.display = "inline";
+            input.remove();
+        }
+
+        input.addEventListener("blur", function(event) {
+            if (input.value.trim() !== '') {
+                convertEditedInputToText();
+            } else {
+                div.parentElement.remove();
+            }
+        });
+
         input.addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
-                event.preventDefault(); // Prevent form submission
-                convertInputToText();
-                createNewItem();
+                event.preventDefault();  // Prevent form submission
+                if (input.value.trim() !== '') {
+                    convertEditedInputToText();
+                    createNewItem(); // Create a new item
+                }
             }
         });
     });
 
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
-    deleteBtn.setAttribute("class", `btn btn-danger delete-todo`); // Change class to 'btn-danger' for red color
-    deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
-    deleteBtn.style.color = "white"; // Change text color to white
-    deleteBtn.addEventListener("click", function(event) {
+    deleteBtn.setAttribute("class", "btn btn-danger delete-todo");
+    deleteBtn.innerHTML = "&times;";
+    deleteBtn.style.color = "white";
+    deleteBtn.addEventListener("click", function (event) {
         event.target.parentElement.parentElement.remove();
     });
     div.appendChild(deleteBtn);
 
     li.appendChild(div);
     document.querySelector("#listItems").appendChild(li);
-    // Automatically place the cursor inside the new input box
+
     child.focus();
 }
 
-document.querySelector("#listItems").addEventListener("click", function(event) {
-    if (event.target.classList.contains("delete-todo")) {
-        event.target.parentElement.remove();
-    }
-});
 
-// Add event listener to the add button
-document.querySelector("#add-button, #add-edit-button").addEventListener("click", createNewItem);
+document.querySelector("#add-button").addEventListener("click", createNewItem);
+
+
+
 
 
 
@@ -547,7 +565,8 @@ function callback(results, status) {
 
 }
 
-document.querySelector("#autocomplete", ).addEventListener('click', clearField)
+document.querySelector("#autocomplete",).addEventListener('click', clearField)
+
 function clearField() {
     document.getElementById('autocomplete').value = "";
 }
@@ -587,7 +606,7 @@ ${selectedResult.vicinity}
     listContainer.appendChild(card);
 }
 
-document.querySelector("#createItinerary, #edit-form").addEventListener("click",  function callToSubmit(){
+document.querySelector("#createItinerary, #edit-form").addEventListener("click", function callToSubmit() {
     let nameFields = document.querySelectorAll(".destination-name");
     for (let i = 0; i < nameFields.length; i++) {
         nameFields[i].setAttribute("name", `destinations[${i}].name`)
