@@ -45,14 +45,14 @@
 </div>
 
 <!--MY ITINERARIES-->
-<div class="container col-lg-12 card mt-5 w-75 ">
+<div class="container d-flex flex-wrap col-lg-12 card mt-5 w-75 ">
     <h2 class="card-header text-center mb-4 bg-transparent">My Itineraries</h2>
     <div class="card my-3 d-flex justify-content-center" style="width: 25%;" th:each="itinerary : ${user.itineraries}">
         <img src="/img/SaoPauloPhoto.jpeg" alt="stock photo" class="img-fluid mx-auto my-2" width="80%"/>
         <div class="card-body" style="color: #003b46">
             <h5 class="card-title" th:text="${itinerary.name}"></h5>
             <p class="card-text" th:text="${itinerary.startDate} + ' - ' + ${itinerary.endDate}"></p>
-            <a href="#" class="btn btn-primary">Edit</a>
+            <a th:href="@{'/itinerary/'+ ${itinerary.id} + '/edit'}" class="btn btn-primary">Edit</a>
         </div>
     </div>
 <!--    <ul class="list-group" th:each="itinerary : ${user.itineraries}">-->

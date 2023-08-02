@@ -615,16 +615,13 @@ document.querySelector("#createItinerary, #edit-form").addEventListener("click",
 
     const itemNames = document.querySelectorAll(".item-name");
     itemNames.forEach((nameField, index) => {
-        nameField.setAttribute("name", `checklist.checklistItems[${index}].itemName` )
-        console.log(nameField)
         const next = nameField.nextElementSibling;
         next.setAttribute("name", `checklist.checklistItems[${index}].id`);
         next.setAttribute("value", 0);
-        console.log(next)
     });
 
 
-    // document.querySelector("#submit-form , #input-edit-form").submit();
+    document.querySelector("#submit-form , #input-edit-form").submit();
 
 
 })
