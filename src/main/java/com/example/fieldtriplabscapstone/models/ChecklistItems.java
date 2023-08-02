@@ -25,4 +25,9 @@ public class ChecklistItems {
     @JoinColumn(name = "checklist_id", nullable = false)
     private Checklist checklist;
 
+
+    public ChecklistItems(String itemName, Checklist existingChecklist) {
+            this.itemName = itemName;
+            this.checklist = existingChecklist;
+    }
 }

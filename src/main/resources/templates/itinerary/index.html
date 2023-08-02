@@ -39,6 +39,7 @@
         <form th:action="@{'itinerary/create'}" th:method="POST" th:object="${itinerary}" id="submit-form">
 
 
+
             <!-- Hidden input field for destination address -->
             <div class="d-none" id="destinationContainer"></div>
             <!-- Start Search Bar -->
@@ -47,7 +48,7 @@
                 <div class="d-flex mt-3 mb-3">
                     <div class="col-4 m-1">
                         <input type="text" class="form-control"
-                               id="autocomplete">
+                               id="autocomplete" onclick="clearField()">
                     </div>
                     <select class="form-select" id="type">
                         <option id="tourist_attraction" value="tourist_attraction">Attractions</option>

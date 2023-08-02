@@ -34,4 +34,15 @@ public class Checklist {
     public Checklist() {
         checklistItems = new ArrayList<>();
     }
+
+    public void removeChecklistItem(ChecklistItems checklistItem) {
+        checklistItems.remove(checklistItem);
+        checklistItem.setChecklist(null);
+    }
+
+    public void addChecklistItem(ChecklistItems newItem) {
+        checklistItems.add(newItem);
+        newItem.setChecklist(this);
+    }
+
 }
