@@ -101,3 +101,16 @@ button {
     align-items: center;
     justify-content: space-between;
 }
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    width: 100% !important;
+    text-align: center;
+}
+
+.parent-container {
+    width: 100%;
+}
+
