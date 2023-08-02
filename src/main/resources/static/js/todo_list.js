@@ -495,11 +495,14 @@ function createNewItem() {
 }
 
 
-document.querySelector("#add-button").addEventListener("click", createNewItem);
+document.querySelector("#add-button, #add-edit-button").addEventListener("click", createNewItem);
 
 
-
-
+document.querySelector("#listItems").addEventListener("click", function(event) {
+    if (event.target.classList.contains("delete-todo")) {
+        event.target.parentElement.remove();
+    }
+});
 
 
 

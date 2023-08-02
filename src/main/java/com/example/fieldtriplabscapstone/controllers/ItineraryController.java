@@ -116,7 +116,7 @@ public class ItineraryController {
                 if (!found) {
                     System.out.println(existingChecklistItem.getId());
                     // Delete checklist item that is no longer present in the updated checklist
-                    checklistItemsDao.deleteById(existingChecklistItem.getId());
+//                    checklistItemsDao.deleteById(existingChecklistItem.getId());
                 }
             }
 
@@ -131,7 +131,7 @@ existingItinerary.setChecklist(itinerary.getChecklist());
         existingItinerary.setEndDate(itinerary.getEndDate());
 
         // Save the existingItinerary with the updated values and updated destinations
-        itineraryDao.save(existingItinerary);
+        itineraryDao.save(itinerary);
 
         return "redirect:/itinerary/{id}/edit";
     }
