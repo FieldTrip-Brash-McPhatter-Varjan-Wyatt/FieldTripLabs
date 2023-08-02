@@ -91,19 +91,25 @@ public class ItineraryController {
         Itinerary existingItinerary = optionalItinerary.get();
 
         Checklist existingChecklist = existingItinerary.getChecklist();
-        System.out.println(existingChecklist);
-        existingItinerary.setChecklist(itinerary.getChecklist());
-        System.out.println(existingChecklist);
+//        System.out.println(existingChecklist);
+//        existingItinerary.setChecklist(itinerary.getChecklist());
+//        System.out.println(existingChecklist);
 
-        existingChecklist.setName(itinerary.getChecklist().getName());
+        // not necessary
+//        existingChecklist.setName(itinerary.getChecklist().getName());
 
+        // set the user in the incoming itinerary
+        itinerary.setUser(existingItinerary.getUser());
+        itinerary.getChecklist().setItinerary(itinerary);
 
         // Loop through the checklist items in the updated checklist and set their checklist
         for (ChecklistItems checklistItem : itinerary.getChecklist().getChecklistItems()) {
-            checklistItem.setChecklist(existingChecklist);
+            checklistItem.setChecklist(itinerary.getChecklist());
         }
 
         // Delete any checklist items that are no longer present in the updated checklist
+
+        System.out.println(itinerary);
 
             List<ChecklistItems> existingChecklistItems = checklistItemsDao.findChecklistByChecklist(existingChecklist);
             for (ChecklistItems existingChecklistItem : existingChecklistItems) {
@@ -117,20 +123,21 @@ public class ItineraryController {
                     System.out.println(existingChecklistItem.getId());
                     // Delete checklist item that is no longer present in the updated checklist
 //                    checklistItemsDao.deleteById(existingChecklistItem.getId());
+                    checklistItemsDao.nukeById(existingChecklistItem.getId());
                 }
             }
 
-        existingItinerary.getChecklist().setItinerary(existingItinerary);
         // Save the updated checklist
-//        checklistDao.save(existingItinerary.getChecklist());
-existingItinerary.setChecklist(itinerary.getChecklist());
+//        checklistDao.save(itinerary.getChecklist());
+//existingItinerary.setChecklist(itinerary.getChecklist());
 
         // Update other properties of the existing itinerary
-        existingItinerary.setName(itinerary.getName());
-        existingItinerary.setStartDate(itinerary.getStartDate());
-        existingItinerary.setEndDate(itinerary.getEndDate());
+//        existingItinerary.setName(itinerary.getName());
+//        existingItinerary.setStartDate(itinerary.getStartDate());
+//        existingItinerary.setEndDate(itinerary.getEndDate());
 
         // Save the existingItinerary with the updated values and updated destinations
+
         itineraryDao.save(itinerary);
 
         return "redirect:/itinerary/{id}/edit";
