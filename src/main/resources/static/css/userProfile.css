@@ -1,4 +1,4 @@
-.card {
+.main-card {
     background-color: #dbd1b3;
     box-shadow: 10px 10px 10px gray;
     color: #c4dfe6;
@@ -25,41 +25,46 @@ li {
     color: #003b46;
 }
 
-a {
-    text-decoration: none;
-    color: #003b46;
-}
-
-.upload {
-    border: #003b46 1px;
-    border-radius: 8px;
-    background-color: transparent;
-    color: #003b46;
-}
-
-.btn-link {
-    text-decoration: none;
-    color: #003b46;
-}
-
-#uploadedImage {
-    border-radius: 10px;
-}
-
 label {
     color: #003b46;
 }
 
-.save-changes {
-    background-color: transparent;
-    border: solid 1px #003b46;
+#editProfile {
+    border: #003b46 1px solid;
     border-radius: 8px;
+    background-color: transparent;
+    color: #003b46;
     box-shadow: 2px 2px 2px gray;
 }
 
-#editprofile {
+#editItinBtn, #deleteItinBtn {
+    border: #003b46 1px solid;
+    border-radius: 8px;
+    background-color: #dbd1b3;
+    color: #003b46;
+}
+
+#itinCard{
+    background-color: #003b46;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 6px 6px 6px gray;
+}
+
+h5, p {
+    color: #dbd1b3;
+}
+
+#profileSection {
+    width: 80%;
+}
+
+#myItin {
+    width: 80%;
     background-color: transparent;
-    border: 1px solid #003b46;
-    border-radius: 8px ;
-    box-shadow: 2px 2px 2px gray;
+    border: none;
+}
+
+#planYourTrip {
+    text-wrap: none;
 }

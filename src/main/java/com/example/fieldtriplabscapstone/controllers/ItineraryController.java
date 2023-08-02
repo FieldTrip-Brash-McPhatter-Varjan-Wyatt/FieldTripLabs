@@ -133,6 +133,16 @@ public class ItineraryController {
         return "redirect:/itinerary/{id}/edit";
     }
 
+    @PostMapping ("/itinerary/{id}/delete")
+    public String deleteItinerary(@PathVariable Long id){
+        Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
+        Itinerary delete = optionalItinerary.get();
+        System.out.println(delete.getName());
+        itineraryDao.delete(delete);
+        return "redirect:/profile";
+    }
+
+
 
 
 }

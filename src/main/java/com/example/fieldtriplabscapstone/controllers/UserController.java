@@ -47,18 +47,15 @@ public class UserController {
         if (result.hasErrors()){
             return "/users/sign-up";
         }
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/login";
-//        if (userDao.findByUsername(user.getUsername()) == null) {
-//            String hash = passwordEncoder.encode(user.getPassword());
-//            user.setPassword(hash);
-//            userDao.save(user);
-//            return "redirect:/login";
-//        } else {
-//            return "redirect:/sign-up";
-//        }
+
+        if (userDao.findByUsername(user.getUsername()) == null) {
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            userDao.save(user);
+            return "redirect:/login";
+        } else {
+            return "redirect:/sign-up";
+        }
     }
 
     @GetMapping("/profile")
@@ -92,6 +89,13 @@ public class UserController {
         userDao.save(currentUser);
         return "redirect:/profile";
 
+    }
+
+    @PostMapping("/profile/delete")
+    public String deleteProfile() {
+        User currentUser = getCurrentUser();
+        userDao.delete(currentUser);
+        return "redirect:/";
     }
 
     @GetMapping("/profile/password")
