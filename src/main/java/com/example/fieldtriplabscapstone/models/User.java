@@ -47,6 +47,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Itinerary> itineraries;
 
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Review> reviews;
 
@@ -78,8 +79,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", image='" + image + '\'' +
                 ", password='" + password + '\'' +
-                ", itineraries=" + itineraries +
-                ", reviews=" + reviews +
                 '}';
     }
 }

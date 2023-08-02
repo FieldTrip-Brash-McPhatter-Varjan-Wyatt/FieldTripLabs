@@ -38,6 +38,7 @@ public class Destination {
     @JoinColumn(name = "itinerary_id")
     private Itinerary itinerary;
 
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "destination")
     private List<Review> review;
 }
