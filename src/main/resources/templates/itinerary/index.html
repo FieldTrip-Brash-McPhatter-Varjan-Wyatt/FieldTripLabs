@@ -57,10 +57,10 @@
                         <div>
                             <ul id="listItems">
                                 <li th:each="checklistItem, itemStat : *{checklist.checklistItems} ">
-                                    <input type="hidden" class="item-id"
-                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
                                     <input id="itemInput" type="text" class="item-name"
                                            th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
+                                    <input type="hidden" class="item-id"
+                                           th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
                                 </li>
                             </ul>
                         </div>
@@ -100,7 +100,7 @@
                 <div class="d-flex mt-3 mb-3">
                     <div class="col-4 m-1">
                         <input type="text" class="form-control"
-                               id="autocomplete">
+                               id="autocomplete" onclick="clearField()">
                     </div>
                     <select class="form-select" id="type">
                         <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
