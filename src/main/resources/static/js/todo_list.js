@@ -18,7 +18,7 @@ $(document).ready(function () {
         }
         console.log(cityName, date);
     });
-    console.log('Fetching weather data...');
+    console.log('Select a location and a start date to view historical weather conditions.');
 
 
     function fetchWeatherData(cityName, date) {
@@ -538,37 +538,44 @@ function searchNearbyPlaces() {
     }, callback);
 }
 
+
+
 function callback(results, status) {
     $("#weatherButton").removeClass("d-none")
     searchResults = results;
-    var table = document.getElementById('places');
+    var container = document.getElementById('places');
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results)
         for (let i = 0; i < results.length; i++) {
             if (results[i].photos) {
                 let photoUrl = results[i].photos[0].getUrl();
-                table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
-<a href="reviews/${results[i].place_id}"><img class="border-success rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
-<br><div class="card-title">` + results[i].name + `</div><button id="${i}"  type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
+                container.innerHTML += `<div class="card m-2 p-1 col-2 align-items-center m-0 rounded" id="${i}" style="background-color: #D9D0B2;">
+<a href="reviews/${results[i].place_id}"><img class="border-success rounded-circle mt-1" width = "80" height="80" src="${photoUrl}"/></a>
+<div class="card-title text-center m-1 p-0" style="color: #003B46;">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="color: #003B46; border-color: #D9D0B2;">ADD</button></div>`;
             } else {
                 let photoUrl = "https://via.placeholder.com/150"
 
-                table.innerHTML += `<div class="card m-4 col-2 align-items-center border border-0" id="${i}">
-<a th:href="reviews/${results[1].place_id}"><img class="border border-4 rounded-circle mt-2" width = "100" height="100" src="${photoUrl}"/></a>
-<br><div class="card-title">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success" onclick="addToItinerary(${i})">ADD</button></div>`;
+                container.innerHTML += `<div class="card m-2 p-1 col-2 align-items-center m-0 rounded" id="${i}" style="background-color: #D9D0B2;">
+<a th:href="reviews/${results[i].place_id}"><img class="border border-4 rounded-circle mt-1" width = "80" height="80" src="${photoUrl}"/></a>
+<div class="card-title text-center m-1 p-0" style="color: #003B46;">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="color: #003B46; border-color: #D9D0B2;">ADD</button></div>`;
             }
         }
     } else {
-        table.innerHTML = "<div class='card m-4 col text-center align-items-center'><h2 class='m-3'>No Places in the area.</h2></div>"
+        container.innerHTML = "<div class='card m-4 col text-center align-items-center' style='background-color: #D9D0B2;'><h2 class='m-3' style='color: #003B46;'>No Places in the area.</h2></div>"
     }
-
 }
+
+
+
 
 document.querySelector("#autocomplete",).addEventListener('click', clearField)
 
 function clearField() {
     document.getElementById('autocomplete').value = "";
 }
+
+
+
 
 function addToItinerary(index) {
     var selectedResult = searchResults[index];
@@ -578,8 +585,8 @@ function addToItinerary(index) {
 
 
     var card = document.createElement('div');
-    card.className = 'card col-5 m-1';
-    card.style = 'width: 18rem;';
+    card.className = 'card col-3 m-1';
+    card.style = 'width: 15rem; background-color: #003B46; color: #D8D0B2';
     card.innerHTML = `
     <div class="destinationCard card-body">
     <div class="d-none" name="photoUrl">
