@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,12 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Controller
+@Transactional(rollbackFor = Exception.class)
 public class ItineraryController {
     ItineraryRepository itineraryDao;
     UserRepository userDao;
     ChecklistRepository checklistDao;
+    ReviewRepository reviewDao;
 
     DestinationRepository destinationDao;
     ChecklistItemsRepository checklistItemsDao;
@@ -91,12 +94,7 @@ public class ItineraryController {
         Itinerary existingItinerary = optionalItinerary.get();
 
         Checklist existingChecklist = existingItinerary.getChecklist();
-//        System.out.println(existingChecklist);
-//        existingItinerary.setChecklist(itinerary.getChecklist());
-//        System.out.println(existingChecklist);
 
-        // not necessary
-//        existingChecklist.setName(itinerary.getChecklist().getName());
 
         // set the user in the incoming itinerary
         itinerary.setUser(existingItinerary.getUser());
@@ -108,8 +106,6 @@ public class ItineraryController {
         }
 
         // Delete any checklist items that are no longer present in the updated checklist
-
-        System.out.println(itinerary);
 
             List<ChecklistItems> existingChecklistItems = checklistItemsDao.findChecklistByChecklist(existingChecklist);
             for (ChecklistItems existingChecklistItem : existingChecklistItems) {
@@ -127,30 +123,59 @@ public class ItineraryController {
                 }
             }
 
-        // Save the updated checklist
-//        checklistDao.save(itinerary.getChecklist());
-//existingItinerary.setChecklist(itinerary.getChecklist());
-
-        // Update other properties of the existing itinerary
-//        existingItinerary.setName(itinerary.getName());
-//        existingItinerary.setStartDate(itinerary.getStartDate());
-//        existingItinerary.setEndDate(itinerary.getEndDate());
 
         // Save the existingItinerary with the updated values and updated destinations
+        // Update destinations of the existing itinerary
+        List<Destination> updatedDestinations = itinerary.getDestinations();
+        List<Destination> existingDestinations = existingItinerary.getDestinations();
+
+        // Remove destinations that are not present in the updated destinations
+        existingDestinations.removeIf(existingDestination -> !updatedDestinations.contains(existingDestination));
+
+        // Add new destinations from the updated itinerary
+        for (Destination updatedDestination : updatedDestinations) {
+            if (updatedDestination != null && !existingDestinations.contains(updatedDestination)) {
+                updatedDestination.setItinerary(existingItinerary);
+                existingDestinations.add(updatedDestination);
+            }
+        }
 
         itineraryDao.save(itinerary);
 
         return "redirect:/itinerary/{id}/edit";
     }
 
-    @PostMapping ("/itinerary/{id}/delete")
-    public String deleteItinerary(@PathVariable Long id){
-        Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
-        Itinerary delete = optionalItinerary.get();
-        System.out.println(delete.getName());
-        itineraryDao.delete(delete);
-        return "redirect:/profile";
-    }
+
+        @Transactional
+        @GetMapping ("/itinerary/{id}/delete")
+        public String deleteItinerary(@PathVariable Long id) {
+            Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
+            if (optionalItinerary.isEmpty()) {
+                return "redirect:/";
+            }
+            Itinerary itinerary = optionalItinerary.get();
+
+            // Remove the destinations from the itinerary
+            List<Destination> destinations = itinerary.getDestinations();
+            System.out.println(destinations);
+//            for (Destination destination : destinations) {
+                itinerary.getDestinations().removeAll(destinations);
+//            }
+
+
+            // Delete the checklist and other related entities (cascade deletion)
+            Checklist checklist = itinerary.getChecklist();
+            if (checklist != null) {
+                checklistDao.delete(checklist);
+            }
+
+            // Now you can safely delete the itinerary
+            itineraryDao.delete(itinerary);
+            itineraryDao.deleteItineraryById(id);
+            System.out.println("Deleted itinerary with ID: " + itinerary.getId());
+            return "redirect:/profile";
+        }
+
 
 
 
