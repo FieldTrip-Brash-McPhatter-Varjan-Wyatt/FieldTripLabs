@@ -34,11 +34,19 @@ public class Destination {
 
 
     @ToString.Exclude
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "itinerary_id")
     private Itinerary itinerary;
 
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "destination")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "destination")
     private List<Review> review;
+
+    public void setItinerary(Itinerary itinerary) {
+        this.itinerary = itinerary;
+        if (itinerary != null) {
+            itinerary.getDestinations().add(this);
+        }
+    }
+
 }

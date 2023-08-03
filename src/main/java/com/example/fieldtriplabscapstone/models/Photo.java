@@ -27,3 +27,4 @@ public class Photo {
     @JoinColumn(name = "review_id", nullable = false)
     private Review review;
 }
+

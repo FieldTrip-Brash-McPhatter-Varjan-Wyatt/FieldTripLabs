@@ -605,14 +605,15 @@ function addToItinerary(index) {
     placeId.classList.add('d-none');
 
 
-    var card = document.createElement('div');
-    card.className = 'card col-5 m-1';
-    card.style = 'width: 18rem; background-color: #003B46FF; color: #dbd1b3;';
-    card.innerHTML = `
+
+    if (selectedResult.photos){
+        var photoUrl = selectedResult.photos[0].getUrl();
+        var card = document.createElement('div');
+        card.className = 'card col-3 m-1';
+        card.style = 'width: 15rem; background-color: #003B46; color: #D8D0B2';
+        card.innerHTML = `
+
     <div class="destinationCard card-body">
-    <div class="d-none" name="photoUrl">
-    <img src="${selectedResult.photos[0].getUrl()}" >
-    </div>
       <h5 class="card-title"  name="destinationName">
 ${selectedResult.name}
 </h5>
@@ -620,7 +621,7 @@ ${selectedResult.name}
 <input type="hidden" value="${selectedResult.name}" class="destination-name">
 <input type="hidden" value="${selectedResult.vicinity}" class="destination-address">
 <input type="hidden" value="${selectedResult.place_id}" class="destination-place-id">
-<input type="hidden" value="${selectedResult.photos[0].getUrl()}" class="destination-photo">
+<input type="hidden" value="${photoUrl}" class="destination-photo">
 
       <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress">
 ${selectedResult.vicinity}
@@ -629,6 +630,29 @@ ${selectedResult.vicinity}
       View on Map
       </a>
     </div>`;
+    }else{
+        card = document.createElement('div');
+        card.className = 'card col-3 m-1';
+        card.style = 'width: 15rem; background-color: #003B46; color: #D8D0B2';
+        card.innerHTML = `
+    <div class="destinationCard card-body">
+      <h5 class="card-title"  name="destinationName">
+${selectedResult.name}
+</h5>
+<input type="hidden" value= 0 class="destination-id" >
+<input type="hidden" value="${selectedResult.name}" class="destination-name">
+<input type="hidden" value="${selectedResult.vicinity}" class="destination-address">
+<input type="hidden" value="${selectedResult.place_id}" class="destination-place-id">
+
+
+      <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress">
+${selectedResult.vicinity}
+</h6>
+      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link" target="_blank">
+      View on Map
+      </a>
+    </div>`;
+    }
 
     listContainer.appendChild(card);
 }

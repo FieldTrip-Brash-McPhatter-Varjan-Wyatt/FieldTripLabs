@@ -48,7 +48,7 @@ public class User {
     private List<Itinerary> itineraries;
 
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Review> reviews;
 
     public User(User copy) {

@@ -28,11 +28,23 @@ public class Itinerary {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "itinerary")
     private Checklist checklist;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "itinerary")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "itinerary")
     private List<Destination> destinations;
+
+
+    public void addDestination(Destination destination) {
+        destinations.add(destination);
+        destination.setItinerary(this);
+    }
+
+    public void removeDestination(Destination destination) {
+        destinations.remove(destination);
+        destination.setItinerary(null);
+    }
+
 
     public Itinerary() {
         checklist = new Checklist();
