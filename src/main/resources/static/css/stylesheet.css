@@ -55,4 +55,11 @@
     width: 100%;
 }
 
+.scrollable-container {
+    height: 100px; /* Adjust based on your requirements */
+    overflow-y: scroll; /* Add a vertical scrollbar */
+}
 
+#places tr {
+    height: 25px; /* Adjust based on your requirements */
+}
