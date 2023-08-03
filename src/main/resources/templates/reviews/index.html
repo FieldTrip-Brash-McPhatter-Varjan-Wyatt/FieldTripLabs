@@ -25,6 +25,7 @@
 				</div>
 
 				<div class="container" >
+					<form class="form-review" th:action="@{/reviews/create}" th:method="post" th:object="${newReview}">
 					<div class="star-widget">
 						<input type="radio" name="ratingStar"  id="rate-5-star" value="5">
 						<label for="rate-5-star" class="fas fa-star"></label>
@@ -36,8 +37,8 @@
 						<label for="rate-2-star" class="fas fa-star"></label>
 						<input type="radio" name="ratingStar" id="rate-1-star" value="1">
 						<label for="rate-1-star" class="fas fa-star"></label>
-						<form th:action="@{/reviews/create}" th:method="post" th:object="${newReview}">
-							<header></header>
+					</div>
+						<header></header>
 							<input type="hidden" id="placeId" name="placeId" th:value="${destinations[0].placeId}">
 							<input id="rating" type="hidden" name="rating" value=1>
 							<div class="textarea">
@@ -46,8 +47,7 @@
 							<div class="btn">
 								<button type="submit">Post</button>
 							</div>
-						</form>
-					</div>
+					</form>
 				</div>
 				<script>
 					const starInputs = document.querySelectorAll('input[name="ratingStar"]');
@@ -75,16 +75,12 @@
 				</script>
 
 				<div class="review-box-heading">
-
 					<div class="review-box" th:each="review : ${reviews}">
-
 						<div class="review-box-top">
 							<div class="user-profile">
-
 								<div class="profile-image">
 									<img th:src="${review.getUser().getImage()}"/>
 								</div>
-
 								<div class="user-name">
 									<strong th:text="${review.user.getFirstName()} + ' ' + ${review.user.getLastName()}"></strong>
 									<span th:text="'@' + ${review.user.getUsername()}"></span>
@@ -92,20 +88,14 @@
 							</div>
 							<div class="user-reviews">
 								<i class="fas fa-star" th:each="i : ${#numbers.sequence( 1, review.getRating())}"></i>
-
 								<i th:if="${review.rating < 5}" class="far fa-star" th:each="i : ${#numbers.sequence( 1, 5 - review.getRating())}"></i>
 							</div>
-
 						</div>
-
 						<div class="user-comments">
 							<p th:text="${review.content}"></p>
 						</div>
-
 					</div>
-
 				</div>
-
 			</section>
 
 
