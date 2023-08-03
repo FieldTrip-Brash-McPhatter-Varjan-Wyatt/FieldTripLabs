@@ -68,8 +68,8 @@ $(document).ready(function () {
 
                         weatherHtml += `
                 <div class="card text-center" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">${formattedWeekday}<br>${formattedDate}</h5>
+                  <div class="card-body" style="background-color: #003B46; color: #DBD1B3;>
+                    <h5 class="card-title">${formattedWeekday}<br>${formattedDate}</h5><br>
                     <p class="card-text">Temperature: ${data.temp}</p>
                     <p class="card-text">Weather Conditions: 
                     <br>
@@ -340,11 +340,13 @@ document.getElementById('listSelection').addEventListener('change', function () 
         deleteBtn.setAttribute("type", "button");
         deleteBtn.setAttribute("class", "btn btn-danger delete-todo"); // Change class to 'btn-danger' for red color
         deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
-        deleteBtn.style.color = "white"; // Change text color to white
-
+        deleteBtn.style.backgroundColor = "transparent"; // Change button background to transparent
+        deleteBtn.style.border = "none"; // Remove border
+        deleteBtn.style.color = "red";
         deleteBtn.addEventListener('click', function () {
             li.parentNode.removeChild(li);
         });
+
 
 // Append delete button to the list item
         li.appendChild(deleteBtn);
@@ -478,11 +480,15 @@ function createNewItem() {
         });
     });
 
+
+
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
     deleteBtn.setAttribute("class", "btn btn-danger delete-todo");
-    deleteBtn.innerHTML = "&times;";
-    deleteBtn.style.color = "white";
+    deleteBtn.innerHTML = "&times;"; // Use HTML entity for 'X'
+    deleteBtn.style.backgroundColor = "transparent"; // Change button background to transparent
+    deleteBtn.style.border = "none"; // Remove border
+    deleteBtn.style.color = "red";
     deleteBtn.addEventListener("click", function (event) {
         event.target.parentElement.parentElement.remove();
     });
@@ -495,14 +501,11 @@ function createNewItem() {
 }
 
 
-document.querySelector("#add-button, #add-edit-button").addEventListener("click", createNewItem);
+document.querySelector("#add-button").addEventListener("click", createNewItem);
 
 
-document.querySelector("#listItems").addEventListener("click", function(event) {
-    if (event.target.classList.contains("delete-todo")) {
-        event.target.parentElement.remove();
-    }
-});
+
+
 
 
 
@@ -536,6 +539,11 @@ function searchNearbyPlaces() {
         radius: '5000',
         type: [document.getElementById('type').value]
     }, callback);
+
+    $("#places").css("display", "block");
+    $("#itineraryContainer").css("display", "block");
+    $("#packingListContainer").css("display", "block");
+    $("#saveFunctionContainer").css("display", "block");
 }
 
 
@@ -549,26 +557,39 @@ function callback(results, status) {
         for (let i = 0; i < results.length; i++) {
             if (results[i].photos) {
                 let photoUrl = results[i].photos[0].getUrl();
-                container.innerHTML += `<div class="card m-2 p-1 col-2 align-items-center m-0 rounded" id="${i}" style="background-color: #D9D0B2;">
-<a href="reviews/${results[i].place_id}"><img class="border-success rounded-circle mt-1" width = "80" height="80" src="${photoUrl}"/></a>
-<div class="card-title text-center m-1 p-0" style="color: #003B46;">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="color: #003B46; border-color: #D9D0B2;">ADD</button></div>`;
+                container.innerHTML += `
+<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between" id="${i}" style="background-color: #003b46; padding: 15px;">
+  <a th:href="reviews/${results[i].place_id}">
+    <img class="border border-4 rounded-circle mt-1" width = "80" height="80" src="${photoUrl}"/>
+  </a>
+  <div class="card-title text-center m-1 p-0" style="color: #dbd1b3; margin-bottom: 20px;">
+    ${results[i].name}
+  </div>
+  <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">ADD</button>
+</div>`;
+
+
             } else {
                 let photoUrl = "https://via.placeholder.com/150"
 
-                container.innerHTML += `<div class="card m-2 p-1 col-2 align-items-center m-0 rounded" id="${i}" style="background-color: #D9D0B2;">
-<a th:href="reviews/${results[i].place_id}"><img class="border border-4 rounded-circle mt-1" width = "80" height="80" src="${photoUrl}"/></a>
-<div class="card-title text-center m-1 p-0" style="color: #003B46;">` + results[i].name + `</div><button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="color: #003B46; border-color: #D9D0B2;">ADD</button></div>`;
+                container.innerHTML += `
+<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between" id="${i}" style="background-color: #003b46; padding: 15px;">
+  <a th:href="reviews/${results[i].place_id}">
+    <img class="border border-4 rounded-circle mt-1" width = "80" height="80" src="${photoUrl}"/>
+  </a>
+  <div class="card-title text-center m-1 p-0" style="color: #dbd1b3; margin-bottom: 20px;">
+    ${results[i].name}
+  </div>
+  <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">ADD</button>
+</div>`;
+
+
             }
         }
     } else {
-        container.innerHTML = "<div class='card m-4 col text-center align-items-center' style='background-color: #D9D0B2;'><h2 class='m-3' style='color: #003B46;'>No Places in the area.</h2></div>"
+        container.innerHTML = "<div class='card m-4 col text-center align-items-center' style='background-color: #D9D0B2;'><h2 class='m-3' style='color: #003B46;'>No Places in the area. Please try another location.</h2></div>"
     }
 }
-
-
-
-
-document.querySelector("#autocomplete",).addEventListener('click', clearField)
 
 function clearField() {
     document.getElementById('autocomplete').value = "";
@@ -585,8 +606,8 @@ function addToItinerary(index) {
 
 
     var card = document.createElement('div');
-    card.className = 'card col-3 m-1';
-    card.style = 'width: 15rem; background-color: #003B46; color: #D8D0B2';
+    card.className = 'card col-5 m-1';
+    card.style = 'width: 18rem; background-color: #003B46FF; color: #dbd1b3;';
     card.innerHTML = `
     <div class="destinationCard card-body">
     <div class="d-none" name="photoUrl">

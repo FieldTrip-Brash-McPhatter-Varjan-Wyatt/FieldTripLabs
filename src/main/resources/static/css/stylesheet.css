@@ -63,3 +63,7 @@
 #places tr {
     height: 25px; /* Adjust based on your requirements */
 }
+
+#weatherData .card {
+    background-color: #003B46 !important;
+}
