@@ -8,31 +8,31 @@
 <body style="background-color: #C4DFE6">
 <nav th:insert="@{partials/navbar}"></nav>
 <!-- Button trigger modal -->
-<button type="button" class="d-none btn btn-primary sticky-top w-100" data-bs-toggle="modal" data-bs-target="#weatherModal"
+<button type="button" class="d-none btn btn-primary sticky-top w-100" style="background-color: #DBD1B3; color: #003B46; border: none" data-bs-toggle="modal"
+        data-bs-target="#weatherModal"
         id="weatherButton">
     Show Weather
 </button>
 
 
-
 <!-- Modal -->
 <div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="weatherModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: #003B46;">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="weatherModalLabel">Historical Weather</h1>
+                <h1 class="modal-title fs-5" id="weatherModalLabel" style="color: #DBD1B3;">Historical Weather</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color: #C4DFE6; color: #003B46;">
                 <div id="weatherData"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color: #DBD1B3;">Close</button>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <div class="container mt-5">
@@ -40,17 +40,17 @@
         <form th:action="@{'itinerary/create'}" th:method="POST" th:object="${itinerary}" id="submit-form">
 
 
-
             <!-- Hidden input field for destination address -->
             <div class="d-none" id="destinationContainer"></div>
             <!-- Start Search Bar -->
 
-            <div class="card m-3" style="background-color: #003B46;">
-                <h2 class="text-center" style="color: #D9D0B2;">Plan You Perfect Trip </h2>
-                <p class="text-center" style="color: #D9D0B2;">Search your perfect destination, select your preferred dates, and start planning!</p>
+            <div class="card m-3 p-3" style="background-color: #003B46;">
+                <h2 class="text-center" style="color: #D9D0B2;">Plan Your Perfect Trip </h2>
+                <p class="text-center" style="color: #D9D0B2;">Search your perfect destination, select your preferred
+                    dates, and start planning!</p>
                 <div class="d-flex mt-3 mb-3">
 
-                    <select class="form-select" id="type">
+                    <select class="form-select ml-2" id="type">
                         <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
                         <option id="aquarium" value="aquarium">Aquarium</option>
                         <option id="art_gallery" value="art_gallery">Art Gallery</option>
@@ -69,10 +69,12 @@
                                id="autocomplete" onclick="clearField()">
                     </div>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" name="startDate" placeholder="Start Date" th:field="*{startDate}">
+                        <input type="date" class="form-control" name="startDate" placeholder="Start Date"
+                               th:field="*{startDate}">
                     </div>
                     <div class="col-2 m-1">
-                        <input type="date" class="form-control" name="endDate" placeholder="End Date" th:field="*{endDate}">
+                        <input type="date" class="form-control" name="endDate" placeholder="End Date"
+                               th:field="*{endDate}">
 
                     </div>
                 </div>
@@ -80,93 +82,101 @@
 
             </div>
 
-<!--            <div class="scrollable-container">-->
-<!--                <table class="container d-flex flex-wrap justify-content-center" id="places"></table>-->
-<!--            </div>-->
+            <!--            <div class="scrollable-container">-->
+            <!--                <table class="container d-flex flex-wrap justify-content-center" id="places"></table>-->
+            <!--            </div>-->
             <!-- Packing List Container (Left Side) -->
 
-            <div class="overflow-auto container d-flex flex-wrap justify-content-center" style="height: 300px; border: 1px solid black;" id="places">
-                <div id="placesLoadingMessage" class="text-center w-100">
-                    <h1>Search a location to display popular destinations!</h1>
+            <div class="overflow-auto container d-flex flex-wrap justify-content-center align-items-center" style="height: 300px; border: 2px solid #D9D0B2; display: none;" id="places">
+                <div id="placesLoadingMessage" class="text-center w-100" style="height: 100%;">
+                    <h1>Enter your trip location and dates to get started!</h1>
                 </div>
             </div>
+
             <br>
 
 
-
-
-
-
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="overflow-auto container d-flex flex-wrap justify-content-center" style="height: 400px; border: 1px solid black;">
+                <div class="col-lg-8" style="display: none;" id="itineraryContainer">
+                    <div class="overflow-auto container d-flex flex-wrap justify-content-center"
+                         style="height: 400px; border: 2px solid #D9D0B2;">
 
                         <div id="itineraryLoadingMessage" class="text-center w-100">
-                            <h1>Itinerary</h1>
-                        <div id="listContainer" class="row d-flex flex-wrap justify-content-around">
-                        </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="overflow-auto container d-flex flex-wrap justify-content-center" style="height: 400px; border: 1px solid black; ">
-
-                    <div class="border p-4">
-                        <h1>Packing List</h1>
-                        <div class="row d-flex">
-                            <div class=" col-12 mb-3">
-                                <label for="listSelection">Click Here to Select a Packing List:</label>
-                                <select id="listSelection" class="form-control">
-                                    <option value="0">Choose a Packing List</option>
-                                    <option value="1">Summer Destination</option>
-                                    <option value="2">Beach Destination</option>
-                                    <option value="3">Ski Destination</option>
-                                    <option value="4">Romantic Destination</option>
-                                    <option value="5">Winter Destination</option>
-                                    <option value="6">Sightseeing Destination</option>
-                                    <option value="7">Nature Destination</option>
-                                    <option value="8">International Destination</option>
-                                </select>
+                            <h1>My Itinerary</h1>
+                            <p>Click add on the locations above.</p>
+                            <div id="listContainer" class="row d-flex flex-wrap justify-content-around">
                             </div>
-                            <div>
-                                <ul id="listItems">
-                                    <li th:each="checklistItem, itemStat : *{checklist.checklistItems} ">
-                                        <input type="hidden" class="item-id"
-                                               th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
-                                        <input id="itemInput" type="text" class="item-name"
-                                               th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="justify-content-end col-12">
-                                <button type="button" id="add-button" class="btn btn-primary col-3">Add Item</button>
-                            </div>
-                            <div class="mb-3 col-12">
-
-                                <label for="listNameInput" class="form-label">List Name:</label>
-                                <input type="hidden" th:field="*{checklist.id}"/>
-                                <input type="text" class="form-control" id="listNameInput"
-                                       placeholder="Name Your Custom List" name="checklistName"
-                                       th:field="*{checklist.name}">
-                            </div>
-                            <!-- Add more list items here -->
-
                         </div>
                     </div>
                 </div>
-                <!-- END Packing List Container -->
+
+                <div class="col-lg-4" style="display: none;" id="packingListContainer">
+                    <div class="overflow-auto container d-flex flex-wrap justify-content-center"
+                         style="height: 400px; border: 2px solid #D9D0B2; ">
+
+                        <div class="border p-4">
+                            <h1>Packing List</h1>
+                            <div class="row d-flex">
+                                <div class=" col-12 mb-3">
+                                    <label for="listSelection">Click Here to Select a Packing List:</label>
+                                    <select id="listSelection" class="form-control">
+                                        <option value="0">Choose a Packing List</option>
+                                        <option value="1">Summer Destination</option>
+                                        <option value="2">Beach Destination</option>
+                                        <option value="3">Ski Destination</option>
+                                        <option value="4">Romantic Destination</option>
+                                        <option value="5">Winter Destination</option>
+                                        <option value="6">Sightseeing Destination</option>
+                                        <option value="7">Nature Destination</option>
+                                        <option value="8">International Destination</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <ul id="listItems">
+                                        <li th:each="checklistItem, itemStat : *{checklist.checklistItems} ">
+                                            <input type="hidden" class="item-id"
+                                                   th:field="*{checklist.checklistItems[__${itemStat.index}__].id}"/>
+                                            <input id="itemInput" type="text" class="item-name"
+                                                   th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button type="button" id="add-button" class="btn btn-primary" style="background-color: #DBD1B3; color: #003B46; border: none;">Add Item
+                                    </button>
+                                </div>
+                                <div class="mb-3 col-12">
+
+                                    <label for="listNameInput" class="form-label"></label>
+                                    <input type="hidden" th:field="*{checklist.id}"/>
+                                    <input type="text" class="form-control" id="listNameInput"
+                                           placeholder="Name Your Custom List" name="checklistName"
+                                           th:field="*{checklist.name}">
+                                </div>
+                                <!-- Add more list items here -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Packing List Container -->
 
 
-
-            </div>
-<!--End row-->
+                </div>
+                <!--End row-->
                 <!--                Save functions-->
-                <div class="col-12 d-flex justify-content-center mb-2">
-                    <input type="text" placeholder="Itinerary Name" class="form-control col-8" name="itineraryName"
-                           th:field="*{name}">
+                <div class="d-flex flex-column align-items-center mb-2" style="display: none;" id="saveFunctionContainer">
+                    <div class="col-4">
+                        <input type="text" placeholder="Name Your Itinerary"
+                               class="form-control" name="itineraryName"
+                               th:field="*{name}">
+                    </div>
+                    <div class="col-4 d-flex flex-column align-items-center mb-2">
+                        <button type="button" id="createItinerary"
+                                class="btn btn-primary" style="background-color: #DBD1B3; color: #003B46; border: none">Save Your Itinerary and Packing List
+                        </button>
+                    </div>
                 </div>
-                <button type="button" id="createItinerary" class="btn btn-primary">Create Itinerary</button>
+
 
             </div>
         </form>
