@@ -28,7 +28,7 @@ public class Checklist {
     @JoinColumn(name = "itinerary_id", nullable = false)
     private Itinerary itinerary;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "checklist", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "checklist")
     private List<ChecklistItems> checklistItems;
 
 
