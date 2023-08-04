@@ -18,7 +18,7 @@
 <nav th:insert="partials/navbar"></nav>
 
 <!--MY PROFILE SECTION-->
-<div id="profileSection" class="main-card container card mt-5 w-75 px-0 ">
+<div id="profileSection" class="main-card container card mt-5 w-75">
     <h1 class="card-header text-center bg-transparent">My Profile</h1>
     <div class="row my-2">
         <!--PROFILE PICTURE-->
@@ -34,24 +34,30 @@
 
         </div>
         <!--ACCOUNT DETAILS-->
-        <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 d-flex justify-content- align-items-center">
+        <div class="container col-sm-6 col-md-6 col-lg-6 d-flex flex-column justify-content-center align-items-center">
 
             <ul class="list-unstyled">
                 <li><h3 class="text-decoration-underline text-center">Account Details</h3></li>
-                <li><h4><strong class="text-start" style="color: #07575b">Username:</strong><span class="text-end"
-                                                                                                  th:text="${user.getUsername()}"></span>
-                </h4></li>
-                <li><h4><strong class="text-start" style="color: #07575b">Name:</strong><span class="text-end"
-                                                                                              th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></span>
-                </h4></li>
-                <li><h4><strong class="text-start" style="color: #07575b">Email:</strong><span class="text-end"
-                                                                                               th:text="${user.getEmail()}"></span>
-                </h4></li>
-                <a th:href="@{/profile/edit}">
-                    <button id="editProfile" class="w-75">Edit Profile</button>
-                </a>
+                <li class="">
+                    <div class="d-flex ">
+                        <div class="text-start" style="color: #07575b">Username:</div>
+                        <div class="text-start" th:text="' ' + ${user.getUsername()}"></div>
+                    </div>
+                </li>
+                <li class="">
+                    <div class="d-flex ">
+                        <div class="text-start" style="color: #07575b">Name:</div>
+                        <div class="text-start" th:text="' ' + ${user.getFirstName()} + ' ' + ${user.getLastName()}"></div>
+                    </div>
+                </li>
+                <li class="mb-3">
+                    <div class="d-flex ">
+                        <div class="text-start" style="color: #07575b">Email:</div>
+                        <div class="text-end" th:text="${user.getEmail()}"></div>
+                    </div>
+                </li>
+                <a th:href="@{/profile/edit}"><button id="editProfile" class="w-75">Edit Profile</button></a>
             </ul>
-
         </div>
     </div>
 </div>
@@ -63,18 +69,18 @@
 
         <!--User with NO Itineraries-->
         <div th:if="${user.itineraries.isEmpty()}" class="">
-            <a th:href="@{/itinerary}"><h4 class="fst-italic card-body text-center">LET'S PLAN YOUR TRIP!</h4></a>
+            <a th:href="@{/itinerary}"><h4 class="fst-italic card-body text-center " id="linkToItin" style="color: white">LET'S PLAN YOUR TRIP!</h4></a>
         </div>
 
         <!--User WITH Itineraries-->
         <div th:if="${!user.itineraries.isEmpty()}" id="itinCard" class="col-xs-4 col-sm-7 col-md-4 col-lg-3 card m-1"
              th:each="itinerary : ${user.itineraries}">
-            <img src="/img/SaoPauloPhoto.jpeg" alt="stock photo" class="img-fluid mx-auto my-3" width="80%"/>
+            <img src="/img/Layer%201.png" alt="stock photo" class="img-fluid mx-auto my-3" width="40%"/>
             <div class="card-body" style="color: #003b46">
                 <h5 class="card-title text-center" th:text="${itinerary.name}"></h5>
                 <div class="d-flex flex-column">
-                    <p class="card-text text-center mb-0" th:text="'S: ' + ${itinerary.startDate}"></p>
-                    <p class="card-text text-center mt-0" th:text="'E: ' + ${itinerary.endDate}"></p>
+                    <p class="card-text text-center mb-0" th:text="'Frm: ' + ${itinerary.startDate}"></p>
+                    <p class="card-text text-center mt-0" th:text="'To: ' + ${itinerary.endDate}"></p>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a id="editItinBtn" th:href="@{'/itinerary/' + ${itinerary.id} + '/edit'}"
