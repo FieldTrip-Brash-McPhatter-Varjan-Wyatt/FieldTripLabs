@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="@{partials/header}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Playball&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{../static/css/stylesheet.css}">
+
+</head>
+<body style="background-color: #C4DFE6">
+<nav th:insert="@{partials/navbar}"></nav>
+
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 m-2">
+        <div class="container" style=" width: 100%">
+            <img th:src="@{../css/nyc.jpeg}" class="mx-auto d-block img-fluid " alt="São Paulo">
+
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 m-2 ">
+        <div class="text-center">
+            <h1 style="font-family: 'Nothing You Could Do', cursive">New York, NY, USA</h1>
+        </div>
+        <div class="container p-2" style="background-color: #003B46; color:  #DBD1B3; width: 100%">
+
+            <p style="text-indent: 2em;">New York City, affectionately known as "The Big Apple", is a city of
+                superlatives. It's a melting pot of cultures, ideas, and flavors, that offers something for everyone.
+                From the iconic silhouette of the Statue of Liberty to the soaring heights of the Empire State Building,
+                the city's skyline is a testament to America's ambitious spirit. Immerse yourself in the chaos and charm
+                of Times Square, or escape the hustle and bustle in the verdant oasis of Central Park. A Broadway show
+                is a must for theatre lovers, and the city's dynamic food scene, ranging from Michelin-starred
+                restaurants to corner food trucks, will satisfy even the most discerning palate.</p>
+
+            <p style="text-indent: 2em;"> The city's neighborhoods are as diverse as its inhabitants. Experience the
+                bohemian charm of Greenwich Village, the multicultural vibrancy of Queens, the creative pulse of
+                Brooklyn, or the rich history of Harlem. Venture to the top of the One World Trade Center's observation
+                deck for breathtaking panoramic views, or traverse the artistic High Line for a unique perspective of
+                the city. Every corner of New York is brimming with stories, just waiting to be discovered. The city
+                that never sleeps is a testament to the human spirit, ever-evolving, ever-dreaming, and ever-welcoming
+                to those who wish to be a part of its grand narrative.</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</div>
+<footer th:insert="partials/footer"></footer>
+</body>
+</html>
+
+
+

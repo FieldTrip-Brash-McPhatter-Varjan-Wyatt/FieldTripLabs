@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="@{partials/header}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Playball&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{../static/css/stylesheet.css}">
+
+</head>
+<body style="background-color: #C4DFE6">
+<nav th:insert="@{partials/navbar}"></nav>
+
+
+    <img th:src="@{static/css/brazil.jpeg}" class="mx-auto d-block img-fluid rounded-circle" alt="São Paulo">
+
+
+<div class="row justify-content-center">
+    <div class="col-10 col-md-8 col-lg-6 m-2">
+        <div class="container-fluid" style="background-color: #003B46; color:  #DBD1B3">
+            <h1>Sao Paulo, SP, Brazil</h1>
+            <p>Immerse yourself in the heart of Brazil's cultural and economic powerhouse - Sao Paulo. Renowned as the city that
+                never sleeps in South America, Sao Paulo enthralls you with its bustling food scene, impressive architecture, and vibrant
+                nightlife. Dine at world-class restaurants that serve exotic and mouthwatering Brazilian cuisine or explore the
+                colorful markets to savor authentic street food. The city's artistic soul is vividly expressed in its myriad galleries,
+                creative street art, and the famous Sao Paulo Museum of Art. Dive into Sao Paulo's captivating mix of influences - European,
+                African, Middle Eastern, and, of course, Latin American - for a multi-sensory journey that will leave you in awe.
+
+                The beauty of Sao Paulo lies in its ability to blend the modern with the traditional. Admire the city's skyline,
+                dotted with modern skyscrapers standing alongside architectural gems from the past. Wander around the historic downtown
+                area or lose yourself in the tranquility of Ibirapuera Park, often referred to as the 'Central Park of Sao Paulo.' With its
+                vibrant samba scene, Sao Paulo also offers an unparallel musical experience. Embrace the pulsating rhythms, get
+                swept up in the infectious energy, and leave with a part of Sao Paulo in your heart.</p>
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<footer th:insert="partials/footer"></footer>
+</body>
+</html>
+
+
+

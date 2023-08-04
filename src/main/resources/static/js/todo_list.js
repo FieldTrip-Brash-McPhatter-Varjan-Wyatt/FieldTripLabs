@@ -585,6 +585,7 @@ function callback(results, status) {
     ${results[i].name}
   </div>
   <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">ADD</button>
+  <a href="reviews/${results[i].place_id}" id="${i}" class="btn btn-outline-success mb-2 p-1"  style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">REVIEWS</a>
 </div>`;
 
 
@@ -600,6 +601,7 @@ function callback(results, status) {
     ${results[i].name}
   </div>
   <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">ADD</button>
+  <a href="reviews/${results[i].place_id}" id="${i}" class="btn btn-outline-success mb-2 p-1"  style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">REVIEWS</a>
 </div>`;
 
 
