@@ -94,5 +94,16 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <script src="/js/filestack.js"></script>
+<script>
+    <!--Confirm delete Itinerary-->
+    document.getElementById('deleteItinBtn').onclick = function (e){
+        let areYouSure = confirm('Delete this itinerary?');
+        if (areYouSure){
+            return true;
+        } else {
+            e.preventDefault();
+        }
+    }
+</script>
 </body>
 </html>
