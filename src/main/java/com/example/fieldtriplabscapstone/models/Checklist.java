@@ -28,21 +28,12 @@ public class Checklist {
     @JoinColumn(name = "itinerary_id", nullable = false)
     private Itinerary itinerary;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "checklist")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "checklist", orphanRemoval = true)
     private List<ChecklistItems> checklistItems;
+
 
     public Checklist() {
         checklistItems = new ArrayList<>();
-    }
-
-    public void removeChecklistItem(ChecklistItems checklistItem) {
-        checklistItems.remove(checklistItem);
-        checklistItem.setChecklist(null);
-    }
-
-    public void addChecklistItem(ChecklistItems newItem) {
-        checklistItems.add(newItem);
-        newItem.setChecklist(this);
     }
 
 }
