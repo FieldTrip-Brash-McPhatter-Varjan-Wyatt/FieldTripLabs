@@ -31,18 +31,9 @@ public class Checklist {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "checklist")
     private List<ChecklistItems> checklistItems;
 
+
     public Checklist() {
         checklistItems = new ArrayList<>();
-    }
-
-    public void removeChecklistItem(ChecklistItems checklistItem) {
-        checklistItems.remove(checklistItem);
-        checklistItem.setChecklist(null);
-    }
-
-    public void addChecklistItem(ChecklistItems newItem) {
-        checklistItems.add(newItem);
-        newItem.setChecklist(this);
     }
 
 }

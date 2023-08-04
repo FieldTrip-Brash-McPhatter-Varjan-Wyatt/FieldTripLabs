@@ -407,16 +407,19 @@ function createNewItem() {
     span.classList.add("item-name")
     span.style.display = "none";
     div.appendChild(span);
+
+    let hiddenName = document.createElement("input");
+    hiddenName.setAttribute("type", "hidden");
+    hiddenName.setAttribute("class", "hidden-input");
+    div.appendChild(hiddenName)
+
     let hiddenId = document.createElement("input");
     hiddenId.setAttribute("type", "hidden");
     hiddenId.classList.add("item-id");
     hiddenId.setAttribute("value", 0);
     div.appendChild(hiddenId);
 
-    let hiddenName = document.createElement("input");
-    hiddenName.setAttribute("type", "hidden");
-    hiddenName.setAttribute("class", "hidden-input");
-    div.appendChild(hiddenName)
+
 
 
 
@@ -504,6 +507,17 @@ function createNewItem() {
 document.querySelector("#add-button").addEventListener("click", createNewItem);
 
 
+document.getElementById("listItems").addEventListener("click", function (event) {
+    if (event.target.classList.contains("delete-todo")) {
+        event.target.parentElement.remove();
+    }
+});
+
+
+
+
+
+
 //Making the calls to the API on submit
 var searchResults = [];
 
@@ -540,7 +554,6 @@ function searchNearbyPlaces() {
 
 
 function callback(results, status) {
-    $("#weatherButton").removeClass("d-none")
     searchResults = results;
     var container = document.getElementById('places');
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -677,8 +690,11 @@ document.querySelector("#createItinerary, #edit-form").addEventListener("click",
     const itemNames = document.querySelectorAll(".item-name");
     itemNames.forEach((nameField, index) => {
         const next = nameField.nextElementSibling;
+        const nextNext = next.nextElementSibling;
         next.setAttribute("name", `checklist.checklistItems[${index}].itemName`);
         next.setAttribute("value", nameField.innerText);
+        nextNext.setAttribute("name", `checklist.checklistItems[${index}].id`);
+        nextNext.setAttribute("value",nextNext.value ? nextNext.value : 0);
     });
 
 

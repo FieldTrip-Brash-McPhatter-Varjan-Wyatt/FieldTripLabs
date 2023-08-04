@@ -43,20 +43,20 @@ public class ItineraryController {
             return "redirect:/login";
         }
         itinerary.setUser(loggedInUser);
-        //        resets checklist to itinerary
-        itinerary.getChecklist().setItinerary(itinerary);
-//        resets checklist item to checklist that is in itinerary
-        for (ChecklistItems checklistItem : itinerary.getChecklist().getChecklistItems()) {
-            System.out.println(checklistItem);
-            checklistItem.setChecklist(itinerary.getChecklist());
+
+        Checklist checklist = itinerary.getChecklist();
+        checklist.setItinerary(itinerary);
+
+        for (ChecklistItems checklistItem : checklist.getChecklistItems()) {
+            checklistItem.setChecklist(checklist);
         }
+
 //        loop through destinations and set to itinerary
         for (Destination destination : itinerary.getDestinations()) {
             destination.setItinerary(itinerary);
         }
-        System.out.println(itinerary.getChecklist().getChecklistItems());
         itineraryDao.save(itinerary);
-        return "redirect:/itinerary";
+        return "redirect:/profile";
 
     }
 
@@ -107,21 +107,21 @@ public class ItineraryController {
 
         // Delete any checklist items that are no longer present in the updated checklist
 
-            List<ChecklistItems> existingChecklistItems = checklistItemsDao.findChecklistByChecklist(existingChecklist);
-            for (ChecklistItems existingChecklistItem : existingChecklistItems) {
-                boolean found = false;
-                for (ChecklistItems itemCheck : itinerary.getChecklist().getChecklistItems()) {
-                    if (itemCheck.getId() == existingChecklistItem.getId()) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    System.out.println(existingChecklistItem.getId());
-                    // Delete checklist item that is no longer present in the updated checklist
-//                    checklistItemsDao.deleteById(existingChecklistItem.getId());
-                    checklistItemsDao.nukeById(existingChecklistItem.getId());
+        List<ChecklistItems> existingChecklistItems = checklistItemsDao.findChecklistByChecklist(existingChecklist);
+        for (ChecklistItems existingChecklistItem : existingChecklistItems) {
+            boolean found = false;
+            for (ChecklistItems itemCheck : itinerary.getChecklist().getChecklistItems()) {
+                if (itemCheck.getId() == existingChecklistItem.getId()) {
+                    found = true;
                 }
             }
+            if (!found) {
+                System.out.println(existingChecklistItem.getId());
+                // Delete checklist item that is no longer present in the updated checklist
+//                    checklistItemsDao.deleteById(existingChecklistItem.getId());
+                checklistItemsDao.nukeById(existingChecklistItem.getId());
+            }
+        }
 
 
         // Save the existingItinerary with the updated values and updated destinations
@@ -146,6 +146,8 @@ public class ItineraryController {
     }
 
 
+
+
         @Transactional
         @GetMapping ("/itinerary/{id}/delete")
         public String deleteItinerary(@PathVariable Long id) {
@@ -157,21 +159,22 @@ public class ItineraryController {
 
             // Remove the destinations from the itinerary
             List<Destination> destinations = itinerary.getDestinations();
-            System.out.println(destinations);
-//            for (Destination destination : destinations) {
-                itinerary.getDestinations().removeAll(destinations);
-//            }
 
-
-            // Delete the checklist and other related entities (cascade deletion)
-            Checklist checklist = itinerary.getChecklist();
-            if (checklist != null) {
-                checklistDao.delete(checklist);
+            for (Destination destination : destinations) {
+                destination.setItinerary(null);
+                destinationDao.delete(destination);
             }
+            itinerary.getDestinations().removeAll(destinations);
+
+            Checklist checklist = itinerary.getChecklist();
+            List<ChecklistItems> checklistItems = checklist.getChecklistItems();
+            checklistItems.removeAll(checklistItems);
+            itinerary.setChecklist(null);
+            checklistDao.delete(checklist);
+
 
             // Now you can safely delete the itinerary
-            itineraryDao.delete(itinerary);
-            itineraryDao.deleteItineraryById(id);
+            itineraryDao.deleteItineraryById(itinerary.getId());
             System.out.println("Deleted itinerary with ID: " + itinerary.getId());
             return "redirect:/profile";
         }

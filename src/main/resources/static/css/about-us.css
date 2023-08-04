@@ -1,0 +1,149 @@
+/*.header-section {*/
+/*    background-image: url('banner.jpeg');*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    color: white;*/
+/*    !*text-align: center;*!*/
+/*    padding: 100px 0;*/
+/*}*/
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(48,25,52,0.75);
+}
+
+#background-video{
+    padding-top: 81px;
+    max-height: 50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+#cover{
+    max-height: 45vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.top {
+    max-height: 500px;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.top > * {
+    max-height: 50%;
+    position: relative;
+    border: 0;
+    padding: 10px;
+    background: transparent;
+    line-height: 50px;
+    font-size: 20px;
+    color: #dbd1b3;
+    border-radius: 0;
+    outline: 0;
+    -webkit-appearance: none;
+}
+
+/*.container .mission-section{*/
+
+/*    padding-top: 400px;*/
+/*}*/
+
+.mission-section {
+    padding-top: 450px;
+}
+.mission-section img{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.57);
+}
+
+#cover h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: 'Nothing You Could Do', cursive;
+
+}
+
+#cover p{
+    display: flex;
+    justify-content: center;
+    font-family: 'Nothing You Could Do', cursive;
+}
+
+.leaders-section {
+    padding: 50px 0;
+}
+
+#leaders p{
+    padding-bottom: 25px;
+}
+
+.leader-image {
+    width: 150px;
+    height: 150px;
+    /*border: solid 1px #dbd1b3;*/
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.76);
+
+}
+
+.leader-name {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#mission{
+    background: #07575b;
+    color: #dbd1b3;
+}
+
+#mission h2{
+    font-family: 'Nothing You Could Do', cursive;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#mission p{
+    display: flex;
+    align-content: center;
+    padding-top: 25px;
+
+}
+
+a{
+    color: #dbd1b3;
+
+}
+
+#photo{
+    display: flex;
+    justify-content: center;
+
+    margin-top: 50px;
+}
+#leaders{
+    margin-top: 50px;
+    background: #07575b;
+    color: #dbd1b3;
+    padding: 20px;
+}
+
+#leaders h2{
+    display: flex;
+    justify-content: center;
+    font-family: 'Nothing You Could Do', cursive;
+}

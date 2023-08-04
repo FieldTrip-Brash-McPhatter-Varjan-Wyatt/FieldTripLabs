@@ -26,8 +26,4 @@ public class ChecklistItems {
     private Checklist checklist;
 
 
-    public ChecklistItems(String itemName, Checklist existingChecklist) {
-            this.itemName = itemName;
-            this.checklist = existingChecklist;
-    }
 }
