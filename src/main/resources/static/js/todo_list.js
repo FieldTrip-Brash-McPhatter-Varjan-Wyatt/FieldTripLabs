@@ -504,15 +504,6 @@ function createNewItem() {
 document.querySelector("#add-button").addEventListener("click", createNewItem);
 
 
-
-
-
-
-
-
-
-
-
 //Making the calls to the API on submit
 var searchResults = [];
 
