@@ -31,34 +31,38 @@
 <nav th:insert="partials/navbar"></nav>
 
 <!-- Search Bar -->
-<div class="container mt-5 text-center p-4" id="travel-search">
-    <h2 class="text-center">Welcome to our Travel Search</h2>
-    <p class="text-center">Find your perfect destination, select your preferred dates, and enter the number of people traveling.</p>
-    <form>
-        <div class="form-row justify-content-center" id="search-boxes">
-            <div class="col-3">
-                <input type="text" class="form-control" placeholder="Destination">
-            </div>
-            <div class="col-2">
-                <input type="date" class="form-control" placeholder="Start Date">
-            </div>
-            <div class="col-2">
-                <input type="date" class="form-control" placeholder="End Date">
-            </div>
-            <div class="col-2">
-                <input type="number" class="form-control" placeholder="Number of People">
-            </div>
-            <div class="col-2">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </form>
-</div>
+<!--<div class="container mt-5 text-center p-4" id="travel-search">-->
+<!--    <h2 class="text-center">Welcome to our Travel Search</h2>-->
+<!--    <p class="text-center">Find your perfect destination, select your preferred dates, and enter the number of people traveling.</p>-->
+<!--    <form>-->
+<!--        <div class="form-row justify-content-center" id="search-boxes">-->
+<!--            <div class="col-3">-->
+<!--                <input type="text" class="form-control" placeholder="Destination">-->
+<!--            </div>-->
+<!--            <div class="col-2">-->
+<!--                <input type="date" class="form-control" placeholder="Start Date">-->
+<!--            </div>-->
+<!--            <div class="col-2">-->
+<!--                <input type="date" class="form-control" placeholder="End Date">-->
+<!--            </div>-->
+<!--            <div class="col-2">-->
+<!--                <input type="number" class="form-control" placeholder="Number of People">-->
+<!--            </div>-->
+<!--            <div class="col-2">-->
+<!--                <button type="submit" class="btn btn-primary">Search</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
 
 
 
 <!-- Popular Destinations -->
 <div class="container" id="pop-dest">
+	<div class="popular-dest">
+		<h1>Popular Destinations</h1>
+	</div>
+
     <div class="row">
         <div class="col-lg-4">
             <div class="border p-4 pt-4 pb-4 my-4" id="france">
@@ -108,11 +112,11 @@
 <!-- Image Carousel -->
 <div class="container mt-5">
     <div id="imageCarousel" class="carousel slide" data-ride="carousel" style="height: 50vh;">
-        <ol class="carousel-indicators">
-            <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#imageCarousel" data-slide-to="1"></li>
-            <li data-target="#imageCarousel" data-slide-to="2"></li>
-        </ol>
+<!--        <ol class="carousel-indicators">-->
+<!--            <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>-->
+<!--            <li data-target="#imageCarousel" data-slide-to="1"></li>-->
+<!--            <li data-target="#imageCarousel" data-slide-to="2"></li>-->
+<!--        </ol>-->
         <div class="carousel-inner" style="height: 100%;">
             <div class="carousel-item active" style="height: 100%;">
                 <img th:src="@{../css/winter.jpeg}" alt="Carousel 1" class="d-block w-100 h-100">
@@ -141,30 +145,44 @@
     <div class="row">
         <div class="col-md-3">
             <div class="text-center custom-border">
-                <span class="material-symbols-outlined">list_alt</span>
+                <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi        bi-list-check" viewBox="0 0 16 16">
+				  <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+				</svg>
+                </span>
                 <h4>Customizable Packing Lists</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+                <p>Packing lists that are pre-made depending on the location you would like to travel, but not to worry... You can simply edit, or just create your very own.</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="text-center custom-border">
-                <span class="material-symbols-outlined">thermostat</span>
+                <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer-sun" viewBox="0 0 16 16">
+					  <path d="M5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585A1.5 1.5 0 0 1 5 12.5z"/>
+					  <path d="M1 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM3.5 1A1.5 1.5 0 0 0 2 2.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0L5 10.486V2.5A1.5 1.5 0 0 0 3.5 1zm5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5zm4.243 1.757a.5.5 0 0 1 0 .707l-.707.708a.5.5 0 1 1-.708-.708l.708-.707a.5.5 0 0 1 .707 0zM8 5.5a.5.5 0 0 1 .5-.5 3 3 0 1 1 0 6 .5.5 0 0 1 0-1 2 2 0 0 0 0-4 .5.5 0 0 1-.5-.5zM12.5 8a.5.5 0 0 1 .5-.5h1a.5.5 0 1 1 0 1h-1a.5.5 0 0 1-.5-.5zm-1.172 2.828a.5.5 0 0 1 .708 0l.707.708a.5.5 0 0 1-.707.707l-.708-.707a.5.5 0 0 1 0-.708zM8.5 12a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5z"/>
+					</svg>
+                </span>
                 <h4>Weather Forecasting</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+                <p>Dont trust your weather app completely? We know they can be a little off sometimes. That's why we added a weather feature that offers historical weather for that time of year in recent years.</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="text-center custom-border">
-                <span class="material-symbols-outlined">flight_takeoff</span>
+                <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-engines" viewBox="0 0 16 16">
+					  <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0ZM7 3c0-.432.11-.979.322-1.401C7.542 1.159 7.787 1 8 1c.213 0 .458.158.678.599C8.889 2.02 9 2.569 9 3v4a.5.5 0 0 0 .276.447l5.448 2.724a.5.5 0 0 1 .276.447v.792l-5.418-.903a.5.5 0 0 0-.575.41l-.5 3a.5.5 0 0 0 .14.437l.646.646H6.707l.647-.646a.5.5 0 0 0 .14-.436l-.5-3a.5.5 0 0 0-.576-.411L1 11.41v-.792a.5.5 0 0 1 .276-.447l5.448-2.724A.5.5 0 0 0 7 7V3Z"/>
+					</svg>
+                </span>
                 <h4>Trip Planning</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+                <p>Tired of endlessly clicking on other travel websites going from page to page? Don't want to deal with those pesky travel agents that book things that they would want to do, rather than where you desire? We've brought everything to you on one page. Just choose a destination and see all the things YOU want to do (with reviews). Just click add and build your own itinerary. </p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="text-center custom-border">
-                <span class="material-symbols-outlined">pin_drop</span>
+                <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
+					  <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+					  <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+					</svg>
+                </span>
                 <h4>Local Attractions</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis.</p>
+                <p>Not sure on what your destination has to offer? Don't fret! We have the latest technology that brings up all of the best local restaurants, attractions, aquariums, museums, and so much more </p>
             </div>
         </div>
     </div>
