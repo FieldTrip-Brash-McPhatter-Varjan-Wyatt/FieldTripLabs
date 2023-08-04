@@ -17,7 +17,7 @@
 }
 
 #background-video{
-    padding-top: 81px;
+    margin-top: 81px;
     max-height: 50%;
     position: absolute;
     top: 0;
@@ -106,6 +106,7 @@
 }
 
 #mission{
+    /*margin-top: 25px;*/
     background: #07575b;
     color: #dbd1b3;
 }
