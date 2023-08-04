@@ -67,3 +67,12 @@
 #weatherData .card {
     background-color: #003B46 !important;
 }
+
+
+
+.bg-custom {
+    background-color: #06575B;
+}
+.text-custom {
+    color: #DBD1B3;
+}

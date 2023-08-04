@@ -13,11 +13,21 @@ $(document).ready(function () {
         const cityName = $('#autocomplete').val().trim();
         const date = new Date($('#startDate').val());
 
-        if (cityName !== '' && !isNaN(date.getTime())) {
-            fetchWeatherData(cityName, date);
-        }
-        console.log(cityName, date);
-    });
+        $('#autocomplete, #startDate').on('input', function () {
+            // Get the values of the two fields
+            const cityName = $('#autocomplete').val();
+            const startDate = $('#startDate').val();
+
+            // If both fields have a value, show the button
+            if (cityName !== '' && startDate !== '') {
+                $('#weatherButton').show();
+            } else {
+                // If not, hide the button
+                $('#weatherButton').hide();
+            }
+            console.log(cityName, date);
+        });
+    })
     console.log('Select a location and a start date to view historical weather conditions.');
 
 
@@ -307,9 +317,9 @@ document.getElementById('listSelection').addEventListener('change', function () 
     // Add new items to the list
     packingList.itemList.forEach(function (item) {
         var li = document.createElement('li');
-        var checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        li.appendChild(checkbox);
+        // var checkbox = document.createElement('input');
+        // checkbox.type = 'checkbox';
+        // li.appendChild(checkbox);
         var input = document.createElement('input');
 
 
@@ -394,9 +404,9 @@ function createNewItem() {
     const li = document.createElement("li");
     const div = document.createElement("div");
 
-    let checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    div.appendChild(checkbox);
+    // let checkbox = document.createElement("input");
+    // checkbox.setAttribute("type", "checkbox");
+    // div.appendChild(checkbox);
 
     let child = document.createElement("input");
     child.setAttribute("type", "text");
