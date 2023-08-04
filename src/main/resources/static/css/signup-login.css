@@ -53,18 +53,18 @@ label {
 }
 
 #loginButton{
-    border: #dbd1b3 1px;
+    border: #003b46 1px solid;
     border-radius: 8px;
-    background-color: #003b46;
-    color: #dbd1b3;
+    background-color: transparent;
+    color: #003b46;
     box-shadow: 2px 2px 2px gray;
 }
 
 #signUpBtn {
-    border: #dbd1b3 1px;
+    border: #003b46 1px solid;
     border-radius: 8px;
-    background-color: #003b46;
-    color: #dbd1b3;
+    background-color: transparent;
+    color: #003b46;
     box-shadow: 2px 2px 2px gray;
 }
 
