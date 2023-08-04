@@ -148,36 +148,40 @@ public class ItineraryController {
 
 
 
-        @Transactional
-        @GetMapping ("/itinerary/{id}/delete")
-        public String deleteItinerary(@PathVariable Long id) {
-            Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
-            if (optionalItinerary.isEmpty()) {
-                return "redirect:/";
-            }
-            Itinerary itinerary = optionalItinerary.get();
-
-            // Remove the destinations from the itinerary
-            List<Destination> destinations = itinerary.getDestinations();
-
-            for (Destination destination : destinations) {
-                destination.setItinerary(null);
-                destinationDao.delete(destination);
-            }
-            itinerary.getDestinations().removeAll(destinations);
-
-            Checklist checklist = itinerary.getChecklist();
-            List<ChecklistItems> checklistItems = checklist.getChecklistItems();
-            checklistItems.removeAll(checklistItems);
-            itinerary.setChecklist(null);
-            checklistDao.delete(checklist);
-
-
-            // Now you can safely delete the itinerary
-            itineraryDao.deleteItineraryById(itinerary.getId());
-            System.out.println("Deleted itinerary with ID: " + itinerary.getId());
-            return "redirect:/profile";
+    @Transactional
+    @GetMapping ("/itinerary/{id}/delete")
+    public String deleteItinerary(@PathVariable Long id) {
+        Optional<Itinerary> optionalItinerary = itineraryDao.findById(id);
+        if (optionalItinerary.isEmpty()) {
+            return "redirect:/";
         }
+        Itinerary itinerary = optionalItinerary.get();
+
+        // Remove the destinations from the itinerary
+        List<Destination> destinations = itinerary.getDestinations();
+
+        for (Destination destination : destinations) {
+            destination.setItinerary(null);
+            destinationDao.delete(destination);
+        }
+        itinerary.getDestinations().removeAll(destinations);
+
+        Checklist checklist = itinerary.getChecklist();
+        List<ChecklistItems> checklistItems = checklist.getChecklistItems();
+        System.out.println(checklistItems);
+        for (ChecklistItems checklistItem : checklistItems) {
+            System.out.println(checklistItem);
+            checklistItemsDao.deleteById(checklistItem.getId());
+        }
+        itinerary.setChecklist(null);
+        checklistDao.delete(checklist);
+
+
+        // Now you can safely delete the itinerary
+        itineraryDao.deleteItineraryById(itinerary.getId());
+        System.out.println("Deleted itinerary with ID: " + itinerary.getId());
+        return "redirect:/profile";
+    }
 
 
 
