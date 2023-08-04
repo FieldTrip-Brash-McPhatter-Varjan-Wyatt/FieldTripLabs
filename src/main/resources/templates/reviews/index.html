@@ -16,7 +16,8 @@
 <nav th:insert="@{partials/navbar}"></nav>
 
 		<div th:object="${destinations}" class="search-result-picture">
-			<img th:src="${destinations[0].photoUrl}" width="450" height="300"/>
+			<img th:if="${destinations[0].photoUrl}" th:src="${destinations[0].photoUrl}" width="450" height="300"/>
+			<iframe th:if="${destinations[0].photoUrl == null}" src="https://giphy.com/embed/tJwfnwUs0W3du" width="450" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 		</div>
 			<section id="reviews">
 				<div class="review-heading">
@@ -75,15 +76,16 @@
 				</script>
 
 				<div class="review-box-heading">
-					<div class="review-box" th:each="review : ${reviews}">
+					<div th:if="${review.getUser()}" class="review-box" th:each="review : ${reviews}">
 						<div class="review-box-top">
 							<div class="user-profile">
 								<div class="profile-image">
-									<img th:src="${review.getUser().getImage()}"/>
+									<img th:if="${review.getUser()}" th:src="${review.getUser().getImage()}"/>
 								</div>
 								<div class="user-name">
-									<strong th:text="${review.user.getFirstName()} + ' ' + ${review.user.getLastName()}"></strong>
-									<span th:text="'@' + ${review.user.getUsername()}"></span>
+									<strong th:if="${review.getUser()}" th:text="${review.user.getFirstName() + ' ' + review.user.getLastName()}"></strong>
+
+									<span th:if="${review.getUser()}" th:text="'@' + ${review.user.getUsername()}"></span>
 								</div>
 							</div>
 							<div class="user-reviews">
@@ -92,7 +94,7 @@
 							</div>
 						</div>
 						<div class="user-comments">
-							<p th:text="${review.content}"></p>
+							<p th:if="${review.getUser()}" th:text="${review.content}"></p>
 						</div>
 					</div>
 				</div>

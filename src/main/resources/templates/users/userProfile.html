@@ -69,7 +69,7 @@
         <!--User WITH Itineraries-->
         <div th:if="${!user.itineraries.isEmpty()}" id="itinCard" class="col-xs-4 col-sm-7 col-md-4 col-lg-3 card m-1"
              th:each="itinerary : ${user.itineraries}">
-            <img src="/img/SaoPauloPhoto.jpeg" alt="stock photo" class="img-fluid mx-auto my-3" width="80%"/>
+            <img th:src="${itinerary.getDestinations().get(0).getPhotoUrl()}" alt="stock photo" class="img-fluid mx-auto my-3" width="80%"/>
             <div class="card-body" style="color: #003b46">
                 <h5 class="card-title text-center" th:text="${itinerary.name}"></h5>
                 <div class="d-flex flex-column">

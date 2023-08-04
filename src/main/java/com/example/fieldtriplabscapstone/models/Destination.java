@@ -2,6 +2,7 @@ package com.example.fieldtriplabscapstone.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @ToString
 @Getter
@@ -42,4 +43,8 @@ public class Destination {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "destination")
     private List<Review> review;
 
+    public Destination(String placeId) {
+        this.placeId = placeId;
+        review = new ArrayList<>();
+    }
 }

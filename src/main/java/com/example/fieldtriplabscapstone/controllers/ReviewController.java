@@ -66,10 +66,22 @@ public class ReviewController {
 
     @GetMapping("reviews/{id}")
     public String showSinglePost(@PathVariable String id, Model model) {
+
         List<Destination> destinations = destDao.findByPlaceId(id);
+        if (destinations.size() == 0){
+            Destination newDestination = new Destination(id);
+            newDestination = destDao.save(newDestination);
+            destinations.add(newDestination);
+            System.out.println(newDestination);
+        }
         List<Review> reviews = new ArrayList<>();
         for (Destination destination : destinations) {
-            reviews.addAll(destination.getReview());
+            if (destination.getReview().size() > 0){
+                reviews.addAll(destination.getReview());
+            }else if (destination.getReview() == null){
+                reviews.add(new Review());
+            }
+
         }
 
         Collections.reverse(reviews);
