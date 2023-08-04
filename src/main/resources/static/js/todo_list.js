@@ -541,7 +541,6 @@ function searchNearbyPlaces() {
 
 
 function callback(results, status) {
-    $("#weatherButton").removeClass("d-none")
     searchResults = results;
     var container = document.getElementById('places');
     if (status === google.maps.places.PlacesServiceStatus.OK) {
