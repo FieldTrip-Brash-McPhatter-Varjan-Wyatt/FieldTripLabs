@@ -7,27 +7,32 @@ $(document).ready(function () {
     const apiKey = weatherKey;
     const apiUrl = 'https://visual-crossing-weather.p.rapidapi.com/history';
 
+    // Event handler for changes in the location and date fields
+    $('#autocomplete, #startDate').on('input', function () {
+        // Get the values of the two fields
+        const cityName = $('#autocomplete').val().trim();
+        const startDate = $('#startDate').val().trim();
+
+        // If both fields have a value, show the button
+        if (cityName !== '' && startDate !== '') {
+            $('#weatherButton').removeClass('d-none');
+        } else {
+            // If not, hide the button
+            $('#weatherButton').addClass('d-none');
+        }
+    });
 
     // Fetch weather when the destination or date changes
     $('#weatherModal').on('show.bs.modal', function (e) {
         const cityName = $('#autocomplete').val().trim();
         const date = new Date($('#startDate').val());
 
-        $('#autocomplete, #startDate').on('input', function () {
-            // Get the values of the two fields
-            const cityName = $('#autocomplete').val();
-            const startDate = $('#startDate').val();
+        if (cityName !== '' && !isNaN(date.getTime())) {
+            fetchWeatherData(cityName, date);
+        }
+        console.log(cityName, date);
+    });
 
-            // If both fields have a value, show the button
-            if (cityName !== '' && startDate !== '') {
-                $('#weatherButton').show();
-            } else {
-                // If not, hide the button
-                $('#weatherButton').hide();
-            }
-            console.log(cityName, date);
-        });
-    })
     console.log('Select a location and a start date to view historical weather conditions.');
 
 
