@@ -48,10 +48,10 @@ public class SecurityConfiguration {
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
 
-                        .requestMatchers("/", "/about","/sign-up", "/login", "/reviews/**", "/reviews/index").permitAll()
+                        .requestMatchers("/", "/about","/sign-up", "/login", "/reviews/**", "/reviews/index", "/saopaulo", "/newyork", "/paris").permitAll()
 
                         // allow loading of static resources
-                        .requestMatchers("/css/**", "/js/**", "/img/**", "/itinerary", "/about-us").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/itinerary", "/about-us", "/saopaulo", "/newyork", "/paris").permitAll()
                 )
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/profile"))
