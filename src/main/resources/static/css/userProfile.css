@@ -68,3 +68,7 @@ h5, p {
 #planYourTrip {
     text-wrap: none;
 }
+
+#linkToItin {
+    text-decoration: white;
+}
