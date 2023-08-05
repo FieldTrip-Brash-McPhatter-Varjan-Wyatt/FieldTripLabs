@@ -4,3 +4,12 @@
     color: #c4dfe6;
     border-radius: 10px;
 }
+
+.card-fixed-size {
+    height: 250px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* You can also set this to 'auto' or 'scroll' if you want to handle overflow differently */
+}
+
