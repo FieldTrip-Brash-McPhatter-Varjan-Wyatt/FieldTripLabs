@@ -2,7 +2,7 @@
 .banner-container {
     display: flex;
     flex-direction: column;
-    background: url("banner.jpeg");
+    background: url("bannerfotage.mp4");
     background-size: cover;
     height: 300px;
 }
@@ -32,8 +32,8 @@
     margin-top: auto;
     margin-bottom: auto;
     color: #dbd1b3;
-    font-family: playball, cursive;
-    font-size: 79px;
+    font-family: 'Nobile', sans-serif;
+    font-size: 100px;
 }
 
 .imagine {
@@ -139,3 +139,50 @@
 }
 
 
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
+
+.overlay-content {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(6, 56, 82, 0.5);
+    width: 100vw;
+    height: 100vh;
+}
+
+#landing-logo {
+    opacity: 0.5;
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
+
+#landing-button{
+    opacity: 0.85;
+    border: 2px solid #DBD1B3;
+}
+
+#logo-name{
+    text-align: center;
+    opacity: 0.9;
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}

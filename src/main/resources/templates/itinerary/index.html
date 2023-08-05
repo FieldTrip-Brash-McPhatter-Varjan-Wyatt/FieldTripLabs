@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Playball&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{../../static/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{../../static/css/create-edit.css}">
 
 </head>
 <body style="background-color: #C4DFE6">
@@ -48,13 +49,13 @@
             <div class="d-none" id="destinationContainer"></div>
             <!-- Start Search Bar -->
 
-            <div class="card m-3 p-3" style="background-color: #003B46;">
-                <h2 class="text-center" style="color: #D9D0B2; font-family: 'Nothing You Could Do', cursive">Plan Your Perfect Trip </h2>
-                <p class="text-center" style="color: #D9D0B2;">Search your perfect destination, select your preferred
+            <div class="card m-3 p-3" style="background-color: #dbd1b3; box-shadow: 10px 10px 10px gray;">
+                <h2 class="text-center" style="color: #003B46;">Plan Your Perfect Trip </h2>
+                <p class="text-center" style="color: #003B46;">Search your perfect destination, select your preferred
                     dates, and start planning!</p>
                 <div class="d-flex mt-3 mb-3">
 
-                    <select class="form-select ml-2" id="type">
+                    <select class="form-select ml-2 mt-1" id="type" style="height: 37px;">
                         <option id="tourist_attraction" value="tourist_attraction">Attractions</option>
                         <option id="aquarium" value="aquarium">Aquarium</option>
                         <option id="art_gallery" value="art_gallery">Art Gallery</option>
@@ -85,11 +86,6 @@
                 <div class="d-none" id="map"></div>
 
             </div>
-
-            <!--            <div class="scrollable-container">-->
-            <!--                <table class="container d-flex flex-wrap justify-content-center" id="places"></table>-->
-            <!--            </div>-->
-            <!-- Packing List Container (Left Side) -->
 
             <div class="overflow-auto container d-flex flex-wrap justify-content-center align-items-center" style="height: 300px; border: 2px solid #D9D0B2; display: none;" id="places">
                 <div id="placesLoadingMessage" class="d-flex justify-content-center align-items-center" style="height: 100%; font-family: 'Nothing You Could Do', cursive">
