@@ -610,18 +610,20 @@ function callback(results, status) {
 
 
             } else {
-                let photoUrl = "https://via.placeholder.com/150"
+                let photoUrl = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJhdmVsfGVufDB8fDB8fHww&w=1000&q=80"
 
                 container.innerHTML += `
-<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between" id="${i}" style="background-color: #003b46; padding: 15px; box-shadow: 10px 10px 10px gray;">
+<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between card-fixed-size" id="${i}" style="background-color: #003b46; padding: 15px; height: 275px; box-shadow: 10px 10px 10px gray;">
   <a th:href="reviews/${results[i].place_id}">
-    <img class="border border-4 rounded-circle mt-1" width = "80" height="80" src="${photoUrl}"/>
+    <img class="border border-4 rounded-circle mt-1" width = "90" height="90" src="${photoUrl}"/>
   </a>
   <div class="card-title text-center m-1 p-0" style="color: #dbd1b3; margin-bottom: 20px;">
     ${results[i].name}
   </div>
-  <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">ADD</button>
+  <div>
+  <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%; ">ADD</button>
   <a href="reviews/${results[i].place_id}" id="${i}" class="btn btn-outline-success mb-2 p-1"  style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">REVIEWS</a>
+  </div>
 </div>`;
 
 
