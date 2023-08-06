@@ -68,15 +68,18 @@
     <div class="row justify-content-center mb-4">
 
         <!--User with NO Itineraries-->
-        <div th:if="${user.itineraries.isEmpty()}" class="">
-            <a th:href="@{/itinerary}"><h4 class="fst-italic card-body text-center " id="linkToItin" style="color: white">LET'S PLAN YOUR TRIP!</h4></a>
+        <div th:if="${user.itineraries.isEmpty()}" class="text-center">
+            <a th:href="@{/itinerary}" class="btn btn-primary" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46;">
+                <h4 class="fst-italic" id="linkToItin">LET'S PLAN YOUR FIRST TRIP!</h4>
+            </a>
         </div>
 
         <!--User WITH Itineraries-->
         <div th:if="${!user.itineraries.isEmpty()}" id="itinCard" class="col-xs-4 col-sm-7 col-md-4 col-lg-3 card m-1"
              th:each="itinerary : ${user.itineraries}">
 
-            <img th:src="${itinerary.getDestinations().get(0).getPhotoUrl()}" alt="stock photo" class="img-fluid mx-auto my-3" width="80%"/>
+            <img th:src="${itinerary.getDestinations().get(0).getPhotoUrl()}" alt="stock photo" class="img-fluid mx-auto my-3 itin-image" />
+
             <div class="card-body" style="color: #003b46">
                 <h5 class="card-title text-center" th:text="${itinerary.name}"></h5>
                 <div class="d-flex flex-column">
@@ -92,6 +95,8 @@
         </div>
     </div>
 </div>
+
+
 
 <!--FOOTER-->
 <footer th:insert="partials/footer" class=""></footer>
@@ -111,6 +116,18 @@
             e.preventDefault();
         }
     }
+
+    $(document).ready(function() {
+        // Target the images by class
+        var images = $('.itin-image');
+
+        // Iterate through the images and set the width and height
+        images.each(function() {
+            $(this).css('width', '100px');
+            $(this).css('height', '100px');
+            $(this).css('object-fit', 'cover');
+        });
+    });
 </script>
 </body>
 </html>

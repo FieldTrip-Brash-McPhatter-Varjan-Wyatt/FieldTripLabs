@@ -62,24 +62,36 @@
 /*}*/
 
 .mission-section {
-    padding-top: 450px;
+    padding-top: 10px;
 }
 .mission-section img{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.57);
 }
 
-#cover h1 {
+#cover {
     display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    font-family: 'Nothing You Could Do', cursive;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Make sure the container takes the full height of its parent */
+}
+
+#cover h1 {
+    margin-top: 50px; /* You can adjust or remove this as needed */
+    font-family: 'Nobile', sans-serif;
+    font-size: 100px;
+}
+
+#cover {
+    /* ...other styles... */
+    height: 100vh; /* 100% of the viewport height */
 
 }
 
 #cover p{
     display: flex;
     justify-content: center;
-    font-family: 'Nothing You Could Do', cursive;
+    align-items: center;
+    font-family: 'Nobile', sans-serif;
 }
 
 .leaders-section {
@@ -108,12 +120,12 @@
 #mission{
     text-align: center;
     margin-top: 95px;
-    background: #07575b;
-    color: #dbd1b3;
+    background: #dbd1b3;
+    color: #003B46FF;
 }
 
 #mission h2{
-    font-family: 'Nothing You Could Do', cursive;
+    font-family: 'Nobile', sans-serif;
     padding-top: 10px;
     display: flex;
     justify-content: center;
@@ -140,8 +152,8 @@ a{
 #leaders{
     text-align: center;
     margin-top: 50px;
-    background: #07575b;
-    color: #dbd1b3;
+    background: #dbd1b3;
+    color: #003B46FF;
     padding: 20px;
 }
 
