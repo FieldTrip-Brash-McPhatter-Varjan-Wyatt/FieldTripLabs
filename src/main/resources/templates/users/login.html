@@ -29,9 +29,12 @@
                     <input id="password" name="password" type="password" value=""/>
 
                 </div>
+                <p style="color: #013B46">New to Field Trip? <a th:href="@{/sign-up}">Register</a></p>
             </div>
             <input id="loginButton" class="mt-3" type="submit" value="Log In"/>
         </form>
+
+
     </div>
 </div>
 <div th:if="${param.error}">
