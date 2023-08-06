@@ -11,6 +11,35 @@
     <link rel="stylesheet" th:href="@{../../static/css/create-edit.css}">
 
 </head>
+<style>
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent; /* Make the track transparent */
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: transparent;; /* Color of the scrollbar thumb */
+        border-radius: 6px; /* Rounded corners of the thumb */
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(136, 136, 136, 0.5);; /* Color of the scrollbar thumb */
+        border-radius: 6px; /* Rounded corners of the thumb */
+    }
+    ::-webkit-scrollbar-corner {
+        background-color: transparent; /* Make the scrollbar corner transparent */
+    }
+    ::-webkit-scrollbar-thumb:horizontal {
+        background-color: transparent; /* Make the horizontal thumb transparent */
+        width: 6px; /* Set the width of the horizontal thumb */
+    }
+    ::-webkit-scrollbar-thumb:horizontal:hover {
+        background-color: rgba(136, 136, 136, 0.5); /* Make the horizontal thumb transparent */
+        width: 6px; /* Set the width of the horizontal thumb */
+    }
+
+</style>
 <body style="background-color: #C4DFE6">
 <nav th:insert="@{partials/navbar}"></nav>
 <!-- Button trigger modal -->
@@ -55,7 +84,7 @@
             <div class="card p-3" style="background-color: #dbd1b3; box-shadow: 10px 10px 10px gray;">
                 <h2 class="text-center" style="color: #003B46; font-family: 'Nobile', sans-serif;">Plan Your Perfect
                     Trip </h2>
-                <p class="text-center" style="color: #003B46; font-family: 'Nobile', sans-serif;">Search your perfect
+                <p class="text-center" style="color: #003B46; font-family: 'Nobile', sans-serif; opacity: 0.5;">Search your perfect
                     destination, select your preferred
                     dates, and start planning!</p>
                 <div class="d-flex mt-3 mb-3">
@@ -139,7 +168,7 @@
                                 <h1>Packing List</h1>
                             </div>
                             <div class="row d-flex">
-                                <div class=" col-12 ">
+                                <div class=" col-12 mb-3">
                                     <label for="listSelection">Click Here to Select a Packing List:</label>
                                     <select id="listSelection" class="form-control">
                                         <option value="0">Choose a Packing List</option>
@@ -191,9 +220,9 @@
             <!--End row-->
 
             <!--                Save functions-->
-            <div class=" col-12 d-flex flex-column align-items-center mt-2 mb-2">
+            <div class=" col-12 d-flex flex-column align-items-center mt-3 mb-2">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif;">
+                        style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">
                     Save Your Itinerary and Packing List
                 </button>
             </div>
