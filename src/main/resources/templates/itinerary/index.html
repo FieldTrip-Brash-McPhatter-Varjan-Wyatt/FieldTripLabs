@@ -121,8 +121,8 @@
 
             </div>
 
-            <div class="mt-3 card overflow-auto container d-flex flex-wrap justify-content-center align-items-center"
-                 style="height: 300px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; display: none;"
+            <div class="mt-5 card overflow-auto container d-flex flex-wrap justify-content-center align-items-center"
+                 style="height: 450px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; display: none;"
                  id="places">
                 <div id="placesLoadingMessage" class="d-flex justify-content-center align-items-center"
                      style=" color:#003B46; height: 100%; font-family: 'Nobile', sans-serif;">
@@ -134,21 +134,19 @@
             <br>
 
 
-            <div class="row justify-content-between">
-
-                <div class="card container col-lg-8 mr-1"
-                     style="display: none; font-family: 'Nobile', sans-serif; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray;"
+            <div class="row">
+                <div class="col-lg-8 mt-3"
+                     style="display: none; font-family: 'Nobile', sans-serif;"
                      id="itineraryContainer">
                     <div class="overflow-auto container d-flex flex-wrap justify-content-center"
-                         style="height: 400px; color: #003B46; font-family: 'Nobile', sans-serif;">
+                         style="height: 400px; border: 2px solid #D9D0B2; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;">
 
                         <div id="itineraryLoadingMessage" class="text-center w-100">
                             <div class="container border-bottom"
                                  style="color: #003B46; font-family: 'Nobile', sans-serif;">
-                                <h1>My Itinerary</h1>
-                            </div>
-                            <p class="container" style="color: #003B46; font-family: 'Nobile', sans-serif;">Click add on
-                                the locations above.</p>
+                                <h1 class="text-center">My Itinerary</h1>
+                                <p class="text-center">Click add on the locations above.</p>
+                                </div>
                             <div id="listContainer" class="row d-flex flex-wrap justify-content-around">
                             </div>
                         </div>
@@ -156,19 +154,26 @@
                 </div>
 
 
-                <div class="card col-lg-4"
-                     style="display: none; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray;"
+                <div class="col-lg-4 mt-3"
+                     style="display: none;"
                      id="packingListContainer">
                     <div class="overflow-auto container d-flex flex-wrap justify-content-center"
-                         style="height: 400px; border: 2px solid #D9D0B2; ">
+                         style="height: 400px; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;">
 
-                        <div class="container" p-4>
+                        <div class="container">
                             <div class="container text-center border-bottom"
                                  style="color: #003B46; font-family: 'Nobile', sans-serif;">
                                 <h1>Packing List</h1>
                             </div>
-                            <div class="row d-flex">
+                            <div class="p-2">
                                 <div class=" col-12 mb-3">
+                                    <div class="mb-3 col-12">
+                                        <label for="listNameInput" class="form-label"></label>
+                                        <input type="hidden" th:field="*{checklist.id}"/>
+                                        <input type="text" class="form-control" id="listNameInput"
+                                               placeholder="Name Your Custom List" name="checklistName"
+                                               th:field="*{checklist.name}">
+                                    </div>
                                     <label for="listSelection">Click Here to Select a Packing List:</label>
                                     <select id="listSelection" class="form-control">
                                         <option value="0">Choose a Packing List</option>
@@ -181,14 +186,6 @@
                                         <option value="7">Nature Destination</option>
                                         <option value="8">International Destination</option>
                                     </select>
-                                </div>
-                                <div class=" col-12">
-
-                                    <label for="listNameInput" class="form-label"></label>
-                                    <input type="hidden" th:field="*{checklist.id}"/>
-                                    <input type="text" class="form-control" id="listNameInput"
-                                           placeholder="Name Your Custom List" name="checklistName"
-                                           th:field="*{checklist.name}">
                                 </div>
                                 <div>
                                     <ul id="listItems">
@@ -246,8 +243,7 @@
                         <div class="modal-footer">
                             <button type="button" id="createItinerary"
                                     class="btn btn-primary"
-                                    style="
-                                    border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif;"
+                                    style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;"
                                     data-bs-dismiss="modal">Save Your Itinerary and Packing List
                             </button>
                         </div>

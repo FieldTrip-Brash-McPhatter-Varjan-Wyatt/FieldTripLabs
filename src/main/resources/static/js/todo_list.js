@@ -324,6 +324,7 @@ document.getElementById('listSelection').addEventListener('change', function () 
     // Add new items to the list
     packingList.itemList.forEach(function (item) {
         var li = document.createElement('li');
+        li.classList.add("d-flex")
         // var checkbox = document.createElement('input');
         // checkbox.type = 'checkbox';
         // li.appendChild(checkbox);
@@ -333,7 +334,7 @@ document.getElementById('listSelection').addEventListener('change', function () 
 
         var span = document.createElement(span)
         span.innerText = item.text;
-        span.className = 'item-name';
+        span.className = 'item-name flex-grow-1';
         input.type = 'hidden';
         input.className = 'item-id';
         input.value = '0';
@@ -357,6 +358,7 @@ document.getElementById('listSelection').addEventListener('change', function () 
         deleteBtn.setAttribute("type", "button");
         deleteBtn.setAttribute("class", "btn btn-danger delete-todo"); // Change class to 'btn-danger' for red color
         deleteBtn.style.backgroundColor = "transparent"; // Change button background to transparent
+        deleteBtn.classList.add("flex-shrink-1");
         deleteBtn.style.border = "none"; // Remove border
 
 // Create a span element for the icon
@@ -417,6 +419,7 @@ function createNewItem() {
     // Create a new list item with an input box
     const li = document.createElement("li");
     const div = document.createElement("div");
+    div.classList.add("d-flex")
 
     // let checkbox = document.createElement("input");
     // checkbox.setAttribute("type", "checkbox");
@@ -429,6 +432,7 @@ function createNewItem() {
 
     let span = document.createElement("span");
     span.classList.add("item-name")
+    span.classList.add("flex-grow-1")
     span.style.display = "none";
     div.appendChild(span);
 
@@ -511,7 +515,7 @@ function createNewItem() {
 
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "button");
-    deleteBtn.setAttribute("class", "btn btn-danger delete-todo");
+    deleteBtn.setAttribute("class", "btn btn-danger delete-todo flex-shrink-1");
     deleteBtn.style.backgroundColor = "transparent"; // Change button background to transparent
     deleteBtn.style.border = "none"; // Remove border
 
@@ -595,16 +599,15 @@ function callback(results, status) {
             if (results[i].photos) {
                 let photoUrl = results[i].photos[0].getUrl();
                 container.innerHTML += `
-<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between card-fixed-size" id="${i}" style="background-color: #003b46; padding: 15px; height: 275px; box-shadow: 10px 10px 10px gray;">
-  <a th:href="reviews/${results[i].place_id}">
-    <img class="border border-4 rounded-circle mt-1" width = "90" height="90" src="${photoUrl}"/>
-  </a>
-  <div class="card-title text-center m-1 p-0" style="color: #dbd1b3; margin-bottom: 20px;">
+<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between card-fixed-size" style="width:300px; color:#003B46; font-family: 'Nobile', sans-serif; background-color: #dbd1b3; border: none" id="${i}">
+    <img class="mt-2 mb-2" width= "250" height="200" src="${photoUrl}" style="box-shadow: 10px 10px 10px gray; border-radius: 8px;"/>
+  <div class="card-title text-center m-1 p-0">
     ${results[i].name}
   </div>
-  <div>
-  <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%; ">ADD</button>
-  <a href="reviews/${results[i].place_id}" id="${i}" class="btn btn-outline-success mb-2 p-1"  style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">REVIEWS</a>
+  <div class="m-2">
+  <button id="${i}" type="button" class="btn btn-outline-success m-1 p-1" onclick="addToItinerary(${i})" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">ADD</button>
+  <a href="reviews/${results[i].place_id}" id="${i}" class="btn btn-outline-success m-1 p-1" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">REVIEWS</a>
+  </div>
   </div>
 </div>`;
 
@@ -613,16 +616,15 @@ function callback(results, status) {
                 let photoUrl = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJhdmVsfGVufDB8fDB8fHww&w=1000&q=80"
 
                 container.innerHTML += `
-<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between card-fixed-size" id="${i}" style="background-color: #003b46; padding: 15px; height: 275px; box-shadow: 10px 10px 10px gray;">
-  <a th:href="reviews/${results[i].place_id}">
-    <img class="border border-4 rounded-circle mt-1" width = "90" height="90" src="${photoUrl}"/>
-  </a>
-  <div class="card-title text-center m-1 p-0" style="color: #dbd1b3; margin-bottom: 20px;">
+<div class="card m-2 p-1 col-2 align-items-center m-0 rounded position-relative d-flex flex-column justify-content-between card-fixed-size" style="width:300px; color:#003B46; font-family: 'Nobile', sans-serif; background-color: #dbd1b3; border: none" id="${i}">
+    <img class="mt-2 mb-2" width= "250" height="200" src="${photoUrl}" style="box-shadow: 10px 10px 10px gray; border-radius: 8px;"/>
+  <div class="card-title text-center m-1 p-0">
     ${results[i].name}
   </div>
-  <div>
-  <button id="${i}" type="button" class="btn btn-outline-success mb-2 p-1" onclick="addToItinerary(${i})" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%; ">ADD</button>
-  <a href="reviews/${results[i].place_id}" id="${i}" class="btn btn-outline-success mb-2 p-1"  style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3; width: 100%;">REVIEWS</a>
+  <div class="m-2">
+  <button id="${i}" type="button" class="btn btn-outline-success m-1 p-1" onclick="addToItinerary(${i})" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">ADD</button>
+  <a href="reviews/${results[i].place_id}" id="${i}" class="btn btn-outline-success m-1 p-1" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">REVIEWS</a>
+  </div>
   </div>
 </div>`;
 
@@ -630,7 +632,7 @@ function callback(results, status) {
             }
         }
     } else {
-        container.innerHTML = "<div class='card m-4 col text-center align-items-center' style='background-color: #D9D0B2;'><h2 class='m-3' style='color: #003B46; box-shadow: 10px 10px 10px gray;'>No Places in the area. Please try another location.</h2></div>"
+        container.innerHTML = "<div class='card m-4 col text-center align-items-center' style='background-color: #D9D0B2;'><h2 class='m-3' style='color: #003B46; box-shadow: 10px 10px 10px gray; opacity: 0.5;'>No Places in the area. Please try another location.</h2></div>"
     }
 }
 
@@ -666,12 +668,12 @@ function addToItinerary(index) {
     if (selectedResult.photos){
         var photoUrl = selectedResult.photos[0].getUrl();
         var card = document.createElement('div');
-        card.className = 'card col-3 m-1';
-        card.style = 'width: 15rem; background-color: #003B46; color: #D8D0B2; box-shadow: 10px 10px 10px gray';
+        card.className = 'd-flex col-4 justify-content-evenly flex-wrap m-2';
         card.innerHTML = `
 
-    <div class="destinationCard card-body justify-content-between">
-      <h5 class="card-title"  name="destinationName">
+    <div class="destinationCard  card-body m-2  d-flex flex-column align-items-center" style="background-color: #dbd1b3;">
+    <img src="${photoUrl}" style="height: 200px; width: 250px; border-radius: 8px" class=" mb-1">
+      <h5 class="text-capitalize col-12" name="destinationName">
 ${selectedResult.name}
 </h5>
 <input type="hidden" value= 0 class="destination-id" >
@@ -680,12 +682,15 @@ ${selectedResult.name}
 <input type="hidden" value="${selectedResult.place_id}" class="destination-place-id">
 <input type="hidden" value="${photoUrl}" class="destination-photo">
 
-      <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress">
+        <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress">
 ${selectedResult.vicinity}
 </h6>
-      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link" target="_blank">
+<div class="mt-3">
+      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">
       View on Map
       </a>
+       <a href="/reviews/${selectedResult.place_id}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">Reviews</a>
+       </div>
     </div>`;
     }else{
         card = document.createElement('div');

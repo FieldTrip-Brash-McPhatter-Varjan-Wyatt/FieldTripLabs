@@ -117,9 +117,9 @@
             <div class="row">
                 <div class="col-lg-8 mt-3" id="itineraryContainer">
                     <div class="overflow-auto container d-flex flex-wrap"
-                         style="max-height: 300px; border: 2px solid #D9D0B2; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;">
+                         style="max-height: 400px; border: 2px solid #D9D0B2; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;">
 
-                        <div id="itineraryLoadingMessage" class="w-100">
+                        <div id="itineraryLoadingMessage" class="w-100 text-center">
                             <h1 class="text-center">My Itinerary</h1>
                             <p class="text-center">Click add on the locations above.</p>
                             <div id="listContainer" class="row d-flex flex-wrap justify-content-around">
@@ -156,11 +156,18 @@
 
                 <div class="col-lg-4 mt-3" id="packingListContainer">
                     <div class="overflow-auto container d-flex flex-wrap justify-content-center"
-                         style="max-height: 400px; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;">
-                        <div class="p-2" >
+                         style="height: 400px; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;">
+                        <div class="p-2 text-center" >
                             <h1>Packing List</h1>
                             <div class="row d-flex">
                                 <div class=" col-12 mb-3">
+                                    <div class="mb-3 col-12">
+                                        <label for="listNameInput" class="form-label"></label>
+                                        <input type="hidden" th:field="*{checklist.id}"/>
+                                        <input type="text" class="form-control" id="listNameInput"
+                                               placeholder="Name Your Custom List" name="checklistName"
+                                               th:field="*{checklist.name}">
+                                    </div>
                                     <label for="listSelection">Click Here to Select a Packing List:</label>
                                     <select id="listSelection" class="form-control">
                                         <option value="0">Choose a Packing List</option>
@@ -193,14 +200,6 @@
                                     <button type="button" id="add-button" class="btn btn-primary"
                                             style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">Add Item
                                     </button>
-                                </div>
-                                <div class="mb-3 col-12">
-
-                                    <label for="listNameInput" class="form-label"></label>
-                                    <input type="hidden" th:field="*{checklist.id}"/>
-                                    <input type="text" class="form-control" id="listNameInput"
-                                           placeholder="Name Your Custom List" name="checklistName"
-                                           th:field="*{checklist.name}">
                                 </div>
                             </div>
                         </div>
