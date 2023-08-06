@@ -12,22 +12,23 @@
 <body style="background-color: #C4DFE6">
 <nav th:insert="@{partials/navbar}"></nav>
 
-
-<div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-6 m-2">
-        <div class="container" style=" width: 100%">
-            <img th:src="@{../css/tower.jpeg}" class="mx-auto d-block img-fluid " alt="São Paulo">
-
+<div class="card p-3 mt-4" style="background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; max-width: 60%; margin: 0 auto;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 m-2">
+            <div class="container" style="width: 100%; display: flex; justify-content: center;">
+                <div style="border: 5px solid #003B46FF; border-radius: 50%; overflow: hidden; width: 100%; max-width: 500px;">
+                    <img th:src="@{../css/tower.jpeg}" class="mx-auto d-block img-fluid" alt="São Paulo" style="width: 100%;">
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
 <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6 m-2 ">
         <div class="text-center">
             <h1 style="font-family: 'Nothing You Could Do', cursive">Paris, France</h1>
         </div>
-        <div class="container p-2" style="background-color: #003B46; color:  #DBD1B3; width: 100%">
+        <div class="container p-2 rounded" style="background-color: #003B46; color:  #DBD1B3; width: 100%; box-shadow: 10px 10px 10px gray;">
 
             <p style="text-indent: 2em;">Paris, the enchanting capital city of France, is more than just the city of
                 love. It's a cornucopia of art, history, gastronomy, and romance. From the sparkling Eiffel Tower that
@@ -44,13 +45,16 @@
                 of Versailles, a striking reminder of the country's royal past. Paris is not just a city; it's an
                 experience, an emotion that once lived, is never forgotten.</p>
         </div>
+        <br>
+        <br>
         <div class="d-flex justify-content-center">
             <a id="goToItinerary" th:href="@{'/itinerary'}"
-               class="btn btn-primary me-1" style="background-color: #dbd1b3; color: #003B46FF; border-color: #dbd1b3;">Create Your Itinerary</a>
+               class="btn btn-primary me-1"
+               style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">Create Your Itinerary</a>
         </div>
     </div>
 </div>
-
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
