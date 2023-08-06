@@ -13,21 +13,26 @@
     ::-webkit-scrollbar-track {
         background-color: transparent; /* Make the track transparent */
     }
+
     ::-webkit-scrollbar-thumb {
         background-color: transparent;; /* Color of the scrollbar thumb */
         border-radius: 6px; /* Rounded corners of the thumb */
     }
+
     ::-webkit-scrollbar-thumb:hover {
         background-color: rgba(136, 136, 136, 0.5);; /* Color of the scrollbar thumb */
         border-radius: 6px; /* Rounded corners of the thumb */
     }
+
     ::-webkit-scrollbar-corner {
         background-color: transparent; /* Make the scrollbar corner transparent */
     }
+
     ::-webkit-scrollbar-thumb:horizontal {
         background-color: transparent; /* Make the horizontal thumb transparent */
         width: 6px; /* Set the width of the horizontal thumb */
     }
+
     ::-webkit-scrollbar-thumb:horizontal:hover {
         background-color: rgba(136, 136, 136, 0.5); /* Make the horizontal thumb transparent */
         width: 6px; /* Set the width of the horizontal thumb */
@@ -107,7 +112,7 @@
                      style="height: 100%; font-family: 'Nobile', sans-serif; font-weight: bold">
                     <h1 style="opacity: 0.5;">Enter a trip location to edit <span class="text-capitalize"
                                                                                   th:text=" ${itinerary.getName()}"></span>!
-                    </h1>
+                    </h1><h1 id="typing-text" class="d-none"></h1>
                 </div>
 
             </div>
@@ -125,7 +130,7 @@
                             <div id="listContainer" class="row d-flex flex-wrap justify-content-around">
                                 <ul class="d-flex justify-content-evenly flex flex-wrap" style="list-style: none">
                                     <li th:each="destination : ${itinerary.destinations}"
-                                         class="destinationCard card-body m-2  d-flex flex-column align-items-center">
+                                        class="destinationCard card-body m-2  d-flex flex-column align-items-center">
                                         <img th:src="${destination.photoUrl}"
                                              style="height: 200px; width: 250px; border-radius: 8px" class=" mb-1">
                                         <h5 class="text-capitalize" name="destinationName"
@@ -134,10 +139,13 @@
                                             th:text="${destination.address}"></h6>
                                         <div class="mt-3">
                                             <a th:href="@{https://www.google.com/maps/search/?api=1&query=${destination.name}&query_place_id=${destination.placeId}}"
-                                               class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">
+                                               class="card-link text-decoration-none" target="_blank"
+                                               style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">
                                                 View on Map
                                             </a>
-                                            <a th:href="@{/reviews/{placeId}(placeId=${destination.placeId})}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">Reviews</a>
+                                            <a th:href="@{/reviews/{placeId}(placeId=${destination.placeId})}"
+                                               class="card-link text-decoration-none" target="_blank"
+                                               style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">Reviews</a>
                                         </div>
                                         <input type="hidden" th:value="${destination.id}" class="destination-id">
                                         <input type="hidden" th:value="${destination.name}" class="destination-name">
@@ -157,7 +165,7 @@
                 <div class="col-lg-4 mt-3" id="packingListContainer">
                     <div class="overflow-auto container d-flex flex-wrap justify-content-center"
                          style="height: 400px; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;">
-                        <div class="p-2 text-center" >
+                        <div class="p-2 text-center">
                             <h1>Packing List</h1>
                             <div class="row d-flex">
                                 <div class=" col-12 mb-3">
@@ -184,21 +192,20 @@
                                 <div>
                                     <input type="hidden" th:field="*{checklist.id}">
                                     <ul id="listItems" style="list-style: none; margin-top: 10px;">
-                                        <li th:each="checklistItem, itemStat : *{checklist.checklistItems}" class="d-flex">
-
-                                            <span th:text="${checklistItem.itemName}" class="item-name flex-grow-1"></span><input
-                                                type="hidden"
-                                                th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
-                                            <input type="hidden" class="item-id"
-                                                   th:field="*{checklist.checklistItems[__${itemStat.index}__].id}">
-
-                                            <button type="button" class="btn btn-danger delete-todo" style="background-color: transparent; border: none;"><span class="material-symbols-outlined">delete</span></button>
+                                        <li th:each="checklistItem, itemStat : *{checklist.checklistItems}">
+                                            <div class="d-flex justify-content-between">
+                                                <span th:text="${checklistItem.itemName}" class="item-name"></span>
+                                                <input type="hidden" th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
+                                                <input type="hidden" class="item-id" th:field="*{checklist.checklistItems[__${itemStat.index}__].id}">
+                                                <button type="button" class="btn btn-danger delete-todo p-2" style="background-color: transparent; border: none;"><span class="material-symbols-outlined">delete</span></button>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center">
                                     <button type="button" id="add-button" class="btn btn-primary"
-                                            style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">Add Item
+                                            style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;">
+                                        Add Item
                                     </button>
                                 </div>
                             </div>
@@ -230,7 +237,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" id="createItinerary"
+                                <button type="button" id="editForm"
                                         class="btn btn-primary"
                                         style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray;"
                                         data-bs-dismiss="modal">Save Your Itinerary and Packing List

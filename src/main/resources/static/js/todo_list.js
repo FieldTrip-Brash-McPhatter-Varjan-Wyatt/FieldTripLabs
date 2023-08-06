@@ -420,6 +420,8 @@ function createNewItem() {
     const li = document.createElement("li");
     const div = document.createElement("div");
     div.classList.add("d-flex")
+    div.classList.add("justify-content-between")
+    li.style.listStyle = "none"
 
     // let checkbox = document.createElement("input");
     // checkbox.setAttribute("type", "checkbox");
@@ -432,7 +434,6 @@ function createNewItem() {
 
     let span = document.createElement("span");
     span.classList.add("item-name")
-    span.classList.add("flex-grow-1")
     span.style.display = "none";
     div.appendChild(span);
 
@@ -546,7 +547,7 @@ document.querySelector("#add-button").addEventListener("click", createNewItem);
 
 document.getElementById("listItems").addEventListener("click", function (event) {
     if (event.target.parentElement.classList.contains("delete-todo")) {
-        event.target.parentElement.parentElement.remove();
+        event.target.parentElement.parentElement.parentElement.remove();
     }
 });
 
@@ -719,7 +720,7 @@ ${selectedResult.vicinity}
     listContainer.appendChild(card);
 }
 
-document.querySelector("#createItinerary, #edit-form").addEventListener("click", function callToSubmit() {
+document.querySelector("#createItinerary, #editForm").addEventListener("click", function callToSubmit() {
     let nameFields = document.querySelectorAll(".destination-name");
     for (let i = 0; i < nameFields.length; i++) {
         nameFields[i].setAttribute("name", `destinations[${i}].name`)
