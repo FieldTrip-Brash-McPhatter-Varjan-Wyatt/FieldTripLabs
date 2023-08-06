@@ -22,7 +22,8 @@
 .popular-dest{
     display: flex;
     justify-content: center;
-    font-family: 'playball', cursive;
+    font-family: 'Nobile', sans-serif;
+    font-size: larger;
     color: #07575b;
 }
 
@@ -92,28 +93,26 @@
 
 #france, #new-york, #brazil {
     display: flex;
-    flex-direction: column;
-    background-color: #003b46;
-    color: #dbd1b3;
+    font-family: 'Nobile', sans-serif;
 }
 
+
 #test-one {
-    background-color: #003b46;
-    color: #dbd1b3;
+
+    color: #003b46;
 }
 
 #test-two {
-    background-color: #003b46;
-    color: #dbd1b3;
+    color: #003b46;
 }
 #test-three {
-    background-color: #003b46;
-    color: #dbd1b3;
+    color: #003b46;
 }
 
 #sign-up {
     background-color: #003b46;
     color: #dbd1b3;
+    border-radius: 10px;
 }
 
 #sign-up input {
@@ -127,11 +126,7 @@
 }
 
 .col-md-3{
-    background: #003B46;
-    color: #DBD1B3;
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #DBD1B3;
+    color: #003B46;
 }
 
 .col-md-3 span svg{
@@ -185,4 +180,31 @@ video {
     -o-filter: blur(1px);
     -ms-filter: blur(1px);
     filter: blur(1px);
+}
+
+ ::-webkit-scrollbar {
+     width: 15px;
+ }
+
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Make the track transparent */
+}
+::-webkit-scrollbar-thumb {
+    background-color: transparent;; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the thumb */
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(136, 136, 136, 0.5);; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the thumb */
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent; /* Make the scrollbar corner transparent */
+}
+::-webkit-scrollbar-thumb:horizontal {
+    background-color: transparent; /* Make the horizontal thumb transparent */
+    width: 6px; /* Set the width of the horizontal thumb */
+}
+::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba(136, 136, 136, 0.5); /* Make the horizontal thumb transparent */
+    width: 6px; /* Set the width of the horizontal thumb */
 }
