@@ -63,10 +63,10 @@
 
 <!-- Offer Section -->
 <div class="container mt-5" id="our-offers">
-    <h1  class="text-center d-none d-xl-block" style="font-size: 100px; font-family: 'Nobile', sans-serif; color: #003B46; margin: 1000px 0 1000px 0;" >What We Offer</h1>
+    <h1  class="text-center d-none d-xl-block  gs_reveal" style="font-size: 100px; font-family: 'Nobile', sans-serif; color: #003B46; margin: 200px 0 300px 0;" >What We Offer</h1>
     <div class="row">
         <div class="container">
-            <div class="col-5 d-flex flex-column align-items-center"
+            <div class="col-5 d-flex flex-column align-items-center gs_reveal_fromRight gs_reveal"
                  style="color: #003B46; font-family: 'Nobile', sans-serif">
                 <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                                                              fill="currentColor" class="bi        bi-list-check"
@@ -81,7 +81,7 @@
                     worry... You can simply edit, or just create your very own.</p>
             </div>
         </div>
-        <div class="container d-flex flex-row-reverse">
+        <div class="container d-flex flex-row-reverse gs_reveal_fromLeft gs_reveal">
             <div class="col-5 d-flex flex-column align-items-center justify-content-end"
                  style="color: #003B46; font-family: 'Nobile', sans-serif">
                 <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
@@ -97,7 +97,7 @@
                     added a weather feature that offers historical weather for that time of year in recent years.</p>
             </div>
         </div>
-        <div class="container">
+        <div class="container gs_reveal_fromRight gs_reveal">
             <div class="col-5 d-flex flex-column align-items-center"
                  style="color: #003B46; font-family: 'Nobile', sans-serif">
                 <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
@@ -113,7 +113,7 @@
                     want to do (with reviews). Just click add and build your own itinerary. </p>
             </div>
         </div>
-        <div class="container">
+        <div class="container gs_reveal_fromLeft gs_reveal">
             <div class="container d-flex flex-row-reverse">
                 <div class="col-5 d-flex flex-column align-items-center justify-content-end"
                      style="color: #003B46; font-family: 'Nobile', sans-serif">
@@ -138,14 +138,14 @@
 
 
     <!-- Popular Destinations -->
-    <div class="container" id="pop-dest">
-        <div class="popular-dest">
-            <h1>Popular Destinations</h1>
+    <div class="container" id="pop-dest" style="margin-bottom: 300px">
+        <div class="popular-dest gs_reveal">
+            <h1 style="font-size: 100px; margin: 200px 0 200px 0;">Popular Destinations</h1>
         </div>
 
         <div class="row">
             <div>
-                <div class=" p-4 pt-4 pb-4 my-4" id="france">
+                <div class=" p-4 pt-4 pb-4 my-4 gs_reveal_fromRight gs_reveal" id="france">
                     <img th:src="@{../css/tower.jpeg}" alt="Paris, France" class="img-fluid"
                          style="width: 700px; border-radius: 10px;" >
                     <div class="m-5 d-flex flex-column" style="color: #003B46;">
@@ -162,7 +162,7 @@
                 </div>
             </div>
             <div>
-                <div class=" p-4 pt-4 pb-4 my-4" id="brazil">
+                <div class=" p-4 pt-4 pb-4 my-4 gs_reveal_fromLeft gs_reveal" id="brazil">
                     <div class="m-5 d-flex flex-column" style="color: #003B46;">
                         <h1 class="d-none d-xl-block">São Paulo, Brazil</h1>
                         <p class="d-none d-xl-block">Discover the cultural melting pot of São Paulo, where captivating street art adorns every
@@ -177,7 +177,7 @@
                 </div>
             </div>
             <div>
-                <div class=" p-4 pt-4 pb-4 my-4" id="new-york">
+                <div class=" p-4 pt-4 pb-4 my-4 gs_reveal_fromRight gs_reveal" id="new-york">
                     <img th:src="@{../css/nyc.jpeg}" alt="New York, USA" class="img-fluid"
                          style="width: 700px; border-radius: 10px;">
                     <div class="m-5 d-flex flex-column" style="color: #003B46;">
@@ -200,7 +200,7 @@
     <!-- Testimonials -->
     <div class="container mt-5" id="test">
         <div class="row">
-            <div class="container">
+            <div class="container gs_reveal_fromRight gs_reveal">
                 <div class="col-5" id="test-one" style="height: 100%;">
                     <blockquote class="flex-grow-1">
                         <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"I stumbled upon Field Trip while planning my vacation, and it turned out to be a
@@ -213,7 +213,7 @@
                     </blockquote>
                 </div>
             </div>
-            <div class="container d-flex flex-row-reverse">
+            <div class="container d-flex flex-row-reverse gs_reveal_fromLeft gs_reveal">
                 <div class="col-5" id="test-two" style="height: 100%;">
                     <blockquote class="flex-grow-1">
                         <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"As an avid traveler, I've used several travel websites, but none have impressed me as much
@@ -227,7 +227,7 @@
                     </blockquote>
                 </div>
             </div>
-            <div class="container">
+            <div class="container gs_reveal_fromRight gs_reveal">
                 <div class="col-5" id="test-three" style="height: 100%;">
                     <blockquote class="flex-grow-1">
                         <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"I can't thank this travel website enough for the incredible deals I scored on my recent
@@ -247,7 +247,7 @@
 
 
     <!-- Newsletter Signup -->
-    <div class="border container mt-5 text-center p-4" id="sign-up">
+    <div class="border container mt-5 text-center p-4 gs_reveal" id="sign-up" style="font-family: 'Nobile', sans-serif">
         <p>Subscribe to our newsletter for the latest updates and exclusive offers:</p>
         <form>
             <div class="form-row justify-content-center">
@@ -260,8 +260,53 @@
             </div>
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function animateFrom(elem, direction) {
+            direction = direction || 1;
+            var x = 0,
+                y = direction * 100;
+            if(elem.classList.contains("gs_reveal_fromLeft")) {
+                x = -100;
+                y = 0;
+            } else if (elem.classList.contains("gs_reveal_fromRight")) {
+                x = 100;
+                y = 0;
+            }
+            elem.style.transform = "translate(" + x + "px, " + y + "px)";
+            elem.style.opacity = "0";
+            gsap.fromTo(elem, {x: x, y: y, autoAlpha: 0}, {
+                duration: 1.25,
+                x: 0,
+                y: 0,
+                autoAlpha: 1,
+                ease: "expo",
+                overwrite: "auto"
+            });
+        }
 
+        function hide(elem) {
+            gsap.set(elem, {autoAlpha: 0});
+        }
 
+        document.addEventListener("DOMContentLoaded", function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
+                hide(elem); // assure that the element is hidden when scrolled into view
+
+                ScrollTrigger.create({
+                    trigger: elem,
+                    markers: false,
+                    onEnter: function() { animateFrom(elem) },
+                    onEnterBack: function() { animateFrom(elem, -1) },
+                    onLeave: function() { hide(elem) } // assure that the element is hidden when scrolled into view
+                });
+            });
+        });
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
