@@ -104,19 +104,19 @@
             <div class="d-none" id="map"></div>
         </div>
 
-        <div class="container mt-5">
-            <div class="overflow-auto container d-flex flex-wrap justify-content-center align-self-center align-items-center"
-                 style="height: 300px; border: 2px solid #D9D0B2; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;  "
-                 id="places">
-                <div id="placesLoadingMessage"
-                     class="text-center w-100 d-flex align-items-center justify-content-center"
-                     style="height: 100%; font-family: 'Nobile', sans-serif; font-weight: bold">
-                    <h1 style="opacity: 0.5;">Enter a trip location to edit <span class="text-capitalize"
-                                                                                  th:text=" ${itinerary.getName()}"></span>!
-                    </h1><h1 id="typing-text" class="d-none"></h1>
-                </div>
-
+        <div class="mt-5 overflow-auto container d-flex justify-content-center align-self-center align-items-center"
+             style="height: 450px; display: none; border-radius: 10px; background-color: #dbd1b3; box-shadow: 10px 10px 10px gray; font-family: 'Nobile', sans-serif; color: #003B46;  "
+             id="places">
+            <div id="placesLoadingMessage"
+                 class="text-center w-100 d-flex align-items-center justify-content-center"
+                 style="height: 100%; font-family: 'Nobile', sans-serif; font-weight: bold">
+                <h1 style="opacity: 0.5;">Enter a trip location to edit <span class="text-capitalize"
+                                                                              th:text=" ${itinerary.getName()}"></span>!
+                </h1>
+                <h1 id="typing-text" class="d-none"></h1>
             </div>
+        </div>
+
 
             <br>
 
@@ -131,9 +131,10 @@
                             <div id="listContainer" class="row d-flex flex-wrap justify-content-around">
                                 <ul class="d-flex justify-content-evenly flex flex-wrap" style="list-style: none">
                                     <li th:each="destination : ${itinerary.destinations}"
-                                        class="destinationCard card-body m-2  d-flex flex-column align-items-center">
+                                        class="destinationCard card-body m-2  d-flex flex-column align-items-center col-5">
                                         <img th:src="${destination.photoUrl}"
-                                             style="height: 200px; width: 250px; border-radius: 8px" class=" mb-1">
+                                             style="height: 200px; width: 250px; border-radius: 8px; box-shadow: 10px 10px 10px gray;"
+                                             class=" mb-2">
                                         <h5 class="text-capitalize" name="destinationName"
                                             th:text="${destination.name}"></h5>
                                         <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress"
@@ -196,9 +197,13 @@
                                         <li th:each="checklistItem, itemStat : *{checklist.checklistItems}">
                                             <div class="d-flex justify-content-between">
                                                 <span th:text="${checklistItem.itemName}" class="item-name"></span>
-                                                <input type="hidden" th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
-                                                <input type="hidden" class="item-id" th:field="*{checklist.checklistItems[__${itemStat.index}__].id}">
-                                                <button type="button" class="btn btn-danger delete-todo p-2" style="background-color: transparent; border: none;"><span class="material-symbols-outlined">delete</span></button>
+                                                <input type="hidden"
+                                                       th:field="*{checklist.checklistItems[__${itemStat.index}__].itemName}"/>
+                                                <input type="hidden" class="item-id"
+                                                       th:field="*{checklist.checklistItems[__${itemStat.index}__].id}">
+                                                <button type="button" class="btn btn-danger delete-todo p-2"
+                                                        style="background-color: transparent; border: none;"><span
+                                                        class="material-symbols-outlined">delete</span></button>
                                             </div>
                                         </li>
                                     </ul>

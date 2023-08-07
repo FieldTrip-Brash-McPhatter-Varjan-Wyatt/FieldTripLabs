@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-
     <link rel="stylesheet" th:href="@{../css/landing.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nobile:ital@1&display=swap" rel="stylesheet">
-
+    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="50x50">
     <meta charset="UTF-8">
     <title>Welcome to Field Trip</title>
     <style>
@@ -17,21 +16,26 @@
         ::-webkit-scrollbar-track {
             background-color: transparent; /* Make the track transparent */
         }
+
         ::-webkit-scrollbar-thumb {
             background-color: transparent;; /* Color of the scrollbar thumb */
             border-radius: 6px; /* Rounded corners of the thumb */
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background-color: rgba(136, 136, 136, 0.5);; /* Color of the scrollbar thumb */
             border-radius: 6px; /* Rounded corners of the thumb */
         }
+
         ::-webkit-scrollbar-corner {
             background-color: transparent; /* Make the scrollbar corner transparent */
         }
+
         ::-webkit-scrollbar-thumb:horizontal {
             background-color: transparent; /* Make the horizontal thumb transparent */
             width: 6px; /* Set the width of the horizontal thumb */
         }
+
         ::-webkit-scrollbar-thumb:horizontal:hover {
             background-color: rgba(136, 136, 136, 0.5); /* Make the horizontal thumb transparent */
             width: 6px; /* Set the width of the horizontal thumb */
@@ -63,7 +67,9 @@
 
 <!-- Offer Section -->
 <div class="container mt-5" id="our-offers">
-    <h1  class="text-center d-none d-xl-block  gs_reveal" style="font-size: 100px; font-family: 'Nobile', sans-serif; color: #003B46; margin: 200px 0 300px 0;" >What We Offer</h1>
+    <h1 class="text-center d-none d-xl-block  gs_reveal"
+        style="font-size: 100px; font-family: 'Nobile', sans-serif; color: #003B46; margin: 200px 0 300px 0;">What We
+        Offer</h1>
     <div class="row">
         <div class="container">
             <div class="col-5 d-flex flex-column align-items-center gs_reveal_fromRight gs_reveal"
@@ -107,7 +113,8 @@
 					</svg>
                 </span>
                 <h1>Trip Planning</h1>
-                <p style="font-size: 20px;">Tired of endlessly clicking on other travel websites going from page to page? Don't want to deal with
+                <p style="font-size: 20px;">Tired of endlessly clicking on other travel websites going from page to
+                    page? Don't want to deal with
                     those pesky travel agents that book things that they would want to do, rather than where you desire?
                     We've brought everything to you on one page. Just choose a destination and see all the things YOU
                     want to do (with reviews). Just click add and build your own itinerary. </p>
@@ -147,10 +154,11 @@
             <div>
                 <div class=" p-4 pt-4 pb-4 my-4 gs_reveal_fromRight gs_reveal" id="france">
                     <img th:src="@{../css/tower.jpeg}" alt="Paris, France" class="img-fluid"
-                         style="width: 700px; border-radius: 10px;" >
+                         style="width: 700px; border-radius: 10px;">
                     <div class="m-5 d-flex flex-column" style="color: #003B46;">
                         <h1 style="text-align: end" class="d-none d-xl-block">Paris, France</h1>
-                        <p style="text-align: end" class="d-none d-xl-block">Experience the romance and elegance of the "City of Love" as you
+                        <p style="text-align: end" class="d-none d-xl-block">Experience the romance and elegance of the
+                            "City of Love" as you
                             stroll
                             along the Seine River,
                             marvel at
@@ -165,12 +173,14 @@
                 <div class=" p-4 pt-4 pb-4 my-4 gs_reveal_fromLeft gs_reveal" id="brazil">
                     <div class="m-5 d-flex flex-column" style="color: #003B46;">
                         <h1 class="d-none d-xl-block">São Paulo, Brazil</h1>
-                        <p class="d-none d-xl-block">Discover the cultural melting pot of São Paulo, where captivating street art adorns every
+                        <p class="d-none d-xl-block">Discover the cultural melting pot of São Paulo, where captivating
+                            street art adorns every
                             corner,
                             tantalizing flavors of Brazilian cuisine can be savored in countless restaurants, and a
                             pulsating
                             nightlife scene awaits in the trendy districts of Vila Madalena and Jardins.</p>
-                        <a th:href="@{/saopaulo}" class="btn btn-primary align-self-start d-none d-xl-block">Learn More</a>
+                        <a th:href="@{/saopaulo}" class="btn btn-primary align-self-start d-none d-xl-block">Learn
+                            More</a>
                     </div>
                     <img th:src="@{../css/brazil.jpeg}" alt="São Paulo, Brazil" class="img-fluid"
                          style="width: 700px; border-radius: 10px;">
@@ -182,7 +192,8 @@
                          style="width: 700px; border-radius: 10px;">
                     <div class="m-5 d-flex flex-column" style="color: #003B46;">
                         <h1 class="d-none d-xl-block" style="text-align: end">New York, USA</h1>
-                        <p style="text-align: end" class="d-none d-xl-block">Immerse yourself in the vibrant energy of the "Big Apple" as you
+                        <p style="text-align: end" class="d-none d-xl-block">Immerse yourself in the vibrant energy of
+                            the "Big Apple" as you
                             explore
                             the towering skyscrapers
                             of
@@ -203,7 +214,8 @@
             <div class="container gs_reveal_fromRight gs_reveal">
                 <div class="col-5" id="test-one" style="height: 100%;">
                     <blockquote class="flex-grow-1">
-                        <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"I stumbled upon Field Trip while planning my vacation, and it turned out to be a
+                        <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"I stumbled upon Field Trip while
+                            planning my vacation, and it turned out to be a
                             game-changer! The user-friendly interface made it incredibly easy to find and compare
                             flights,
                             hotels, and attractions, saving me both time and money. I highly recommend it to anyone
@@ -216,7 +228,8 @@
             <div class="container d-flex flex-row-reverse gs_reveal_fromLeft gs_reveal">
                 <div class="col-5" id="test-two" style="height: 100%;">
                     <blockquote class="flex-grow-1">
-                        <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"As an avid traveler, I've used several travel websites, but none have impressed me as much
+                        <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"As an avid traveler, I've used
+                            several travel websites, but none have impressed me as much
                             as
                             this one. The extensive range of destination options and personalized recommendations helped
                             me
@@ -230,7 +243,8 @@
             <div class="container gs_reveal_fromRight gs_reveal">
                 <div class="col-5" id="test-three" style="height: 100%;">
                     <blockquote class="flex-grow-1">
-                        <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"I can't thank this travel website enough for the incredible deals I scored on my recent
+                        <p style="font-family: 'Nobile', sans-serif; font-size: 20px;">"I can't thank this travel
+                            website enough for the incredible deals I scored on my recent
                             vacation. From discounted hotel rates to exclusive tour packages, it provided me with
                             unbeatable
                             offers that made my dream trip a reality. The website's intuitive search filters and
@@ -260,14 +274,18 @@
             </div>
         </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+            integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+            integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function animateFrom(elem, direction) {
             direction = direction || 1;
             var x = 0,
                 y = direction * 100;
-            if(elem.classList.contains("gs_reveal_fromLeft")) {
+            if (elem.classList.contains("gs_reveal_fromLeft")) {
                 x = -100;
                 y = 0;
             } else if (elem.classList.contains("gs_reveal_fromRight")) {
@@ -290,18 +308,24 @@
             gsap.set(elem, {autoAlpha: 0});
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             gsap.registerPlugin(ScrollTrigger);
 
-            gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
+            gsap.utils.toArray(".gs_reveal").forEach(function (elem) {
                 hide(elem); // assure that the element is hidden when scrolled into view
 
                 ScrollTrigger.create({
                     trigger: elem,
                     markers: false,
-                    onEnter: function() { animateFrom(elem) },
-                    onEnterBack: function() { animateFrom(elem, -1) },
-                    onLeave: function() { hide(elem) } // assure that the element is hidden when scrolled into view
+                    onEnter: function () {
+                        animateFrom(elem)
+                    },
+                    onEnterBack: function () {
+                        animateFrom(elem, -1)
+                    },
+                    onLeave: function () {
+                        hide(elem)
+                    } // assure that the element is hidden when scrolled into view
                 });
             });
         });
