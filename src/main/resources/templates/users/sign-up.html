@@ -14,7 +14,7 @@
 </head>
 <body style="background-color: #C4DFE6">
 <nav th:insert="partials/navbar"></nav>
-<div class="card w-50 mx-auto mt-5">
+<div class="card w-75 mx-auto mt-5">
     <h1 class="card-header text-center bg-transparent">Join the Lab!</h1>
     <div class="card-body">
         <form id="form" class="d-flex flex-column align-items-center" th:action="@{/sign-up}" method="POST" th:object="${user}">
