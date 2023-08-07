@@ -673,7 +673,7 @@ function addToItinerary(index) {
         card.innerHTML = `
 
     <div class="destinationCard  card-body m-2  d-flex flex-column align-items-center" style="background-color: #dbd1b3;">
-    <img src="${photoUrl}" style="height: 200px; width: 250px; border-radius: 8px" class=" mb-1">
+    <img src="${photoUrl}" style="height: 200px; width: 250px; border-radius: 8px; box-shadow: 10px 10px 10px gray" class=" mb-1">
       <h5 class="text-capitalize col-12" name="destinationName">
 ${selectedResult.name}
 </h5>
@@ -687,7 +687,7 @@ ${selectedResult.name}
 ${selectedResult.vicinity}
 </h6>
 <div class="mt-3">
-      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">
+      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: ; color: #dbd1b3; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">
       View on Map
       </a>
        <a href="/reviews/${selectedResult.place_id}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">Reviews</a>
@@ -695,10 +695,11 @@ ${selectedResult.vicinity}
     </div>`;
     }else{
         card = document.createElement('div');
-        card.className = 'card col-3 m-1';
-        card.style = 'width: 15rem; background-color: #003B46; color: #D8D0B2';
+        card.className = 'd-flex col-4 justify-content-evenly flex-wrap m-2';
+        photoUrl = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJhdmVsfGVufDB8fDB8fHww&w=1000&q=80"
         card.innerHTML = `
     <div class="destinationCard card-body">
+     <img src="${photoUrl}" style="height: 200px; width: 250px; border-radius: 8px; box-shadow: 10px 10px 10px gray" class=" mb-1">
       <h5 class="card-title"  name="destinationName">
 ${selectedResult.name}
 </h5>
@@ -711,9 +712,10 @@ ${selectedResult.name}
       <h6 class="card-subtitle mb-2 text-body-secondary" name="destinationAddress">
 ${selectedResult.vicinity}
 </h6>
-      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link" target="_blank">
-      View on Map
-      </a>
+      <div class="mt-3">
+      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedResult.name)}&query_place_id=${selectedResult.place_id}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: ;color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">View on Map</a>
+       <a href="/reviews/${selectedResult.place_id}" class="card-link text-decoration-none" target="_blank" style="border: #003b46 1px solid; border-radius: 8px; background-color: #dbd1b3; color: #003b46; font-family: 'Nobile', sans-serif; box-shadow: 10px 10px 10px gray; padding: 4px;">Reviews</a>
+       </div>
     </div>`;
     }
 
