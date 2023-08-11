@@ -1,6 +1,5 @@
 # FieldTripLabs
 
-# Field Trip Planner
 
 
 Field Trip Planner is a comprehensive travel planning platform that simplifies the process of organizing trips. This project was developed as part of the Capstone Project for FieldTripLabs at CodeUp. The platform utilizes the Google Places API to provide users with curated lists of nearby attractions and points of interest based on their chosen destination. Users can easily add these places to their personalized itineraries, create checklists, and access real-time weather updates to ensure they're well-prepared for their adventures.
